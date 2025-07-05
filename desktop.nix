@@ -45,7 +45,7 @@
     (writeShellScriptBin "discord" ''
       export GDK_SCALE=0.5
       export GDK_DPI_SCALE=0.5
-      exec ${discord}/bin/discord "$@"
+      exec ${discord}/bin/discord --force-device-scale-factor=1.0 --high-dpi-support=1 --force-device-scale-factor=1.0 "$@"
     '')
     unstablePkgs.nwg-look
     gvfs
