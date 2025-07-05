@@ -112,7 +112,7 @@
         if [[ $KEYMAP == vicmd ]] || [[ $1 = 'block' ]]; then
           # Block cursor for normal mode
           echo -ne '\e[2 q'
-        elif [[ $KEYMAP == main ]] || [[ $KEYMAP == viins ]] || [[ $KEYMAP == '' ]] || [[ $1 == 'beam' ]]; then
+        elif [[ $KEYMAP == main ]] || [[ $KEYMAP == viins ]] || [[ -z $KEYMAP ]] || [[ $1 == 'beam' ]]; then
           # Beam cursor for insert mode
           echo -ne '\e[6 q'
         fi
