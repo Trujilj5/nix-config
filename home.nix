@@ -95,30 +95,6 @@
     ./dotfiles/home-manager
   ];
 
-  # Custom desktop entries for Discord and Brave with proper scaling
-  xdg.desktopEntries = {
-    discord = {
-      name = "Discord";
-      genericName = "All-in-one cross-platform voice and text chat for gamers";
-      comment = "All-in-one cross-platform voice and text chat for gamers";
-      exec = "env GDK_SCALE=0.5 discord";
-      icon = "discord";
-      type = "Application";
-      categories = [ "Network" "InstantMessaging" ];
-      mimeType = [ "x-scheme-handler/discord" ];
-    };
-
-    brave = {
-      name = "Brave Web Browser";
-      genericName = "Web Browser";
-      comment = "Access the Internet";
-      exec = "env GDK_SCALE=0.5 brave";
-      icon = "brave-browser";
-      type = "Application";
-      categories = [ "Network" "WebBrowser" ];
-      mimeType = [ "application/pdf" "application/rdf+xml" "application/rss+xml" "application/xhtml+xml" "application/xhtml_xml" "application/xml" "image/gif" "image/jpeg" "image/png" "image/webp" "text/html" "text/xml" "x-scheme-handler/http" "x-scheme-handler/https" "x-scheme-handler/ftp" "x-scheme-handler/chrome" "video/webm" "application/x-xpinstall" ];
-    };
-  };
 
 
 }

@@ -37,10 +37,14 @@
 
   environment.systemPackages = with pkgs; [
     filezilla
-    brave
+    (writeShellScriptBin "brave" ''
+      exec ${brave}/bin/brave --force-device-scale-factor=0.25 --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
+    '')
     firefox
     spotify
-    discord
+    (writeShellScriptBin "discord" ''
+      exec ${discord}/bin/discord --force-device-scale-factor=0.25 --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
+    '')
     unstablePkgs.nwg-look
     gvfs
     udisks2
