@@ -43,7 +43,7 @@
     firefox
     spotify
     (writeShellScriptBin "discord" ''
-      exec ${discord}/bin/discord --force-device-scale-factor=0.25 --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
+      exec ${discord}/bin/discord --force-device-scale-factor=1 --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
     '')
     unstablePkgs.nwg-look
     gvfs
@@ -54,7 +54,7 @@
     python3Packages.requests
     wlogout
     networkmanagerapplet
-    
+
     # Theme packages
     catppuccin-gtk
     papirus-icon-theme
