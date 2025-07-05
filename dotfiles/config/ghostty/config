@@ -44,9 +44,10 @@
 theme = catppuccin-macchiato
 confirm-close-surface = false
 
-# Font configuration for better p10k icon support
+# Font configuration for better p10k icon support and tmux separators
 font-family = "JetBrains Mono Nerd Font"
 font-size = 11
+font-feature = "+liga"
 
 # Color and terminal settings
 term = xterm-256color
