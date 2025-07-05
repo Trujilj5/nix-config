@@ -101,18 +101,18 @@
       name = "Discord";
       genericName = "All-in-one cross-platform voice and text chat for gamers";
       comment = "All-in-one cross-platform voice and text chat for gamers";
-      exec = "env GDK_SCALE=1 discord";
+      exec = "env GDK_SCALE=0.5 discord";
       icon = "discord";
       type = "Application";
       categories = [ "Network" "InstantMessaging" ];
       mimeType = [ "x-scheme-handler/discord" ];
     };
-    
+
     brave = {
       name = "Brave Web Browser";
       genericName = "Web Browser";
       comment = "Access the Internet";
-      exec = "env GDK_SCALE=1 brave";
+      exec = "env GDK_SCALE=0.5 brave";
       icon = "brave-browser";
       type = "Application";
       categories = [ "Network" "WebBrowser" ];
