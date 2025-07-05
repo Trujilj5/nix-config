@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   # Catppuccin Macchiato theme configuration
@@ -16,16 +16,13 @@
     };
 
     iconTheme = {
-      package = pkgs.catppuccin-papirus-folders.override {
-        flavor = "macchiato";
-        accent = "blue";
-      };
+      package = pkgs.papirus-icon-theme;
       name = "Papirus-Dark";
     };
 
     cursorTheme = {
-      package = pkgs.catppuccin-cursors.macchiato;
-      name = "Catppuccin-Macchiato-Blue-Cursors";
+      package = pkgs.catppuccin-cursors.macchiatoDark;
+      name = "Catppuccin-Macchiato-Dark-Cursors";
       size = 24;
     };
 
@@ -40,8 +37,6 @@
       gtk-menu-images = 1;
       gtk-toolbar-style = "GTK_TOOLBAR_BOTH";
       gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
-      gtk-button-images = 1;
-      gtk-menu-images = 1;
       gtk-enable-event-sounds = 1;
       gtk-enable-input-feedback-sounds = 1;
       gtk-xft-antialias = 1;
@@ -66,7 +61,7 @@
   home.packages = with pkgs; [
     # Core theme packages
     catppuccin-gtk
-    catppuccin-papirus-folders
+    papirus-icon-theme
     catppuccin-cursors
     
     # GTK theme tools
@@ -89,11 +84,11 @@
     GTK_THEME = "Catppuccin-Macchiato-Standard-Blue-Dark";
     
     # Qt theming
-    QT_QPA_PLATFORMTHEME = "gtk3";
+    QT_QPA_PLATFORMTHEME = lib.mkForce "gtk3";
     QT_STYLE_OVERRIDE = "adwaita-dark";
     
     # Cursor theming
-    XCURSOR_THEME = "Catppuccin-Macchiato-Blue-Cursors";
+    XCURSOR_THEME = "Catppuccin-Macchiato-Dark-Cursors";
     XCURSOR_SIZE = "24";
   };
 

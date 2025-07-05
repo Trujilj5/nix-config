@@ -53,7 +53,7 @@
     
     # Theme packages
     catppuccin-gtk
-    catppuccin-papirus-folders
+    papirus-icon-theme
     catppuccin-cursors
     libsForQt5.qtstyleplugin-kvantum
     libsForQt5.qt5ct
