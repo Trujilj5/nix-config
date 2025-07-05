@@ -15,7 +15,6 @@
   services.gvfs.enable = true;
 
   services.gnome.gnome-keyring.enable = true;
-  # services.pam.services.gdm.enableGnomeKeyring = true;
 
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -51,5 +50,15 @@
     python3Packages.requests
     wlogout
     networkmanagerapplet
+    
+    # Theme packages
+    catppuccin-gtk
+    catppuccin-papirus-folders
+    catppuccin-cursors
+    libsForQt5.qtstyleplugin-kvantum
+    libsForQt5.qt5ct
+    qt6ct
+    adwaita-qt
+    adwaita-qt6
   ];
 }

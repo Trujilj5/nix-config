@@ -94,23 +94,4 @@
   imports = [
     ./dotfiles/home-manager
   ];
-
-  gtk = {
-    enable = true;
-
-    theme = {
-      package = pkgs.catppuccin-gtk;
-      name = "catppuccin";
-    };
-
-    iconTheme = {
-      package = pkgs.adwaita-icon-theme;
-      name = "Adwaita";
-    };
-
-    font = {
-      name = "Sans";
-      size = 11;
-    };
-  };
 }

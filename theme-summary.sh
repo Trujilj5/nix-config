@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+
+# Catppuccin Macchiato Theme Summary
+# This script shows what was configured for your theme
+
+echo "🎨 Catppuccin Macchiato Theme Configuration Summary"
+echo "=================================================="
+echo ""
+
+echo "📁 Files Created/Modified:"
+echo "  • nixos/dotfiles/home-manager/theme.nix - Main theme configuration"
+echo "  • nixos/dotfiles/config/waybar/style.css - Updated with Catppuccin colors"
+echo "  • nixos/dotfiles/config/hypr/hyprland.conf - Added theme environment variables"
+echo "  • nixos/desktop.nix - Added theme packages"
+echo "  • nixos/setup-catppuccin-theme.sh - Setup script"
+echo "  • nixos/CATPPUCCIN_THEME_README.md - Complete documentation"
+echo ""
+
+echo "🎯 What Was Configured:"
+echo "  ✅ GTK Theme: Catppuccin-Macchiato-Standard-Blue-Dark"
+echo "  ✅ Icon Theme: Papirus-Dark with Catppuccin folder colors"
+echo "  ✅ Cursor Theme: Catppuccin-Macchiato-Blue-Cursors"
+echo "  ✅ Qt Applications: Configured to match GTK theme"
+echo "  ✅ Hyprland: Updated with Catppuccin Macchiato colors"
+echo "  ✅ Waybar: Updated with Catppuccin color palette"
+echo "  ✅ Font: JetBrains Mono system-wide"
+echo ""
+
+echo "🚀 Next Steps:"
+echo "  1. Run the setup script:"
+echo "     ./setup-catppuccin-theme.sh"
+echo ""
+echo "  2. Or manually rebuild your system:"
+echo "     sudo nixos-rebuild switch --flake ."
+echo "     home-manager switch --flake ."
+echo ""
+echo "  3. Restart Hyprland services:"
+echo "     pkill hyprpaper waybar"
+echo "     hyprpaper &"
+echo "     waybar &"
+echo ""
+echo "  4. Log out and back in (or restart Hyprland)"
+echo ""
+
+echo "🔧 Theme Management Tools:"
+echo "  • nwg-look - GTK theme configuration"
+echo "  • qt5ct - Qt5 application theming"
+echo "  • qt6ct - Qt6 application theming"
+echo ""
+
+echo "📚 Key Features:"
+echo "  • Hyprland DOES use GTK for many applications"
+echo "  • Your cursor, window borders, and UI elements will all match"
+echo "  • Waybar now uses the Catppuccin color scheme"
+echo "  • Both GTK and Qt applications are themed"
+
+echo ""
+
+echo "🎨 Catppuccin Macchiato Colors:"
+echo "  • Base (Background): #24273a"
+echo "  • Blue (Primary): #8aadf4"
+echo "  • Text: #cad3f5"
+echo "  • Red: #ed8796"
+echo "  • Green: #a6da95"
+echo "  • Yellow: #eed49f"
+echo "  • Pink: #f5bde6"
+echo ""
+
+echo "💡 Remember:"
+echo "  • Your existing configuration is preserved"
+echo "  • All changes are managed through Nix"
+echo "  • Read CATPPUCCIN_THEME_README.md for detailed info"
+echo "  • Some applications may need manual theming"
+echo ""
+
+echo "✨ Enjoy your beautiful Catppuccin Macchiato desktop!"

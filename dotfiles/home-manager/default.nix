@@ -10,6 +10,7 @@
     ./nvim.nix
     ./ghostty.nix
     ./tmux.nix
+    ./theme.nix
     # Add more home-manager dotfile configs here as you create them
     # ./git.nix
     # ./alacritty.nix
