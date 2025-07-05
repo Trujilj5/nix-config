@@ -60,6 +60,23 @@
 
     # Complete zsh setup matching original configuration
     initContent = ''
+      # Enable instant prompt. Should stay close to the top of ~/.zshrc.
+      if [[ -r "$HOME/.cache/p10k-instant-prompt-$USER.zsh" ]]; then
+        source "$HOME/.cache/p10k-instant-prompt-$USER.zsh"
+      fi
+      
+      # Color support and terminal configuration
+      export TERM="xterm-256color"
+      export COLORTERM="truecolor"
+      
+      # Force color output for various tools
+      export FORCE_COLOR=1
+      export CLICOLOR=1
+      export CLICOLOR_FORCE=1
+      
+      # Initialize color support
+      autoload -U colors && colors
+      
       # Load Powerlevel10k theme
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
@@ -91,7 +108,7 @@
       bindkey '^N' autosuggest-execute  # Ctrl+N accepts and executes suggestion
 
       # Load p10k configuration
-      test -f ~/.p10k.zsh && source ~/.p10k.zsh
+      source ${builtins.toString ../config/p10k.zsh}
     '';
   };
 }

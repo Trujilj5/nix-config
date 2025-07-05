@@ -43,3 +43,10 @@
 # resize-overlay-duration = 4s 200ms
 theme = catppuccin-macchiato
 confirm-close-surface = false
+
+# Font configuration for better p10k icon support
+font-family = "JetBrains Mono Nerd Font"
+font-size = 11
+
+# Color and terminal settings
+term = xterm-256color

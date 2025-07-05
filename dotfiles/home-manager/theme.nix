@@ -90,6 +90,17 @@
     # Cursor theming
     XCURSOR_THEME = "Catppuccin-Macchiato-Dark-Cursors";
     XCURSOR_SIZE = "24";
+    
+    # Color support for terminals and applications
+    TERM = "xterm-256color";
+    COLORTERM = "truecolor";
+    FORCE_COLOR = "1";
+    CLICOLOR = "1";
+    CLICOLOR_FORCE = "1";
+    
+    # Ensure proper color support for zsh and p10k
+    ZSH_HIGHLIGHT_HIGHLIGHTERS = "main,brackets,pattern,line,cursor,root";
+    LS_COLORS = "di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43";
   };
 
   # XDG settings for proper theme application

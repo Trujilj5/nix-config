@@ -85,6 +85,9 @@
 
     # Hyprpaper configuration
     ".config/hypr/hyprpaper.conf".text = builtins.readFile ./dotfiles/config/hypr/hyprpaper.conf;
+
+    # P10k configuration
+    ".p10k.zsh".source = ./dotfiles/config/p10k.zsh;
   };
 
   # Let Home Manager install and manage itself.
