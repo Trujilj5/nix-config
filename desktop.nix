@@ -50,5 +50,6 @@
     teams-for-linux
     python3Packages.requests
     wlogout
+    networkmanagerapplet
   ];
 }

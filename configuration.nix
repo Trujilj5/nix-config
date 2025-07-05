@@ -14,8 +14,11 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # networking.networkmanager.enable = true;
-  networking.wireless.enable = true;
+  networking.networkmanager.enable = true;
+  networking.wireless.enable = false;
+
+  hardware.enableRedistributableFirmware = true;
+  hardware.enableAllFirmware = true;
 
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "25.05";

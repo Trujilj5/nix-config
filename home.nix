@@ -32,7 +32,6 @@
     swaynotificationcenter
     ghostty
     wl-clipboard
-    networkmanagerapplet
     rofi-wayland
     libnotify
     playerctl
