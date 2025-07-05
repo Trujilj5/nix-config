@@ -50,3 +50,10 @@ font-size = 11
 
 # Color and terminal settings
 term = xterm-256color
+
+# Cursor shape configuration
+cursor-style = block
+cursor-style-blink = true
+
+# Enable cursor shape changes for vi mode
+cursor-click-to-move = false
