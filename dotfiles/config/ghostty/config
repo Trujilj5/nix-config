@@ -46,7 +46,6 @@ confirm-close-surface = false
 
 # Font configuration for better p10k icon support and tmux separators
 font-family = "JetBrainsMono Nerd Font"
-font-family-fallback = "MesloLGS NF"
 font-size = 11
 font-feature = "+liga"
 
