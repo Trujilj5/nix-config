@@ -4,6 +4,7 @@
 {
   # Useful Tmux-related packages
   home.packages = with pkgs; [
+    tmux
     tmux-sessionizer
   ];
   
@@ -18,14 +19,6 @@
     recursive = true;
   };
 
-  # Enable and configure Tmux
-  programs.tmux = {
-    enable = true;
-    clock24 = true;
-    
-    # TPM configuration will be handled in tmux.conf
-    
-    # Custom configuration from file
-    extraConfig = builtins.readFile ../config/tmux/tmux.conf;
-  };
+  # Use plain config file instead of home-manager tmux program
+  home.file.".config/tmux/tmux.conf".source = ../config/tmux/tmux.conf;
 }
