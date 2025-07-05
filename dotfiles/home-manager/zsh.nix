@@ -107,6 +107,29 @@
       bindkey '^Y' autosuggest-accept  # Ctrl+Y accepts suggestion
       bindkey '^N' autosuggest-execute  # Ctrl+N accepts and executes suggestion
 
+      # Cursor shape changes for vi mode
+      function zle-keymap-select {
+        if [[ $KEYMAP == vicmd ]] || [[ $1 = 'block' ]]; then
+          # Block cursor for normal mode
+          echo -ne '\e[2 q'
+        elif [[ $KEYMAP == main ]] || [[ $KEYMAP == viins ]] || [[ $KEYMAP = '' ]] || [[ $1 = 'beam' ]]; then
+          # Beam cursor for insert mode
+          echo -ne '\e[6 q'
+        fi
+      }
+      zle -N zle-keymap-select
+
+      # Initialize cursor shape
+      zle-line-init() {
+        echo -ne '\e[6 q'
+      }
+      zle -N zle-line-init
+
+      # Restore cursor shape when command is done
+      preexec() {
+        echo -ne '\e[6 q'
+      }
+
       # Load p10k configuration
       source ${builtins.toString ../config/p10k.zsh}
     '';
