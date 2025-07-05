@@ -43,7 +43,9 @@
     firefox
     spotify
     (writeShellScriptBin "discord" ''
-      exec ${discord}/bin/discord --force-device-scale-factor=1 --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
+      export GDK_SCALE=0.5
+      export GDK_DPI_SCALE=0.5
+      exec ${discord}/bin/discord "$@"
     '')
     unstablePkgs.nwg-look
     gvfs
