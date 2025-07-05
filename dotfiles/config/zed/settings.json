@@ -1,0 +1,113 @@
+{
+  "edit_predictions": {
+    "mode": "subtle",
+    "copilot": {
+      "proxy": null,
+      "proxy_no_verify": null
+    },
+    "enabled_in_text_threads": false
+  },
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "auto_update_extensions": {
+    "catppuccin-icons": false
+  },
+  "agent": {
+    "always_allow_tool_actions": true,
+    "default_profile": "write",
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4"
+    },
+    "version": "2"
+  },
+  "telemetry": { "metrics": false, "diagnostics": false },
+  "vim_mode": true,
+  "soft_tabs": true,
+  "tab_size": 2,
+  "relative_line_numbers": false,
+  "show_line_numbers": true,
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "buffer_font_family": "DejaVu Sans Mono",
+  "show_inline_documentation": true,
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Macchiato (Blue Blur+)",
+    "dark": "Catppuccin Macchiato"
+  },
+  "completions": { "max_height": 500 },
+  "git": { "git_gutter": "tracked_files" },
+  "git_panel": { "button": true, "dock": "left" },
+  "icon_theme": "Catppuccin Macchiato",
+  "project_panel": {
+    "button": true,
+    "dock": "left",
+    "file_icons": true,
+    "folder_icons": true
+  },
+  "tabs": { "file_icons": true },
+  "file_finder": { "file_icons": true },
+  "file_types": {
+    "GitLab CI": [".gitlab-ci.yml", ".gitlab-ci.*.yml"]
+  },
+  "languages": {
+    "GitLab CI": {
+      "file_types": [".gitlab-ci.yml", ".gitlab-ci.*.yml"],
+      "language_servers": ["gitlab-ci-ls"]
+    },
+    "JSONC": {
+      "format_on_save": "off"
+    }
+  },
+  "lsp": {
+    "gitlab-ci-ls": {
+      "binary": {
+        "path": "/usr/local/bin/gitlab-ci-ls"
+      },
+      "initialization_options": {
+        "cache": "/tmp/gitlab-ci-ls-cache",
+        "log_path": "/tmp/gitlab-ci-ls.log"
+      }
+    },
+    "yaml-language-server": {
+      "settings": {
+        "yaml": {
+          "completion": true,
+          "schemaStore": {
+            "enable": false
+          },
+          "schemas": {}
+        }
+      }
+    }
+  },
+  "terminal": {
+    "dock": "bottom",
+    "program": "/run/current-system/sw/bin/ghostty",
+    "shell": {
+      "program": "zsh"
+    },
+      "button": true
+  },
+"format_on_save": "off",
+"language_models": {
+  "ollama": {
+    "api_url": "http://localhost:11434",
+    "available_models": [
+      {
+        "name": "qwen2.5-coder",
+        "display_name": "qwen 2.5 coder 32K",
+        "max_tokens": 32768,
+        "supports_tools": true,
+        "supports_thinking": true,
+        "supports_images": true
+      }
+    ]
+  },
+  "lmstudio": {
+    "api_url": "http://192.168.1.133:1234/api/v0"
+  }
+}
+}

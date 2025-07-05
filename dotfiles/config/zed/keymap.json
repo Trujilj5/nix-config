@@ -1,0 +1,127 @@
+[
+  {
+    "context": "Pane",
+    "bindings": {
+      "space k": "pane::ActivateNextItem",
+      "space j": "pane::ActivatePreviousItem",
+      "space 1": ["pane::ActivateItem", 0],
+      "space 2": ["pane::ActivateItem", 1],
+      "space 3": ["pane::ActivateItem", 2],
+      "space 4": ["pane::ActivateItem", 3],
+      "space 5": ["pane::ActivateItem", 4],
+      "space 6": ["pane::ActivateItem", 5],
+      "space 7": ["pane::ActivateItem", 6],
+      "space 8": ["pane::ActivateItem", 7],
+      "space 9": ["pane::ActivateItem", 8],
+      "space 0": "pane::ActivateLastItem",
+      "space x": ["pane::CloseActiveItem", { "close_pinned": false }],
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "tab": "editor::Indent",
+      "shift-tab": "editor::Outdent",
+      "ctrl-d": "editor::MovePageDown",
+      "ctrl-u": "editor::MovePageUp",
+      "n": "search::SelectNextMatch",
+      "N": "search::SelectPreviousMatch",
+      "space y": "editor::Copy",
+      "space g d": "editor::GoToDefinition",
+      "space g r": "editor::FindAllReferences",
+      "space g a": "editor::ToggleCodeActions",
+      "space r n": "editor::Rename",
+      // "space l g": "git_panel::ToggleFocus",
+      "space f f": "file_finder::Toggle",
+      "space f w": "pane::DeploySearch",
+      "space f d": "editor::ToggleFold"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual",
+    "bindings": {
+      "tab": "editor::Indent",
+      "shift-tab": "editor::Outdent",
+      "space y": "editor::Copy"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "space": null
+    }
+  },
+  {
+    "context": "vim_mode == normal || ProjectPanel || EmptyPane",
+    "bindings": {
+      "space e": "project_panel::ToggleFocus",
+      "space c": "project_panel::ToggleFocus",
+      "space t": "terminal_panel::ToggleFocus",
+      "T": "workspace::NewTerminal",
+      "alt-q": "pane::CloseActiveItem",
+      "ctrl-l": "workspace::ToggleRightDock"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "ctrl-a": "project_panel::NewFile",
+      "ctrl-d": "project_panel::NewDirectory",
+      "ctrl-x": ["project_panel::Trash", { "skip_prompt": false }],
+      "ctrl-D": ["project_panel::Delete", { "skip_prompt": false }],
+      "ctrl-r": "project_panel::Rename"
+    }
+  },
+  {
+    "context": "GitPanel",
+    "bindings": {
+      "j": "menu::SelectNext",
+      "k": "menu::SelectPrevious",
+      "s": "git::StageFile",
+      "a": "git::StageAll",
+      "u": "git::UnstageFile",
+      "c": "git::Commit",
+      "p": "git::Pull",
+      "P": "git::Push",
+      "enter": "menu::Confirm",
+      "space": null,
+      "alt-q": "git_panel::Close"
+    }
+  },
+  {
+    "context": "GitCommit > Editor && vim_mode == normal",
+    "bindings": {
+      "space g c": "git::Commit",
+      "q": "menu::Cancel"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "space": null,
+      "ctrl-n": "pane::ActivateNextItem",
+      "ctrl-b": "pane::ActivatePreviousItem",
+      "ctrl-1": ["pane::ActivateItem", 0],
+      "ctrl-2": ["pane::ActivateItem", 1],
+      "ctrl-3": ["pane::ActivateItem", 2],
+      "ctrl-4": ["pane::ActivateItem", 3],
+      "ctrl-5": ["pane::ActivateItem", 4],
+      "ctrl-6": ["pane::ActivateItem", 5],
+      "ctrl-7": ["pane::ActivateItem", 6],
+      "ctrl-8": ["pane::ActivateItem", 7],
+      "ctrl-9": ["pane::ActivateItem", 8],
+      "ctrl-0": "pane::ActivateLastItem",
+      "alt-q": ["pane::CloseActiveItem", { "close_pinned": false }],
+      "shift-delete": ["pane::CloseActiveItem", { "close_pinned": false }],
+      "shift-enter": "workspace::NewTerminal",
+      // "escape": "terminal_panel::ToggleFocus"
+    }
+  },
+  {
+  "context": "Editor && edit_prediction",
+  "bindings": {
+    "alt-tab": "editor::AcceptEditPrediction",
+    "alt-l": null
+  }
+}
+]

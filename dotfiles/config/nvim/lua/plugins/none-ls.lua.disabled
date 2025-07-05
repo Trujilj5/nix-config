@@ -1,0 +1,24 @@
+return {
+  {
+    "nvimtools/none-ls.nvim",
+    lazy = false,
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      local null_ls = require("null-ls")
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.formatting.stylua,   -- For Lua
+          null_ls.builtins.formatting.biome,    -- For TypeScript/JavaScript
+        },
+        -- Tie <leader>gg to formatting
+        on_attach = function(client, bufnr)
+          if client.supports_method("textDocument/formatting") then
+            vim.keymap.set("n", "<leader>gg", function()
+              vim.lsp.buf.format({ bufnr = bufnr })
+            end, { buffer = bufnr, desc = "Format file with none-ls" })
+          end
+        end,
+      })
+    end,
+  },
+}

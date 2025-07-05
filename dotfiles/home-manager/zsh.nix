@@ -1,0 +1,97 @@
+{ config, pkgs, inputs, ... }:
+
+{
+  # Configure zsh through Home Manager
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+
+    # Vi mode bindings
+    defaultKeymap = "viins";
+
+    # Shell aliases - your existing aliases
+    shellAliases = {
+      update = "sudo nixos-rebuild switch --flake ~/nixos#default";
+      vim = "nvim";
+      sudoedit = "sudo -E nvim";
+      zed = "zeditor .";
+      "zed." = "zed . && exit";
+      wip = "git add . && git commit -m 'wip' && git push origin";
+      c = "clear";
+      nix-shell = "nix-shell --run zsh";
+      ll = "ls -alF";
+      la = "ls -A";
+      l = "ls -ltrah";
+      ".." = "cd ..";
+      "..." = "cd ../..";
+      kc = "kubectl";
+      kcg = "kc get";
+      kcd = "kc describe";
+      kcga = "kcg all";
+      kcgp = "kcg pod";
+      kcc = "kc config";
+      kccns = "kcc set-context --current --namespace";
+      kcgns = "kcg namespace";
+      kca = "kc apply";
+      kcapply = "kca";
+      kcgsa = "kcg serviceaccount";
+      kcdp = "kcd pod";
+      kcdss = "kcd statefulset";
+      kcl = "kc logs";
+      kcexec = "kc exec";
+      kcrm = "kc delete";
+      kcdel = "kcrm";
+      kcdelp = "kcrm pod";
+      kcrmp = "kcrm pod";
+      kcrmss = "kcrm statefulsets";
+      kcdelss = "kcrmss";
+      kcge = "kcg events";
+      kcswap = "kubectl config set-context --current --namespace";
+    };
+
+    # History configuration
+    history = {
+      size = 500;
+      save = 1000;
+      path = "${config.home.homeDirectory}/.zshHistFile";
+    };
+
+    # Complete zsh setup matching original configuration
+    initContent = ''
+      # Load Powerlevel10k theme
+      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+
+      # Autosuggestions configuration
+      export ZSH_AUTOSUGGEST_STRATEGY=(history)
+      export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
+
+      # Completion setup
+      autoload -Uz compinit
+      compinit
+      zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+      zstyle ':completion:*' menu select
+      zstyle ':completion:*' file-sort name
+      zstyle ':completion:*' list-colors ""
+
+      # Vi mode
+      bindkey -v
+
+      # Key bindings for zsh autosuggestions and completion
+      bindkey '^I' complete-word  # Tab for completion
+      bindkey '^[[C' autosuggest-accept  # Right arrow accepts suggestion
+      bindkey '^[[A' up-line-or-history  # Up arrow for history
+      bindkey '^[[B' down-line-or-history  # Down arrow for history
+      bindkey '^E' autosuggest-accept  # End key accepts suggestion
+      bindkey '^F' autosuggest-accept  # Ctrl+F accepts suggestion
+
+      # Additional autosuggestion bindings
+      bindkey '^Y' autosuggest-accept  # Ctrl+Y accepts suggestion
+      bindkey '^N' autosuggest-execute  # Ctrl+N accepts and executes suggestion
+
+      # Load p10k configuration
+      test -f ~/.p10k.zsh && source ~/.p10k.zsh
+    '';
+  };
+}
