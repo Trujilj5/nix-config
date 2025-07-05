@@ -61,4 +61,15 @@
     adwaita-qt
     adwaita-qt6
   ];
+
+  # System-wide DPI and scaling configuration
+  environment.sessionVariables = {
+    # Fix DPI scaling system-wide
+    GDK_SCALE = "1";
+    GDK_DPI_SCALE = "1";
+    QT_AUTO_SCREEN_SCALE_FACTOR = "0";
+    QT_SCALE_FACTOR = "1";
+    QT_FONT_DPI = "96";
+    XCURSOR_SIZE = "24";
+  };
 }
