@@ -21,7 +21,6 @@
     git
     lazygit
     bluetui
-    unstablePkgs.zed-editor
     cmake
     meson
     cpio
