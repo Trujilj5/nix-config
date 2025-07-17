@@ -38,7 +38,7 @@
           environment.systemPackages = [
             inputs.zen-browser.packages.${system}.default
           ];
-          _module.args = {
+          _moduleargs = {
             unstablePkgs = import inputs.nixpkgs-unstable {
               inherit system;
               config = config.nixpkgs.config;
