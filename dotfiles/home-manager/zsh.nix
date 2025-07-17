@@ -14,7 +14,7 @@
     # Shell aliases - your existing aliases
     shellAliases = {
       update = "sudo nixos-rebuild switch --flake ~/nixos#default";
-      "update --upgrade" = "sudo nix flake update && update"
+      "update --upgrade" = "sudo nix flake update && update";
       vim = "nvim";
       sudoedit = "sudo -E nvim";
       zed = "zeditor .";
