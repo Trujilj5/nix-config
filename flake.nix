@@ -37,7 +37,6 @@
         ({ config, pkgs, inputs, ... }: {
           environment.systemPackages = [
             inputs.zen-browser.packages.${system}.default
-            inputs.nixpkgs-unstable.legacyPackages.${system}.zed-editor-fhs
           ];
           _module.args = {
             unstablePkgs = import inputs.nixpkgs-unstable {
