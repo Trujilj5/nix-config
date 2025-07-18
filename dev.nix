@@ -45,6 +45,7 @@
     unstablePkgs.kubernetes-helm
     baobab
     nixd
+    nil
   ];
 
   systemd.user.services.podman-api = {
