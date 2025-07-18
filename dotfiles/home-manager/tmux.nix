@@ -1,5 +1,5 @@
 # dotfiles/home-manager/tmux.nix - Tmux terminal multiplexer configuration
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   # Useful Tmux-related packages
@@ -7,7 +7,7 @@
     tmux
     tmux-sessionizer
   ];
-  
+
   # Install TPM (Tmux Plugin Manager)
   home.file.".tmux/plugins/tpm" = {
     source = pkgs.fetchFromGitHub {

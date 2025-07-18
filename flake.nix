@@ -34,7 +34,7 @@
             };
           };
         }
-        ({ config, pkgs, inputs, ... }: {
+        ({ config, inputs, ... }: {
           environment.systemPackages = [
             inputs.zen-browser.packages.${system}.default
             inputs.nixpkgs-unstable.legacyPackages.${system}.zed-editor-fhs

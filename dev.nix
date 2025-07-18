@@ -1,5 +1,5 @@
 # /etc/nixos/dev.nix
-{ config, pkgs, lib, unstablePkgs, masterPkgs, ... }:
+{ pkgs, unstablePkgs, ... }:
 
 {
 

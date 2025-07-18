@@ -1,5 +1,5 @@
 # dotfiles/home-manager/default.nix - Central import for all Home Manager configurations
-{ config, pkgs, inputs, ... }:
+{ ... }:
 
 {
   imports = [

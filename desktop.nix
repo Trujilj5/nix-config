@@ -1,5 +1,5 @@
 # /etc/nixos/desktop.nix
-{ config, pkgs, lib, unstablePkgs, ... }:
+{  pkgs, unstablePkgs, ... }:
 
 {
   services.xserver.enable = false;
@@ -73,7 +73,7 @@
     qt6ct
     adwaita-qt
     adwaita-qt6
-    
+
     # GTK schemas and dconf support
     gsettings-desktop-schemas
     glib

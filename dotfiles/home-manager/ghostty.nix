@@ -1,5 +1,5 @@
 # dotfiles/home-manager/ghostty.nix - Ghostty terminal configuration
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   # Install Ghostty terminal

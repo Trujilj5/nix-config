@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   # Configure Hyprland through Home Manager
@@ -26,10 +26,10 @@
     # File manager
     xfce.thunar
     xfce.thunar-volman
-    
+
     # Archive support for Thunar
     xarchiver
-    
+
     # Theme packages
     dracula-theme
     dracula-icon-theme

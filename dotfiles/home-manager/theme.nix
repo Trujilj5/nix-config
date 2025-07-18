@@ -1,12 +1,12 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 
 {
   # Catppuccin Macchiato theme configuration
-  
+
   # GTK Theme Configuration
   gtk = {
     enable = true;
-    
+
     theme = {
       package = pkgs.catppuccin-gtk.override {
         accents = [ "blue" ];
@@ -59,7 +59,7 @@
       color-scheme = "prefer-dark";
       font-name = "JetBrains Mono 11";
     };
-    
+
     "org/gnome/desktop/wm/preferences" = {
       theme = "Catppuccin-Macchiato-Standard-Blue-Dark";
     };
@@ -78,18 +78,18 @@
     catppuccin-gtk
     papirus-icon-theme
     catppuccin-cursors
-    
+
     # GTK theme tools
     nwg-look
     lxappearance
     dconf
     glib # For gsettings
-    
+
     # Qt theme tools
     libsForQt5.qtstyleplugin-kvantum
     libsForQt5.qt5ct
     qt6ct
-    
+
     # Icon and cursor themes
     papirus-icon-theme
     adwaita-icon-theme
@@ -99,22 +99,22 @@
   home.sessionVariables = {
     # GTK theming
     GTK_THEME = "Catppuccin-Macchiato-Standard-Blue-Dark";
-    
+
     # Qt theming
     QT_QPA_PLATFORMTHEME = lib.mkForce "gtk3";
     QT_STYLE_OVERRIDE = "adwaita-dark";
-    
+
     # Cursor theming
     XCURSOR_THEME = "Catppuccin-Macchiato-Dark-Cursors";
     XCURSOR_SIZE = "24";
-    
+
     # Color support for terminals and applications
     TERM = "xterm-256color";
     COLORTERM = "truecolor";
     FORCE_COLOR = "1";
     CLICOLOR = "1";
     CLICOLOR_FORCE = "1";
-    
+
     # Ensure proper color support for zsh and p10k
     ZSH_HIGHLIGHT_HIGHLIGHTERS = "main,brackets,pattern,line,cursor,root";
     LS_COLORS = "di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43";
@@ -127,7 +127,7 @@
       [General]
       theme=Catppuccin-Macchiato-Blue
     '';
-    
+
     # Qt5ct config
     "qt5ct/qt5ct.conf".text = ''
       [Appearance]
@@ -136,11 +136,11 @@
       icon_theme=Papirus-Dark
       standard_dialogs=gtk3
       style=gtk2
-      
+
       [Fonts]
       fixed="JetBrains Mono,11,-1,5,50,0,0,0,0,0"
       general="JetBrains Mono,11,-1,5,50,0,0,0,0,0"
-      
+
       [Interface]
       activate_item_on_single_click=1
       buttonbox_layout=0
@@ -155,11 +155,11 @@
       toolbutton_style=4
       underline_shortcut=1
       wheel_scroll_lines=3
-      
+
       [SettingsWindow]
       geometry=@ByteArray()
     '';
-    
+
     # Qt6ct config
     "qt6ct/qt6ct.conf".text = ''
       [Appearance]
@@ -168,11 +168,11 @@
       icon_theme=Papirus-Dark
       standard_dialogs=gtk3
       style=gtk2
-      
+
       [Fonts]
       fixed="JetBrains Mono,11,-1,5,50,0,0,0,0,0"
       general="JetBrains Mono,11,-1,5,50,0,0,0,0,0"
-      
+
       [Interface]
       activate_item_on_single_click=1
       buttonbox_layout=0
@@ -187,7 +187,7 @@
       toolbutton_style=4
       underline_shortcut=1
       wheel_scroll_lines=3
-      
+
       [SettingsWindow]
       geometry=@ByteArray()
     '';
@@ -196,27 +196,27 @@
   # Catppuccin colors for reference (Macchiato palette)
   home.file.".config/catppuccin/macchiato.conf".text = ''
     # Catppuccin Macchiato Color Palette
-    
+
     # Base colors
     base     = #24273a
     mantle   = #1e2030
     crust    = #181926
-    
+
     # Surface colors
     surface0 = #363a4f
     surface1 = #494d64
     surface2 = #5b6078
-    
+
     # Overlay colors
     overlay0 = #6e738d
     overlay1 = #8087a2
     overlay2 = #939ab7
-    
+
     # Text colors
     subtext0 = #a5adcb
     subtext1 = #b7bdf8
     text     = #cad3f5
-    
+
     # Accent colors
     lavender = #b7bdf8
     blue     = #8aadf4

@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -110,7 +110,7 @@
       categories = [ "Network" "InstantMessaging" ];
       mimeType = [ "x-scheme-handler/discord" ];
     };
-    
+
     brave = {
       name = "Brave Web Browser";
       genericName = "Web Browser";
@@ -121,7 +121,7 @@
       categories = [ "Network" "WebBrowser" ];
       mimeType = [ "application/pdf" "application/rdf+xml" "application/rss+xml" "application/xhtml+xml" "application/xhtml_xml" "application/xml" "image/gif" "image/jpeg" "image/png" "image/webp" "text/html" "text/xml" "x-scheme-handler/http" "x-scheme-handler/https" "x-scheme-handler/ftp" "x-scheme-handler/chrome" "video/webm" "application/x-xpinstall" ];
     };
-    
+
     signal-desktop = {
       name = "Signal";
       genericName = "Secure messenger";

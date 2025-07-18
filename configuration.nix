@@ -1,5 +1,5 @@
 # /etc/nixos/configuration.nix
-{ config, pkgs, lib, inputs, ... }:
+{ ... }:
 
 {
   imports = [
