@@ -50,6 +50,21 @@
     };
   };
 
+  # DConf settings for GTK theme application in Hyprland
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      gtk-theme = "Catppuccin-Macchiato-Standard-Blue-Dark";
+      icon-theme = "Papirus-Dark";
+      cursor-theme = "Catppuccin-Macchiato-Dark-Cursors";
+      color-scheme = "prefer-dark";
+      font-name = "JetBrains Mono 11";
+    };
+    
+    "org/gnome/desktop/wm/preferences" = {
+      theme = "Catppuccin-Macchiato-Standard-Blue-Dark";
+    };
+  };
+
   # Qt Theme Configuration
   qt = {
     enable = true;
@@ -67,6 +82,8 @@
     # GTK theme tools
     nwg-look
     lxappearance
+    dconf
+    glib # For gsettings
     
     # Qt theme tools
     libsForQt5.qtstyleplugin-kvantum
