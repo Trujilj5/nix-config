@@ -16,6 +16,35 @@
 
   services.gnome.gnome-keyring.enable = true;
 
+  # Dark mode system configuration
+  services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
+    [org.gnome.desktop.interface]
+    gtk-theme='Catppuccin-Macchiato-Standard-Blue-Dark'
+    icon-theme='Papirus-Dark'
+    cursor-theme='Catppuccin-Macchiato-Dark-Cursors'
+    color-scheme='prefer-dark'
+  '';
+
+  # System-wide environment variables for dark mode
+  environment.variables = {
+    # GTK theme enforcement
+    GTK_THEME = "Catppuccin-Macchiato-Standard-Blue-Dark";
+    
+    # Qt theme enforcement
+    QT_QPA_PLATFORMTHEME = "gtk3";
+    QT_STYLE_OVERRIDE = "adwaita-dark";
+    
+    # Force dark mode for various applications
+    GTK_APPLICATION_PREFER_DARK_THEME = "1";
+    QT_QPA_PLATFORM = "wayland";
+    
+    # Electron apps dark mode
+    ELECTRON_FORCE_DARK_MODE = "1";
+    
+    # Browser dark mode hints
+    WEBKIT_DISABLE_COMPOSITING_MODE = "1";
+  };
+
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -38,14 +67,15 @@
   environment.systemPackages = with pkgs; [
     filezilla
     (writeShellScriptBin "brave" ''
-      exec ${brave}/bin/brave --force-device-scale-factor=0.25 --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
+      exec ${brave}/bin/brave --force-device-scale-factor=0.25 --enable-features=UseOzonePlatform --ozone-platform=wayland --force-dark-mode --enable-features=WebUIDarkMode "$@"
     '')
     firefox
     spotify
     (writeShellScriptBin "discord" ''
       export GDK_SCALE=0.5
       export GDK_DPI_SCALE=0.5
-      exec ${discord}/bin/discord --force-device-scale-factor=1.0 --high-dpi-support=1 --force-device-scale-factor=1.0 "$@"
+      export GTK_THEME=Catppuccin-Macchiato-Standard-Blue-Dark
+      exec ${discord}/bin/discord --force-device-scale-factor=1.0 --high-dpi-support=1 --force-device-scale-factor=1.0 --enable-features=WebUIDarkMode "$@"
     '')
     unstablePkgs.nwg-look
     gvfs
@@ -57,7 +87,8 @@
     wlogout
     networkmanagerapplet
     (writeShellScriptBin "signal-desktop" ''
-      exec ${signal-desktop}/bin/signal-desktop --force-device-scale-factor=0.25 --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
+      export GTK_THEME=Catppuccin-Macchiato-Standard-Blue-Dark
+      exec ${signal-desktop}/bin/signal-desktop --force-device-scale-factor=0.25 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WebUIDarkMode "$@"
     '')
 
     # Theme packages

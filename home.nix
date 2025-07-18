@@ -76,6 +76,19 @@
   #
   home.sessionVariables = {
     SUDO_EDITOR = "nvim";
+    
+    # Dark mode enforcement
+    GTK_THEME = "Catppuccin-Macchiato-Standard-Blue-Dark";
+    QT_QPA_PLATFORMTHEME = "gtk3";
+    QT_STYLE_OVERRIDE = "adwaita-dark";
+    
+    # Force dark mode for applications
+    GTK_APPLICATION_PREFER_DARK_THEME = "1";
+    ELECTRON_FORCE_DARK_MODE = "1";
+    
+    # Cursor theme
+    XCURSOR_THEME = "Catppuccin-Macchiato-Dark-Cursors";
+    XCURSOR_SIZE = "24";
   };
 
   # Manage configuration files
