@@ -19,25 +19,21 @@
     "default_model": {
       "provider": "zed.dev",
       "model": "claude-sonnet-4"
-    },
-    "version": "2"
+    }
   },
   "telemetry": { "metrics": false, "diagnostics": false },
   "vim_mode": true,
-  "soft_tabs": true,
   "tab_size": 2,
   "relative_line_numbers": false,
-  "show_line_numbers": true,
   "ui_font_size": 16,
   "buffer_font_size": 16,
   "buffer_font_family": "DejaVu Sans Mono",
-  "show_inline_documentation": true,
   "theme": {
     "mode": "system",
     "light": "Catppuccin Macchiato (Blue Blur+)",
     "dark": "Catppuccin Macchiato"
   },
-  "completions": { "max_height": 500 },
+  "completions": {},
   "git": { "git_gutter": "tracked_files" },
   "git_panel": { "button": true, "dock": "left" },
   "icon_theme": "Catppuccin Macchiato",
@@ -53,10 +49,6 @@
     "GitLab CI": [".gitlab-ci.yml", ".gitlab-ci.*.yml"]
   },
   "languages": {
-    "GitLab CI": {
-      "file_types": [".gitlab-ci.yml", ".gitlab-ci.*.yml"],
-      "language_servers": ["gitlab-ci-ls"]
-    },
     "JSONC": {
       "format_on_save": "off"
     }
@@ -85,7 +77,6 @@
   },
   "terminal": {
     "dock": "bottom",
-    "program": "/run/current-system/sw/bin/ghostty",
     "shell": {
       "program": "zsh"
     },
