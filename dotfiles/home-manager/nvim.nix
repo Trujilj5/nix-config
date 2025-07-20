@@ -1,7 +1,10 @@
 { pkgs, ... }:
 
 {
-  stylix.targets.neovim.enable = true;
+  stylix.targets.neovim = {
+    enable = true;
+    plugin = "base16-nvim";
+  };
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -45,6 +48,11 @@
       git
       lazygit
       tree-sitter
+      # Build tools for native compilation
+      gcc
+      gnumake
+      cmake
+      pkg-config
     ];
   };
 
