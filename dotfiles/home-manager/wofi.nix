@@ -24,7 +24,7 @@
       image_size = 48;
       gtk_dark = true;
       matching = "fuzzy";
-      sort_order = "alphabetical";
+      sort_order = "default";
       no_actions = true;
     };
 
