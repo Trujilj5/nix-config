@@ -76,11 +76,6 @@
   #
   home.sessionVariables = {
     SUDO_EDITOR = "nvim";
-    # Essential environment variables for GTK theme detection
-    XDG_CURRENT_DESKTOP = "Hyprland";
-    XDG_SESSION_DESKTOP = "Hyprland";
-    # Override any existing GTK_THEME to use our configured theme
-    GTK_THEME = "Orchis-Dark";
   };
 
   # Manage configuration files
