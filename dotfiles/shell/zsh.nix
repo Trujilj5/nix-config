@@ -9,5 +9,5 @@
     extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
-  users.defaultUserShell = pkgs.zsh;
+
 }
