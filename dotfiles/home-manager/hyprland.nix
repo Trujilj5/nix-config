@@ -7,14 +7,11 @@
   };
 
   home.packages = with pkgs; [
-    hyprpaper
     hyprlock
     hypridle
     grim
     slurp
     dunst
-    xfce.thunar
-    xfce.thunar-volman
     xarchiver
   ];
 }

@@ -19,7 +19,6 @@
   services.dbus.enable = true;
 
   environment.sessionVariables = {
-    GTK_THEME = "Orchis-Dark";
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_DESKTOP = "Hyprland";
   };
@@ -43,14 +42,6 @@
 
   services.printing.enable = true;
 
-  fonts.packages = with pkgs; [
-      nerd-fonts.fira-code
-      nerd-fonts.droid-sans-mono
-      nerd-fonts.jetbrains-mono
-      jetbrains-mono
-      meslo-lgs-nf
-    ];
-
   environment.systemPackages = with pkgs; [
     filezilla
     (writeShellScriptBin "brave" ''
@@ -64,8 +55,7 @@
       exec ${discord}/bin/discord --force-device-scale-factor=1.0 --high-dpi-support=1 --force-device-scale-factor=1.0 "$@"
     '')
     unstablePkgs.nwg-look
-    gvfs
-    udisks2
+
     wireplumber
     pulseaudio
     teams-for-linux

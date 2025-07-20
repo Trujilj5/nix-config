@@ -39,7 +39,6 @@
     dolt
     vscodium-fhs
     maven
-    tmux
     unstablePkgs.argocd
     unstablePkgs.kubernetes-helm
     baobab

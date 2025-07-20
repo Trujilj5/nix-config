@@ -57,9 +57,6 @@
 
   environment.systemPackages = with pkgs; [
     adw-gtk3
-    orchis-theme
-    papirus-icon-theme
-    bibata-cursors
     adwaita-icon-theme
     gnome-themes-extra
   ];

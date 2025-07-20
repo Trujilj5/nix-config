@@ -10,14 +10,11 @@
   home.packages = with pkgs; [
     # Zsh and related packages
     zsh-powerlevel10k
-    zsh-autosuggestions
-    zsh-completions
 
     # Hyprland-related packages
     wofi
     hyprshot
     swaynotificationcenter
-    ghostty
     wl-clipboard
     rofi-wayland
     libnotify
