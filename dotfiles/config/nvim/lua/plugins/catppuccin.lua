@@ -4,6 +4,9 @@ return {
   name = "catppuccin",
   priority = 1000,
   config = function()
-    vim.cmd.colorscheme "catppuccin"
+    -- Only set colorscheme if Stylix hasn't already set one
+    if not vim.g.colors_name then
+      vim.cmd.colorscheme "catppuccin"
+    end
   end
 }
