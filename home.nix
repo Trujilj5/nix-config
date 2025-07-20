@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -93,7 +93,26 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  # GTK theming is handled by Stylix
+  # Override Stylix GTK theme with Catppuccin
+  gtk = {
+    enable = true;
+    theme = {
+      name = lib.mkForce "Catppuccin-Macchiato-Standard-Blue-Dark";
+      package = lib.mkForce (pkgs.catppuccin-gtk.override {
+        accents = [ "blue" ];
+        variant = "macchiato";
+      });
+    };
+    iconTheme = {
+      name = lib.mkForce "Papirus-Dark";
+      package = lib.mkForce pkgs.papirus-icon-theme;
+    };
+    cursorTheme = {
+      name = lib.mkForce "Bibata-Modern-Classic";
+      package = lib.mkForce pkgs.bibata-cursors;
+      size = lib.mkForce 24;
+    };
+  };
 
   # Import dotfiles configurations
   imports = [
