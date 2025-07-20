@@ -20,6 +20,10 @@
   programs.dconf.enable = true;
   services.dbus.enable = true;
 
+  # GSettings configuration for proper GTK theming
+  services.gnome.glib-networking.enable = true;
+  services.gnome.gnome-settings-daemon.enable = true;
+
   # Desktop portal configuration for proper theming
   xdg.portal = {
     enable = true;
@@ -74,6 +78,7 @@
     # GTK schemas and dconf support
     gsettings-desktop-schemas
     glib
+    adwaita-icon-theme
   ];
 
 
