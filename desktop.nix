@@ -64,16 +64,6 @@
       exec ${signal-desktop}/bin/signal-desktop --force-device-scale-factor=0.25 --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
     '')
 
-    # Theme packages
-    catppuccin-gtk
-    papirus-icon-theme
-    catppuccin-cursors
-    libsForQt5.qtstyleplugin-kvantum
-    libsForQt5.qt5ct
-    qt6ct
-    adwaita-qt
-    adwaita-qt6
-
     # GTK schemas and dconf support
     gsettings-desktop-schemas
     glib

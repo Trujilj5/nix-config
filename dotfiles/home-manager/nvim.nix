@@ -35,11 +35,8 @@
     ];
   };
 
-  # Manage Neovim configuration files
+  # Manage Neovim configuration files (excluding init.lua which Stylix will handle)
   home.file = {
-    # Main init file
-    ".config/nvim/init.lua".source = ../config/nvim/init.lua;
-
     # Lua configuration directory
     ".config/nvim/lua".source = ../config/nvim/lua;
 
@@ -49,4 +46,7 @@
     # LSP configuration
     ".config/nvim/.luarc.json".source = ../config/nvim/.luarc.json;
   };
+
+  # Create a custom init.lua that includes Stylix theming and our config
+  xdg.configFile."nvim/init-custom.lua".source = ../config/nvim/init.lua;
 }

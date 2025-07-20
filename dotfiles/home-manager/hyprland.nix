@@ -30,8 +30,6 @@
     # Archive support for Thunar
     xarchiver
 
-    # Theme packages
-    dracula-theme
-    dracula-icon-theme
+
   ];
 }
