@@ -10,6 +10,9 @@ return {
 					typescript = { "biome", "prettier" },
 					json = { "prettier" },
 					yaml = { "prettier" },
+					nix = { "nixpkgs_fmt" },
+					python = { "black" },
+					rust = { "rustfmt" },
 				},
 				format_on_save = false,
 			})
