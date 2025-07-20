@@ -20,9 +20,8 @@
   programs.dconf.enable = true;
   services.dbus.enable = true;
 
-  # GSettings configuration for proper GTK theming
-  services.gnome.glib-networking.enable = true;
-  services.gnome.gnome-settings-daemon.enable = true;
+  # Minimal GSettings setup
+  services.gnome.at-spi2-core.enable = true;
 
   # Desktop portal configuration for proper theming
   xdg.portal = {
@@ -75,10 +74,10 @@
       exec ${signal-desktop}/bin/signal-desktop --force-device-scale-factor=0.25 --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
     '')
 
-    # GTK schemas and dconf support
+    # Essential GSettings packages
     gsettings-desktop-schemas
     glib
-    adwaita-icon-theme
+    glib-networking
   ];
 
 
