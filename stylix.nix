@@ -81,10 +81,8 @@
 
   # Ensure GTK theme packages are available
   environment.systemPackages = with pkgs; [
-    (catppuccin-gtk.override {
-      accents = [ "blue" ];
-      variant = "macchiato";
-    })
+    adw-gtk3
+    orchis-theme
     papirus-icon-theme
     bibata-cursors
     adwaita-icon-theme

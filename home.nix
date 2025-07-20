@@ -93,15 +93,12 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  # Override Stylix GTK theme with Catppuccin
+  # Override Stylix GTK theme with Orchis (actively maintained)
   gtk = {
     enable = true;
     theme = {
-      name = lib.mkForce "Catppuccin-Macchiato-Standard-Blue-Dark";
-      package = lib.mkForce (pkgs.catppuccin-gtk.override {
-        accents = [ "blue" ];
-        variant = "macchiato";
-      });
+      name = lib.mkForce "Orchis-Dark";
+      package = lib.mkForce pkgs.orchis-theme;
     };
     iconTheme = {
       name = lib.mkForce "Papirus-Dark";
