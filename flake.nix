@@ -16,12 +16,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Neovim
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # 3rd Party Flakes
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, stylix, zen-browser, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, stylix, zen-browser, nvf, ... }@inputs:
   let
     system = "x86_64-linux";
   in {
@@ -39,6 +45,7 @@
             users = {
               john = import ./home.nix;
             };
+            sharedModules = [ nvf.homeManagerModules.default ];
           };
           stylix.enableReleaseChecks = false;
         }
