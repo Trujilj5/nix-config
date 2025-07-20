@@ -79,6 +79,8 @@
     # Essential environment variables for GTK theme detection
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_DESKTOP = "Hyprland";
+    # Override any existing GTK_THEME to use our configured theme
+    GTK_THEME = "Orchis-Dark";
   };
 
   # Manage configuration files
@@ -108,6 +110,12 @@
       name = lib.mkForce "Bibata-Modern-Classic";
       package = lib.mkForce pkgs.bibata-cursors;
       size = lib.mkForce 24;
+    };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
     };
   };
 
