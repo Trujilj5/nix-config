@@ -29,9 +29,8 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
-    "broadcom-sta-6.30.223.271-57-6.12.3"
+    "broadcom-sta-6.30.223.271-57-6.12.39"
   ];
   system.stateVersion = "25.05";
-
 
 }
