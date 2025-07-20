@@ -1,18 +1,13 @@
 { pkgs, ... }:
 
 {
-  # Install waybar package
   home.packages = with pkgs; [
     waybar
   ];
 
-  # Link waybar configuration files directly
   home.file = {
     ".config/waybar/config".source = ../config/waybar/config;
-
     ".config/waybar/style.css".source = ../config/waybar/style.css;
-
-    # Copy waybar scripts to the appropriate location
     ".config/waybar/scripts/control-workspace-notifications.sh" = {
       source = ../config/waybar/scripts/control-workspace-notifications.sh;
       executable = true;

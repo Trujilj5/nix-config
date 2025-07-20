@@ -1,7 +1,5 @@
-# /etc/nixos/dotfiles/shell/zsh.nix
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
-  # Enable zsh system-wide
   programs.zsh.enable = true;
 
   users.users.john = {

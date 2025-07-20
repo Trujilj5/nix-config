@@ -1,4 +1,3 @@
-# /etc/nixos/dev.nix
 { pkgs, unstablePkgs, ... }:
 
 {

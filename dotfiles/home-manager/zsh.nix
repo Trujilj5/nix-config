@@ -1,17 +1,15 @@
 { config, pkgs, ... }:
 
 {
-  # Configure zsh through Home Manager
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
-    # Vi mode bindings
     defaultKeymap = "viins";
 
-    # Shell aliases - your existing aliases
+    # Shell aliases
     shellAliases = {
       update = "sudo nixos-rebuild switch --flake ~/nixos#default";
       upgrade = "sudo nix flake update --flake ~/nixos";
@@ -52,40 +50,40 @@
       kcswap = "kubectl config set-context --current --namespace";
     };
 
-    # History configuration
+    # History
     history = {
       size = 500;
       save = 1000;
       path = "${config.home.homeDirectory}/.zshHistFile";
     };
 
-    # Complete zsh setup matching original configuration
+    # Zsh initialization
     initContent = ''
       # Enable instant prompt. Should stay close to the top of ~/.zshrc.
       if [[ -r "$HOME/.cache/p10k-instant-prompt-$USER.zsh" ]]; then
         source "$HOME/.cache/p10k-instant-prompt-$USER.zsh"
       fi
 
-      # Color support and terminal configuration
+      # Terminal configuration
       export TERM="xterm-256color"
       export COLORTERM="truecolor"
 
-      # Force color output for various tools
+      # Color output
       export FORCE_COLOR=1
       export CLICOLOR=1
       export CLICOLOR_FORCE=1
 
-      # Initialize color support
+      # Color support
       autoload -U colors && colors
 
-      # Load Powerlevel10k theme
+      # Powerlevel10k theme
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
-      # Autosuggestions configuration
+      # Autosuggestions
       export ZSH_AUTOSUGGEST_STRATEGY=(history)
       export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
 
-      # Completion setup
+      # Completion
       autoload -Uz compinit
       compinit
       zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -96,42 +94,40 @@
       # Vi mode
       bindkey -v
 
-      # Key bindings for zsh autosuggestions and completion
-      bindkey '^I' complete-word  # Tab for completion
-      bindkey '^[[C' autosuggest-accept  # Right arrow accepts suggestion
-      bindkey '^[[A' up-line-or-history  # Up arrow for history
-      bindkey '^[[B' down-line-or-history  # Down arrow for history
-      bindkey '^E' autosuggest-accept  # End key accepts suggestion
-      bindkey '^F' autosuggest-accept  # Ctrl+F accepts suggestion
+      # Key bindings
+      bindkey '^I' complete-word
+      bindkey '^[[C' autosuggest-accept
+      bindkey '^[[A' up-line-or-history
+      bindkey '^[[B' down-line-or-history
+      bindkey '^E' autosuggest-accept
+      bindkey '^F' autosuggest-accept
+      bindkey '^Y' autosuggest-accept
+      bindkey '^N' autosuggest-execute
 
-      # Additional autosuggestion bindings
-      bindkey '^Y' autosuggest-accept  # Ctrl+Y accepts suggestion
-      bindkey '^N' autosuggest-execute  # Ctrl+N accepts and executes suggestion
-
-      # Cursor shape changes for vi mode
+      # Cursor shape for vi mode
       function zle-keymap-select {
         if [[ $KEYMAP == vicmd ]] || [[ $1 = 'block' ]]; then
-          # Block cursor for normal mode
+          # Block cursor
           echo -ne '\e[2 q'
         elif [[ $KEYMAP == main ]] || [[ $KEYMAP == viins ]] || [[ -z $KEYMAP ]] || [[ $1 == 'beam' ]]; then
-          # Beam cursor for insert mode
+          # Beam cursor
           echo -ne '\e[6 q'
         fi
       }
       zle -N zle-keymap-select
 
-      # Initialize cursor shape
+      # Initialize cursor
       zle-line-init() {
         echo -ne '\e[6 q'
       }
       zle -N zle-line-init
 
-      # Restore cursor shape when command is done
+      # Restore cursor
       preexec() {
         echo -ne '\e[6 q'
       }
 
-      # Load p10k configuration
+      # P10k configuration
       source ${builtins.toString ../config/p10k.zsh}
     '';
   };
