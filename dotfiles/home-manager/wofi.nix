@@ -11,7 +11,7 @@
       width = 750;
       height = 400;
       always_parse_args = true;
-      show_all = false;
+      show_all = true;
       term = "ghostty";
       hide_scroll = true;
       print_command = true;
@@ -25,6 +25,7 @@
       gtk_dark = true;
       matching = "fuzzy";
       sort_order = "alphabetical";
+      no_actions = true;
     };
 
     style = with config.lib.stylix.colors; ''
@@ -47,7 +48,7 @@
       @define-color teal #${base0C};
       @define-color sky #${base0C};
       @define-color sapphire #${base0D};
-      @define-color blue #${base0D};
+      @define-color blue #8aadf4;
       @define-color lavender #${base0F};
       @define-color text #${base05};
       @define-color subtext1 #${base04};
@@ -66,7 +67,7 @@
       window {
         margin: 0px;
         padding: 12px;
-        border: 2px solid @lavender;
+        border: 2px solid @blue;
         border-radius: 12px;
         background-color: alpha(@base, ${toString config.stylix.opacity.popups});
         animation: slideIn 0.3s ease-in-out both;
@@ -133,7 +134,7 @@
       }
 
       #input:focus {
-        border-color: @lavender;
+        border-color: @blue;
         outline: none;
       }
 
@@ -168,14 +169,14 @@
 
       #entry arrow {
         border: none;
-        color: @lavender;
+        color: @blue;
         margin-right: 8px;
       }
 
       /* Selected Entry */
       #entry:selected {
         background-color: @surface1;
-        border-color: @lavender;
+        border-color: @blue;
       }
 
       #entry:selected #text {
@@ -188,7 +189,7 @@
       }
 
       #entry:drop(active) {
-        background-color: @lavender;
+        background-color: @blue;
         color: @base;
       }
 
