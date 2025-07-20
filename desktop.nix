@@ -20,6 +20,24 @@
   programs.dconf.enable = true;
   services.dbus.enable = true;
 
+  # Desktop portal configuration for proper theming
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = "gtk";
+  };
+
+  # GTK theme environment variables for consistent theming
+  environment.sessionVariables = {
+    # Force GTK applications to use the theme
+    GTK_USE_PORTAL = "1";
+    # Ensure proper theme detection
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_DESKTOP = "Hyprland";
+    # Force theme refresh
+    GSK_RENDERER = "gl";
+  };
+
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -64,9 +82,13 @@
       exec ${signal-desktop}/bin/signal-desktop --force-device-scale-factor=0.25 --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
     '')
 
-    # GTK schemas and dconf support
+    # GTK schemas and dconf support for theming
     gsettings-desktop-schemas
     glib
+    gtk3
+    gtk4
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-hyprland
   ];
 
 

@@ -76,6 +76,10 @@
   #
   home.sessionVariables = {
     SUDO_EDITOR = "nvim";
+    # Ensure GTK applications use the correct theme
+    GTK_USE_PORTAL = "1";
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_DESKTOP = "Hyprland";
   };
 
   # Manage configuration files
@@ -89,6 +93,19 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  # GTK configuration for proper theming
+  gtk = {
+    enable = true;
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+  };
+
+  # DConf is handled by Stylix automatically
 
   # Import dotfiles configurations
   imports = [
