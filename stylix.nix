@@ -55,7 +55,19 @@
       popups = 1.0;
     };
 
-    # Let Stylix auto-detect and enable appropriate targets
+    # Target-specific configurations
+    targets = {
+      # Enable GTK theming for applications like Thunar
+      gtk.enable = true;
+      
+      # Enable GNOME/dconf settings for GTK applications
+      gnome.enable = true;
+      
+      # Enable console theming
+      console.enable = true;
+      
+      # Keep other targets at default (auto-detected)
+    };
   };
 
   # Ensure proper color support in terminals
