@@ -72,6 +72,10 @@
       vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
       vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic quickfix list" })
 
+      -- Prevent treesitter from trying to install parsers in Nix store
+      vim.env.CC = ""
+      vim.g.loaded_tree_sitter_install = 1
+
       -- Setup Lazy.nvim
       local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
       if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -214,6 +218,26 @@
         install = { colorscheme = { "catppuccin" } },
         checker = { enabled = false },
       })
+
+      -- Configure treesitter after plugins are loaded
+      vim.schedule(function()
+        if pcall(require, "nvim-treesitter.configs") then
+          -- Disable all installation attempts
+          local install = require("nvim-treesitter.install")
+          install.prefer_git = false
+          install.compilers = {}
+          
+          require("nvim-treesitter.configs").setup({
+            auto_install = false,
+            sync_install = false,
+            ensure_installed = {},
+            ignore_install = { "all" },
+            highlight = { enable = true },
+            indent = { enable = true },
+            modules = {},
+          })
+        end
+      end)
     '';
 
     # All plugins managed by Nix for reproducibility
@@ -364,20 +388,7 @@
       plenary-nvim
 
       # Treesitter
-      {
-        plugin = nvim-treesitter.withAllGrammars;
-        config = ''
-          lua << EOF
-          local config = require("nvim-treesitter.configs")
-          config.setup({
-            auto_install = true,
-            ensure_installed = { "lua", "javascript", "css", "http", "rust", "svelte", "typescript", "yaml", "json", "nix" },
-            highlight = { enable = true },
-            indent = { enable = true },
-          })
-          EOF
-        '';
-      }
+      nvim-treesitter.withAllGrammars
 
       # Formatting
       {
