@@ -8,13 +8,9 @@
     # Disable version mismatch warnings since we're using matching 25.05 versions
     enableReleaseChecks = false;
     
-    # Set a wallpaper - Stylix will generate colors from this if no base16Scheme is set
+    # Use a built-in wallpaper to avoid download issues
     # You can replace this with your own wallpaper path from ./wallpapers/
-    # For now, using a fetched wallpaper - you can change this to ./wallpapers/your-wallpaper.jpg
-    image = pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/catppuccin/wallpapers/main/landscapes/tropic_island_night.png";
-      hash = "sha256-T5Wtjkh6mDpSEz/3I4QYQKOyVVIW5WEONByNhFLEGmU=";
-    };
+    image = "${pkgs.nixos-artwork.wallpapers.nineish-dark-gray}/share/backgrounds/nixos/nix-wallpaper-nineish-dark-gray.png";
     
     # Alternative: Use a local wallpaper
     # image = ./wallpapers/your-wallpaper.jpg;
