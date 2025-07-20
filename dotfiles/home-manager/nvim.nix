@@ -190,6 +190,14 @@
           },
         },
 
+        -- Git signs
+        {
+          "lewis6991/gitsigns.nvim",
+          config = function()
+            require("gitsigns").setup()
+          end,
+        },
+
         -- Key binding help
         {
           "folke/which-key.nvim",
@@ -416,11 +424,6 @@
         '';
       }
 
-      # Git integration
-      {
-        plugin = gitsigns-nvim;
-        config = "lua require('gitsigns').setup()";
-      }
 
       # Status line
       {
