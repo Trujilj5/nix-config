@@ -17,6 +17,9 @@
 
     # Use Catppuccin Macchiato color scheme (similar to your previous setup)
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
+    
+    # Force dark theme preference
+    polarity = "dark";
 
     # Font configuration
     fonts = {
@@ -75,4 +78,10 @@
     TERM = "xterm-256color";
     COLORTERM = "truecolor";
   };
+
+  # Ensure GTK theme packages are available
+  environment.systemPackages = with pkgs; [
+    adw-gtk3
+    adwaita-icon-theme
+  ];
 }
