@@ -31,7 +31,7 @@
       "space g r": "editor::FindAllReferences",
       "space g a": "editor::ToggleCodeActions",
       "space r n": "editor::Rename",
-      // "space l g": "git_panel::ToggleFocus",
+      "space l g": ["task::Spawn", { "task_name": "lazygit" }],
       "space f f": "file_finder::Toggle",
       "space f w": "pane::DeploySearch",
       "space f d": "editor::ToggleFold"
@@ -48,7 +48,8 @@
   {
     "context": "Editor && vim_mode == insert",
     "bindings": {
-      "space": null
+      "space": null,
+      "ctrl-l": "workspace::ToggleRightDock"
     }
   },
   {
@@ -56,10 +57,12 @@
     "bindings": {
       "space e": "project_panel::ToggleFocus",
       "space c": "project_panel::ToggleFocus",
-      "space t": "terminal_panel::ToggleFocus",
+      "ctrl-h": "workspace::ToggleLeftDock",
+      "ctrl-j": "terminal_panel::ToggleFocus",
       "T": "workspace::NewTerminal",
       "alt-q": "pane::CloseActiveItem",
-      "ctrl-l": "workspace::ToggleRightDock"
+      "ctrl-l": "workspace::ToggleRightDock",
+      "space z": "workspace::CloseAllDocks"
     }
   },
   {

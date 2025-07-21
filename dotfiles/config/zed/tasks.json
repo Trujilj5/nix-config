@@ -1,13 +1,13 @@
 [
   {
     "label": "lazygit",
-    "command": "ghostty",
-    "args": ["lazygit"],
+    "command": "lazygit",
+    "args": [],
     "env": {},
-    "use_new_terminal": false,
+    "use_new_terminal": true,
     "allow_concurrent_runs": false,
     "working_directory": "${ZED_WORKTREE_ROOT}",
-    "hide": "on_success",
+    "hide": "never",
     "reveal": "always"
   }
 ]
