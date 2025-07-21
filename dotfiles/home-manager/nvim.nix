@@ -8,7 +8,6 @@
 # - Navigation Config: Telescope, git integration, and terminal functionality
 # - Keybindings Config: All keyboard shortcuts organized by functionality
 #
-# MIGRATION STATUS: ✅ Complete - All Lua plugins converted to nvf equivalents
 { lib, ... }:
 
 let
