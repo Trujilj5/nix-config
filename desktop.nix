@@ -45,7 +45,7 @@
   environment.systemPackages = with pkgs; [
     filezilla
     (writeShellScriptBin "brave" ''
-      exec ${brave}/bin/brave --force-device-scale-factor=0.25 --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
+      exec ${brave}/bin/brave --force-device-scale-factor=1.0 --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
     '')
     firefox
     spotify
