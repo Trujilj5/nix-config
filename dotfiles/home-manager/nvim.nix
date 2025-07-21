@@ -9,7 +9,7 @@
 # - Keybindings Config: All keyboard shortcuts organized by functionality
 #
 # MIGRATION STATUS: ✅ Complete - All Lua plugins converted to nvf equivalents
-{ pkgs, inputs, lib, ... }:
+{ lib, ... }:
 
 let
   #═══════════════════════════════════════════════════════════════════════════════
