@@ -101,7 +101,7 @@
   {
     "context": "Terminal",
     "bindings": {
-      "space": null,
+      "space": ["terminal::SendText", " "],
       "ctrl-n": "pane::ActivateNextItem",
       "ctrl-b": "pane::ActivatePreviousItem",
       "ctrl-1": ["pane::ActivateItem", 0],
