@@ -1,6 +1,6 @@
 [
   {
-    "context": "Pane",
+    "context": "Pane && vim_mode == normal",
     "bindings": {
       "space k": "pane::ActivateNextItem",
       "space j": "pane::ActivatePreviousItem",
@@ -14,7 +14,7 @@
       "space 8": ["pane::ActivateItem", 7],
       "space 9": ["pane::ActivateItem", 8],
       "space 0": "pane::ActivateLastItem",
-      "space x": ["pane::CloseActiveItem", { "close_pinned": false }],
+      "space x": ["pane::CloseActiveItem", { "close_pinned": false }]
     }
   },
   {
@@ -48,7 +48,6 @@
   {
     "context": "Editor && vim_mode == insert",
     "bindings": {
-      "space": null,
       "ctrl-l": "workspace::ToggleRightDock"
     }
   },
@@ -87,7 +86,6 @@
       "p": "git::Pull",
       "P": "git::Push",
       "enter": "menu::Confirm",
-      "space": null,
       "alt-q": "git_panel::Close"
     }
   },
@@ -116,15 +114,14 @@
       "ctrl-0": "pane::ActivateLastItem",
       "alt-q": ["pane::CloseActiveItem", { "close_pinned": false }],
       "shift-delete": ["pane::CloseActiveItem", { "close_pinned": false }],
-      "shift-enter": "workspace::NewTerminal",
-      // "escape": "terminal_panel::ToggleFocus"
+      "shift-enter": "workspace::NewTerminal"
     }
   },
   {
-  "context": "Editor && edit_prediction",
-  "bindings": {
-    "alt-tab": "editor::AcceptEditPrediction",
-    "alt-l": null
+    "context": "Editor && edit_prediction",
+    "bindings": {
+      "alt-tab": "editor::AcceptEditPrediction",
+      "alt-l": null
+    }
   }
-}
 ]

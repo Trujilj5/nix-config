@@ -34,7 +34,7 @@
     openjdk23
     docker
     lens
-    unstablePkgs.nodejs
+    unstablePkgs.nodejs_24
     busybox
     dolt
     vscodium-fhs
@@ -44,6 +44,7 @@
     baobab
     nixd
     nil
+    unstablePkgs.ngrok
   ];
 
   systemd.user.services.podman-api = {
