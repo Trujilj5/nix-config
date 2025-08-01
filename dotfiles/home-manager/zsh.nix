@@ -128,7 +128,7 @@
       }
 
       # P10k configuration
-      source ${builtins.toString ../config/p10k.zsh}
+      [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
     '';
   };
 }

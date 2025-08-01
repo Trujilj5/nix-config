@@ -1,6 +1,6 @@
 [
   {
-    "context": "Pane && vim_mode == normal",
+    "context": "(Pane || Editor) && vim_mode == normal",
     "bindings": {
       "space k": "pane::ActivateNextItem",
       "space j": "pane::ActivatePreviousItem",
@@ -34,7 +34,8 @@
       "space l g": ["task::Spawn", { "task_name": "lazygit" }],
       "space f f": "file_finder::Toggle",
       "space f w": "pane::DeploySearch",
-      "space f d": "editor::ToggleFold"
+      "space f d": "editor::ToggleFold",
+      "space g": "git_panel::ToggleFocus"
     }
   },
   {

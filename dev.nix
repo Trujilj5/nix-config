@@ -33,6 +33,7 @@
     python3
     openjdk23
     docker
+    unstablePkgs.docker-compose
     lens
     unstablePkgs.nodejs_24
     busybox

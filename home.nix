@@ -21,7 +21,6 @@
     playerctl
     brightnessctl
     font-awesome
-    lazygit
   ];
   home.sessionVariables = {
     SUDO_EDITOR = "nvim";

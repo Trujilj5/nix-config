@@ -21,6 +21,7 @@
   environment.sessionVariables = {
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_DESKTOP = "Hyprland";
+    SSL_CERT_FILE="/etc/ssl/certs/ca-certificates.crt";
   };
 
   services.gnome.at-spi2-core.enable = true;
