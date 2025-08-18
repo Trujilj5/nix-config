@@ -23,6 +23,7 @@
       ll = "ls -alF";
       la = "ls -A";
       l = "ls -ltrah";
+      lg = "lazygit";
       ".." = "cd ..";
       "..." = "cd ../..";
       kc = "kubectl";
