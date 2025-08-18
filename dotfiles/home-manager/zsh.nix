@@ -130,6 +130,9 @@
 
       # P10k configuration
       [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+      # Zoxide
+      eval "$(zoxide init zsh)"
     '';
   };
 }

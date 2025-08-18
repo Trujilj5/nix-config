@@ -47,6 +47,7 @@
     nil
     unstablePkgs.ngrok
     zoxide
+    fzf
   ];
 
   systemd.user.services.podman-api = {
