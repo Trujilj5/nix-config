@@ -62,7 +62,9 @@
       "T": "workspace::NewTerminal",
       "alt-q": "pane::CloseActiveItem",
       "ctrl-l": "workspace::ToggleRightDock",
-      "space z": "workspace::CloseAllDocks"
+      "space z": "workspace::CloseAllDocks",
+      "space f f": "file_finder::Toggle",
+      "space f w": "pane::DeploySearch"
     }
   },
   {
