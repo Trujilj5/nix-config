@@ -12,5 +12,6 @@
     ./tmux.nix
     ./zen-browser.nix
     ./lazygit.nix
+    ./lazysql.nix
   ];
 }

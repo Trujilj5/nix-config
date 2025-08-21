@@ -19,6 +19,7 @@
     neovim
     git
     lazygit
+    lazysql
     bluetui
     cmake
     meson
