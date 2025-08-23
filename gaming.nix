@@ -37,10 +37,16 @@
       # AMD drivers
       amdvlk
       rocmPackages.clr.icd
+      # Vulkan support
+      vulkan-loader
+      vulkan-validation-layers
+      vulkan-extension-layer
     ];
     extraPackages32 = with pkgs; [
       # 32-bit AMD drivers for gaming compatibility
       driversi686Linux.amdvlk
+      # 32-bit Vulkan support
+      pkgsi686Linux.vulkan-loader
     ];
   };
 
@@ -77,9 +83,12 @@
     
     # Additional tools for Battle.net/WoW
     dxvk
+    vkd3d
     vulkan-tools
     vulkan-loader
     vulkan-validation-layers
+    vulkan-extension-layer
+    mesa.drivers
     
     # System monitoring for gaming
     htop
@@ -108,6 +117,18 @@
       item = "rtprio";
       type = "-";
       value = 1;
+    }
+    {
+      domain = "@users";
+      item = "nice";
+      type = "-";
+      value = -10;
+    }
+    {
+      domain = "@users";
+      item = "memlock";
+      type = "-";
+      value = "unlimited";
     }
   ];
 
@@ -144,6 +165,7 @@
     # AMD GPU variables
     AMD_VULKAN_ICD = "RADV";
     VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
+    VK_LAYER_PATH = "/run/opengl-driver/share/vulkan/explicit_layer.d";
     
     # Wine/gaming variables
     WINEPREFIX = "$HOME/.wine";
@@ -154,6 +176,11 @@
     
     # Lutris optimizations
     DXVK_HUD = "fps,memory,gpuload";
+    DXVK_LOG_LEVEL = "info";
+    
+    # Vulkan optimizations
+    RADV_DEBUG = "llvm";
+    MESA_VK_VERSION_OVERRIDE = "1.3";
     
     # Enable Wayland support for Steam
     STEAM_FORCE_DESKTOPUI_SCALING = "1.5";
