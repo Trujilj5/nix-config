@@ -22,14 +22,7 @@
     brightnessctl
     font-awesome
 
-    # Gaming packages
-    lutris
-    heroic
-    bottles
-    protontricks
-    mangohud
-    goverlay
-    dxvk
+
   ];
   home.sessionVariables = {
     SUDO_EDITOR = "nvim";

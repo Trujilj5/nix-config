@@ -46,6 +46,8 @@
               john = import ./home.nix;
             };
             sharedModules = [ nvf.homeManagerModules.default ];
+            useGlobalPkgs = true;
+            useUserPackages = true;
           };
           stylix.enableReleaseChecks = false;
         }

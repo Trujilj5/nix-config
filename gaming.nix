@@ -1,9 +1,6 @@
 { config, pkgs, lib, ... }:
 
 {
-  # Allow unfree packages for gaming
-  nixpkgs.config.allowUnfree = true;
-  
   # Gaming-specific system configuration
   
   # Enable gamemode for performance optimization
@@ -102,7 +99,7 @@
   };
 
   # Enable 32-bit support for gaming
-  hardware.pulseaudio.support32Bit = true;
+  services.pulseaudio.support32Bit = true;
 
   # Optimize for gaming
   security.pam.loginLimits = [
