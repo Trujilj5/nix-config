@@ -5,6 +5,7 @@
     ./desktop.nix
     ./dotfiles
     ./dev.nix
+    ./gaming.nix
     ./hardware-configuration.nix
     ./stylix.nix
   ];

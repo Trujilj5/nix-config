@@ -21,6 +21,15 @@
     playerctl
     brightnessctl
     font-awesome
+
+    # Gaming packages
+    lutris
+    heroic
+    bottles
+    protontricks
+    mangohud
+    goverlay
+    dxvk
   ];
   home.sessionVariables = {
     SUDO_EDITOR = "nvim";
@@ -93,6 +102,36 @@
       type = "Application";
       categories = [ "Network" "InstantMessaging" ];
       mimeType = [ "x-scheme-handler/sgnl" "x-scheme-handler/signalcaptcha" ];
+    };
+
+    lutris = {
+      name = "Lutris";
+      genericName = "Gaming platform";
+      comment = "Open Gaming Platform";
+      exec = "lutris";
+      icon = "lutris";
+      type = "Application";
+      categories = [ "Game" ];
+    };
+
+    heroic = {
+      name = "Heroic Games Launcher";
+      genericName = "Epic Games and GOG launcher";
+      comment = "An Open Source GOG and Epic Games Launcher";
+      exec = "heroic";
+      icon = "heroic";
+      type = "Application";
+      categories = [ "Game" ];
+    };
+
+    bottles = {
+      name = "Bottles";
+      genericName = "Windows software manager";
+      comment = "Run Windows software on Linux with ease";
+      exec = "bottles";
+      icon = "com.usebottles.bottles";
+      type = "Application";
+      categories = [ "Game" "Utility" ];
     };
   };
 }
