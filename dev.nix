@@ -16,6 +16,7 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
+    opencode
     neovim
     git
     lazygit
