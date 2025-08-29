@@ -16,6 +16,7 @@
     grim
     slurp
     swappy
+    (flameshot.override { enableWlrSupport = true; })
     swaynotificationcenter
     wl-clipboard
     rofi-wayland
