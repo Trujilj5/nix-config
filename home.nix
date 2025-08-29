@@ -13,7 +13,9 @@
 
     # Hyprland-related packages
     wofi
-    hyprshot
+    grim
+    slurp
+    swappy
     swaynotificationcenter
     wl-clipboard
     rofi-wayland
