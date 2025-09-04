@@ -9,8 +9,6 @@
   home.packages = with pkgs; [
     hyprlock
     hypridle
-    grim
-    slurp
     dunst
     xarchiver
   ];

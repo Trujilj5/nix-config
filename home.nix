@@ -16,10 +16,9 @@
     grim
     slurp
     swappy
-    (flameshot.override { enableWlrSupport = true; })
+    jq
     swaynotificationcenter
     wl-clipboard
-    rofi-wayland
     libnotify
     playerctl
     brightnessctl
