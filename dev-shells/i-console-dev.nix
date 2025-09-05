@@ -1,6 +1,6 @@
 { pkgs }:
 
-pkgs.buildFHSUserEnv {
+pkgs.buildFHSEnv {
   name = "i-console-dev";
   targetPkgs = pkgs: with pkgs; [
     # Core Runtime

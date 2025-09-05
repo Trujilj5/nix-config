@@ -167,7 +167,7 @@
         # Create .envrc
         echo "use flake ~/nixos/dev-shells#''${selected_shell}" > .envrc
         direnv allow
-        echo "✅ Initialized ${selected_shell} development environment"
+        echo "✅ Initialized ''${selected_shell} development environment"
       }
 
       # Dev command dispatcher
