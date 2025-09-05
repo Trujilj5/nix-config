@@ -27,6 +27,10 @@
     # 3rd Party Flakes
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+    
+    # Zed Editor
+    zed.url = "github:zed-industries/zed";
+    zed.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { nixpkgs, stylix, determinate, nvf, ... }@inputs:
@@ -54,7 +58,7 @@
         }
         ({ config, inputs, ... }: {
           environment.systemPackages = [
-            inputs.nixpkgs-unstable.legacyPackages.${system}.zed-editor-fhs
+            inputs.zed.packages.${system}.default
           ];
           _module.args = {
             unstablePkgs = import inputs.nixpkgs-unstable {

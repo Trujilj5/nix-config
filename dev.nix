@@ -50,6 +50,8 @@
     unstablePkgs.ngrok
     zoxide
     fzf
+    package-version-server
+    jq
   ];
 
   systemd.user.services.podman-api = {
