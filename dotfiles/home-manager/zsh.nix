@@ -14,6 +14,7 @@
       update = "sudo nixos-rebuild switch --flake ~/nixos#default";
       upgrade = "sudo nix flake update --flake ~/nixos";
       vim = "nvim";
+      top = "btop";
       sudoedit = "sudo -E nvim";
       zed = "zeditor .";
       "zed." = "zed . && exit";
@@ -139,7 +140,7 @@
       init_dev_shell() {
         # Get available shells from the flake
         local shells=($(nix flake show ~/nixos/dev-shells --json 2>/dev/null | jq -r '.devShells."x86_64-linux" | keys[]' 2>/dev/null || echo "i-console-dev"))
-        
+
         if [ ''${#shells[@]} -eq 1 ]; then
           # Only one shell available, use it directly
           local selected_shell=''${shells[1]}
@@ -151,7 +152,7 @@
             echo "  $((i+1))) ''${shells[$i]}"
           done
           echo ""
-          
+
           # Prompt for selection
           while true; do
             read -p "Select shell (1-''${#shells[@]}): " choice
@@ -163,7 +164,7 @@
             fi
           done
         fi
-        
+
         # Create .envrc
         echo "use flake ~/nixos/dev-shells#''${selected_shell}" > .envrc
         direnv allow

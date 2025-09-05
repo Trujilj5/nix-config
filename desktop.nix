@@ -59,6 +59,7 @@
 
     wireplumber
     pulseaudio
+    btop
     python3Packages.requests
     wlogout
     networkmanagerapplet
