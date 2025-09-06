@@ -56,10 +56,8 @@
           };
           stylix.enableReleaseChecks = false;
         }
+        ./zed-fhs.nix
         ({ config, inputs, ... }: {
-          environment.systemPackages = [
-            inputs.zed.packages.${system}.default
-          ];
           _module.args = {
             unstablePkgs = import inputs.nixpkgs-unstable {
               inherit system;

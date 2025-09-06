@@ -15,8 +15,8 @@
       upgrade = "sudo nix flake update --flake ~/nixos";
       vim = "nvim";
       sudoedit = "sudo -E nvim";
-      zed = "zeditor .";
-      "zed." = "zed . && exit";
+      zed = "zed-fhs .";
+      "zed." = "zed-fhs . && exit";
       wip = "git add . && git commit -m 'wip' && git push origin";
       c = "clear";
       nix-shell = "nix-shell --run zsh";
