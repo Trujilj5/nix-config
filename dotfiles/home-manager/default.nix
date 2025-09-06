@@ -13,6 +13,6 @@
     ./zen-browser.nix
     ./lazygit.nix
     ./lazysql.nix
-    ./direnv.nix
+    # ./direnv.nix  # Disabled to avoid conflicts with system config
   ];
 }
