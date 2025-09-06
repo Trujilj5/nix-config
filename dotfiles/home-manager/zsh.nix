@@ -14,7 +14,6 @@
       update = "sudo nixos-rebuild switch --flake ~/nixos#default";
       upgrade = "sudo nix flake update --flake ~/nixos";
       vim = "nvim";
-      top = "btop";
       sudoedit = "sudo -E nvim";
       zed = "zeditor .";
       "zed." = "zed . && exit";
