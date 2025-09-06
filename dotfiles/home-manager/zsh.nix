@@ -137,39 +137,9 @@
 
       # Interactive development shell initialization
       init_dev_shell() {
-        # Get available shells using simpler approach
-        local shell_list=$(nix flake show ~/nixos/dev-shells --json 2>/dev/null | jq -r '.devShells."x86_64-linux" | keys[]' 2>/dev/null || echo "i-console-dev")
-
-        # Convert to simple array using newlines
-        local -a shells
-        while IFS= read -r shell; do
-          [[ -n "$shell" ]] && shells+=("$shell")
-        done <<< "$shell_list"
-
-        # Check if we have only one shell
-        if (( ''${#shells[@]} == 1 )); then
-          local selected_shell="''${shells[1]}"
-          echo "Using: $selected_shell"
-        else
-          # Show selection menu
-          echo "Available development shells:"
-          local i
-          for i in ''${!shells[@]}; do
-            echo "  $((i+1))) ''${shells[i]}"
-          done
-          echo ""
-
-          # Get user selection
-          while true; do
-            read "choice?Select shell (1-''${#shells[@]}): "
-            if [[ "$choice" =~ ^[0-9]+$ ]] && (( choice >= 1 && choice <= ''${#shells[@]} )); then
-              local selected_shell="''${shells[choice]}"
-              break
-            else
-              echo "Invalid selection. Please choose 1-''${#shells[@]}."
-            fi
-          done
-        fi
+        # Simple test - just use the default shell
+        local selected_shell="i-console-dev"
+        echo "Using: $selected_shell"
 
         # Create .envrc
         echo "use flake ~/nixos/dev-shells#$selected_shell" > .envrc
