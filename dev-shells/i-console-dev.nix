@@ -1,41 +1,34 @@
-{ pkgs ? import <nixpkgs> {} }:
-
-(pkgs.buildFHSEnv {
-  name = "i-console-dev";
-
-  # Packages available in the FHS environment
-  targetPkgs = pkgs: with pkgs; [
-    # Core Runtime
+{ pkgs ? import <nixpkgs> {} }: let
+  deps = (with pkgs; [
     bun
     nodejs_24
-
-    # Development Tools
     tsx
     typescript
-  ];
+  ]);
+in
+{
+  default = pkgs.mkShell {
+    name = "i-console-dev";
+    buildInputs = deps;
+  };
 
-  # Libraries that need to be available in both 32-bit and 64-bit
-  multiPkgs = pkgs: with pkgs; [
-    # System Libraries (for dynamically linked binaries)
-    glibc
-    libgcc
-    stdenv.cc.cc.lib
-
-    # Build Tools (for native modules)
-    gcc
-    gnumake
-    python3
-    pkg-config
-
-    # Additional Libraries (common dependencies)
-    openssl
-    zlib
-  ];
-
-  runScript = "zsh";
-
-  # Set up FHS environment variables
-  profile = ''
-    # FHS environment active
-  '';
-}).env
+  fhs = pkgs.buildFHSEnv {
+    name = "i-console-dev-fhs";
+    targetPkgs = pkgs: (with pkgs; [
+      bun
+      nodejs_24
+    ]);
+    multiPkgs = pkgs: (with pkgs; [
+      glibc
+      libgcc
+      stdenv.cc.cc.lib
+      openssl
+      zlib
+      gcc
+      gnumake
+      python3
+      pkg-config
+    ]);
+    runScript = "zsh";
+  };
+}

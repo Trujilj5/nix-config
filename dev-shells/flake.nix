@@ -12,10 +12,12 @@
         pkgs = nixpkgs.legacyPackages.${system};
       in
       {
-        devShells = {
-          i-console-dev = (import ./i-console-dev.nix { inherit pkgs; });
-
-        };
+        devShells =
+          let shells = import ./i-console-dev.nix { inherit pkgs; };
+          in {
+            i-console-dev = shells.default;
+            i-console-dev-fhs = shells.fhs;
+          };
 
 
       });
