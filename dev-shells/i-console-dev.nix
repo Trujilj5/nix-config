@@ -36,5 +36,7 @@
 
   # Set up FHS environment variables
   profile = ''
+    # Mark that we're in an FHS environment to prevent direnv loops
+    export IN_FHS_SHELL=1
   '';
 }).env
