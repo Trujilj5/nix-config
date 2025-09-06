@@ -171,8 +171,8 @@
           done
         fi
 
-        # Create .envrc using shell.nix to avoid loops
-        echo "use nix ~/nixos/dev-shells/shell.nix" > .envrc
+        # Create .envrc using nix file directly to avoid loops
+        echo "use nix ~/nixos/dev-shells/$selected_shell.nix" > .envrc
         direnv allow
         echo "✅ Initialized $selected_shell development environment"
       }

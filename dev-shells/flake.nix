@@ -16,7 +16,6 @@
           i-console-dev = (import ./i-console-dev.nix { inherit pkgs; });
         };
 
-        # Default shell
-        devShells.default = self.devShells.${system}.i-console-dev;
+
       });
 }
