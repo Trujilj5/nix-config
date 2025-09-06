@@ -36,7 +36,5 @@
 
   # Set up FHS environment variables
   profile = ''
-    export PATH=/usr/bin:/bin:$PATH
-    echo "🚀 i-console FHS Development Environment"
   '';
 }).env
