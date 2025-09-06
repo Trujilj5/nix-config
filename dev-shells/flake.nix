@@ -14,6 +14,7 @@
       {
         devShells = {
           i-console-dev = (import ./i-console-dev.nix { inherit pkgs; });
+          test-minimal = (import ./test-minimal.nix { inherit pkgs; });
         };
 
 
