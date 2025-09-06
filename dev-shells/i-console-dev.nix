@@ -32,11 +32,11 @@
     zlib
   ];
 
-  runScript = "zsh";
+  runScript = "bash";
 
   # Set up FHS environment variables
   profile = ''
-    # Mark that we're in an FHS environment to prevent direnv loops
-    export IN_FHS_SHELL=1
+    # Use bash to avoid zsh config loops with direnv
+    export SHELL="$(command -v bash)"
   '';
 }).env

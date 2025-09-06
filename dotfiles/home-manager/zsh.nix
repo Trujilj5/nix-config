@@ -135,16 +135,6 @@
       # Zoxide
       eval "$(zoxide init zsh)"
 
-      # Skip direnv and other initialization if we're in an FHS environment
-      # to prevent infinite loops
-      if [[ -z "$IN_FHS_SHELL" ]]; then
-        # Mark that we're not in FHS shell for child processes
-        export IN_NIX_SHELL_PARENT=true
-      else
-        # We're in an FHS environment - skip complex initialization
-        return
-      fi
-
       # Interactive development shell initialization
       init_dev_shell() {
         # Get available shells as array

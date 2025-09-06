@@ -9,12 +9,6 @@
     ./stylix.nix
   ];
 
-  # System-wide direnv configuration
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   boot.loader.systemd-boot.enable = true;
