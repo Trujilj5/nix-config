@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs ? import <nixpkgs> {} }:
 
 (pkgs.buildFHSEnv {
   name = "i-console-dev";
