@@ -4,10 +4,6 @@
     nodejs_24
     tsx
     typescript
-    gcc
-    gnumake
-    python3
-    pkg-config
   ]);
 in
 {
@@ -30,6 +26,10 @@ in
       stdenv.cc.cc.lib
       openssl
       zlib
+      gcc
+      gnumake
+      python3
+      pkg-config
     ]);
     runScript = "zsh";
   };
