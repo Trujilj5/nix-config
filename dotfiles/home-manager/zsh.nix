@@ -141,28 +141,29 @@
         local shell_list=$(nix flake show ~/nixos/dev-shells --json 2>/dev/null | jq -r '.devShells."x86_64-linux" | keys[]' 2>/dev/null || echo "i-console-dev")
 
         # Convert to simple array using newlines
-        local shells=()
+        local -a shells
         while IFS= read -r shell; do
           [[ -n "$shell" ]] && shells+=("$shell")
         done <<< "$shell_list"
 
         # Check if we have only one shell
-        if [ ''${#shells[@]} -eq 1 ]; then
-          local selected_shell="''${shells[0]}"
+        if (( ''${#shells[@]} == 1 )); then
+          local selected_shell="''${shells[1]}"
           echo "Using: $selected_shell"
         else
           # Show selection menu
           echo "Available development shells:"
-          for i in "''${!shells[@]}"; do
+          local i
+          for i in ''${!shells[@]}; do
             echo "  $((i+1))) ''${shells[i]}"
           done
           echo ""
 
           # Get user selection
           while true; do
-            read -p "Select shell (1-''${#shells[@]}): " choice
-            if [[ "$choice" =~ ^[0-9]+$ ]] && [ "$choice" -ge 1 ] && [ "$choice" -le "''${#shells[@]}" ]; then
-              local selected_shell="''${shells[$((choice-1))]}"
+            read "choice?Select shell (1-''${#shells[@]}): "
+            if [[ "$choice" =~ ^[0-9]+$ ]] && (( choice >= 1 && choice <= ''${#shells[@]} )); then
+              local selected_shell="''${shells[choice]}"
               break
             else
               echo "Invalid selection. Please choose 1-''${#shells[@]}."
