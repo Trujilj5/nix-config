@@ -15,6 +15,7 @@
 
   environment.systemPackages = with pkgs; [
     vim
+    direnv
     wget
     unstablePkgs.opencode
     neovim
