@@ -172,7 +172,8 @@
         fi
 
         # Create .envrc using flake for better performance with nix-direnv
-        echo "use flake ~/nixos/dev-shells#$selected_shell" > .envrc
+        echo "export DIRENV_SKIP_TIMEOUT=1" > .envrc
+        echo "use flake ~/nixos/dev-shells#$selected_shell" >> .envrc
         direnv allow
         echo "✅ Initialized $selected_shell development environment"
       }
