@@ -139,38 +139,36 @@
       # Interactive development shell initialization
       init_dev_shell() {
         # Get available shells from the flake
-        local -a shells
-        shells=($(nix flake show ~/nixos/dev-shells --json 2>/dev/null | jq -r '.devShells."x86_64-linux" | keys[]' 2>/dev/null || echo "i-console-dev"))
+        local shells=($(nix flake show ~/nixos/dev-shells --json 2>/dev/null | jq -r '.devShells."x86_64-linux" | keys[]' 2>/dev/null || echo "i-console-dev"))
 
-        if (( ''${#shells[@]} == 1 )); then
+        if [ ${#shells[@]} -eq 1 ]; then
           # Only one shell available, use it directly
-          local selected_shell="''${shells[1]}"
+          local selected_shell=${shells[1]}
           echo "Using: $selected_shell"
         else
           # Multiple shells, show selection menu
           echo "Available development shells:"
-          local i
-          for i in ''${!shells[@]}; do
-            echo "  $i) ''${shells[$i]}"
+          for i in "${!shells[@]}"; do
+            echo "  $((i+1))) ${shells[$i]}"
           done
           echo ""
 
           # Prompt for selection
           while true; do
-            read "choice?Select shell (1-''${#shells[@]}): "
-            if [[ $choice =~ ^[0-9]+$ ]] && (( choice >= 1 && choice <= ''${#shells[@]} )); then
-              local selected_shell="''${shells[$choice]}"
+            read -p "Select shell (1-${#shells[@]}): " choice
+            if [[ $choice =~ ^[0-9]+$ ]] && [ $choice -ge 1 ] && [ $choice -le ${#shells[@]} ]; then
+              local selected_shell=${shells[$choice]}
               break
             else
-              echo "Invalid selection. Please choose 1-''${#shells[@]}."
+              echo "Invalid selection. Please choose 1-${#shells[@]}."
             fi
           done
         fi
 
         # Create .envrc
-        echo "use flake ~/nixos/dev-shells#''${selected_shell}" > .envrc
+        echo "use flake ~/nixos/dev-shells#$selected_shell" > .envrc
         direnv allow
-        echo "✅ Initialized ''${selected_shell} development environment"
+        echo "✅ Initialized $selected_shell development environment"
       }
 
       # Dev command dispatcher
