@@ -49,7 +49,7 @@
       kcdelss = "kcrmss";
       kcge = "kcg events";
       kcswap = "kubectl config set-context --current --namespace";
-      init-dev = "init_dev_shell";
+
     };
 
     # History
@@ -135,67 +135,7 @@
       # Zoxide
       eval "$(zoxide init zsh)"
 
-      # Interactive development shell initialization
-      init_dev_shell() {
-        # Get available shells as array
-        local shell_list=$(nix flake show ~/nixos/dev-shells --json 2>/dev/null | jq -r '.devShells."x86_64-linux" | keys[]' 2>/dev/null || echo "i-console-dev")
 
-        # Convert to array
-        local shells=()
-        while IFS= read -r line; do
-          [[ -n "$line" ]] && shells+=("$line")
-        done <<< "$shell_list"
-
-        # If only one shell, use it directly
-        if (( ''${#shells} == 1 )); then
-          local selected_shell="''${shells[1]}"
-          echo "Using: $selected_shell"
-        else
-          # Show menu and get selection
-          echo "Available development shells:"
-          local i=1
-          for shell in "''${shells[@]}"; do
-            echo "  $i) $shell"
-            ((i++))
-          done
-          echo
-
-          while true; do
-            read "choice?Select shell (1-''${#shells}): "
-            if [[ "$choice" =~ ^[0-9]+$ ]] && (( choice >= 1 && choice <= ''${#shells} )); then
-              local selected_shell="''${shells[choice]}"
-              break
-            else
-              echo "Invalid selection. Please choose 1-''${#shells}."
-            fi
-          done
-        fi
-
-        # Create .envrc using flake for better performance with nix-direnv
-        echo "export DIRENV_SKIP_TIMEOUT=1" > .envrc
-        echo "use flake ~/nixos/dev-shells#$selected_shell" >> .envrc
-        direnv allow
-        echo "✅ Initialized $selected_shell development environment"
-      }
-
-      # Dev command dispatcher
-      dev() {
-        case $1 in
-          init)
-            init_dev_shell
-            ;;
-          help)
-            echo "Usage: dev [init|help]"
-            echo "  init - Initialize development shell"
-            echo "  help - Show this help message"
-            ;;
-          *)
-            echo "Usage: dev [init|help]"
-            echo "  init - Initialize development shell"
-            echo "  help - Show this help message"
-            ;;
-        esac
-      }
     '';
   };
 }

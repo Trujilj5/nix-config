@@ -15,7 +15,6 @@
 
   environment.systemPackages = with pkgs; [
     vim
-    direnv
     wget
     unstablePkgs.opencode
     neovim
@@ -52,7 +51,6 @@
     zoxide
     fzf
     package-version-server
-    jq
   ];
 
   systemd.user.services.podman-api = {

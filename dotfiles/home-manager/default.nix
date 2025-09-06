@@ -13,6 +13,5 @@
     ./zen-browser.nix
     ./lazygit.nix
     ./lazysql.nix
-    ./direnv.nix
   ];
 }
