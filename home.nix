@@ -23,6 +23,14 @@
     playerctl
     brightnessctl
     font-awesome
+
+    # TUI file manager with vim motions
+    yazi
+    ffmpegthumbnailer  # For video thumbnails
+    fd                 # For file searching
+    ripgrep           # For content searching
+    fzf               # For fuzzy finding
+    zoxide            # For directory jumping
   ];
   home.sessionVariables = {
     SUDO_EDITOR = "nvim";

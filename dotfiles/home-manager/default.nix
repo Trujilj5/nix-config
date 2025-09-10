@@ -13,5 +13,6 @@
     ./zen-browser.nix
     ./lazygit.nix
     ./lazysql.nix
+    ./yazi.nix
   ];
 }

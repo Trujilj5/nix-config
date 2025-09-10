@@ -32,6 +32,7 @@
       "space g a": "editor::ToggleCodeActions",
       "space r n": "editor::Rename",
       "space l g": ["task::Spawn", { "task_name": "lazygit" }],
+      "space o p": ["task::Spawn", { "task_name": "Open Project (Yazi)" }],
       "space f f": "file_finder::Toggle",
       "space f w": "pane::DeploySearch",
       "space f d": "editor::ToggleFold",
@@ -64,7 +65,8 @@
       "ctrl-l": "workspace::ToggleRightDock",
       "space z": "workspace::CloseAllDocks",
       "space f f": "file_finder::Toggle",
-      "space f w": "pane::DeploySearch"
+      "space f w": "pane::DeploySearch",
+      "space o p": ["task::Spawn", { "task_name": "Open Project (Yazi)" }]
     }
   },
   {
