@@ -113,8 +113,8 @@
           # Only proceed if a directory was actually selected (different from start)
           if [[ -n "$SELECTED_DIR" && -d "$SELECTED_DIR" ]]; then
               echo "Opening $SELECTED_DIR in Zed..."
-              # Switch to workspace 2 then exec Zed
-              hyprctl dispatch workspace 2 && hyprctl dispatch exec "zed-fhs \"$SELECTED_DIR\""
+              # Open Zed in workspace 2 and toggle special workspace
+              hyprctl dispatch workspace 2 && hyprctl dispatch exec "zed-fhs \"$SELECTED_DIR\"" && hyprctl dispatch togglespecialworkspace magic
           else
               echo "No directory selected or invalid directory."
               exit 1
