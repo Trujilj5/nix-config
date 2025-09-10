@@ -33,8 +33,18 @@
       pkgs.xdg-desktop-portal-hyprland
     ];
     config = {
-      common.default = "gtk";
-      hyprland.default = ["hyprland" "gtk"];
+      common = {
+        default = "gtk";
+        "org.freedesktop.impl.portal.FileChooser" = "gtk";
+        "org.freedesktop.impl.portal.OpenURI" = "gtk";
+      };
+      hyprland = {
+        default = ["hyprland" "gtk"];
+        "org.freedesktop.impl.portal.FileChooser" = "gtk";
+        "org.freedesktop.impl.portal.OpenURI" = "gtk";
+        "org.freedesktop.impl.portal.ScreenCast" = "hyprland";
+        "org.freedesktop.impl.portal.Screenshot" = "hyprland";
+      };
     };
   };
 
