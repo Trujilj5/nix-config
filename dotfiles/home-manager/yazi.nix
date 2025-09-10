@@ -26,19 +26,15 @@
       };
 
       opener = {
-        # Open directories with Zed when Enter is pressed
-        folder = [
-          { run = "zed-fhs \"$1\""; desc = "Open with Zed"; for = "unix"; }
-        ];
+        # Default openers (removed direct Zed integration to use script selection)
         text = [
-          { run = "zed-fhs \"$1\""; desc = "Open with Zed"; for = "unix"; }
+          { run = "zed-fhs \"$1\""; desc = "Edit with Zed"; for = "unix"; }
         ];
       };
 
       open = {
         # Rules for opening different file types
         rules = [
-          { name = "*/"; use = "folder"; }
           { mime = "text/*"; use = "text"; }
           { mime = "image/*"; use = "image"; }
           { mime = "video/*"; use = "video"; }
@@ -86,8 +82,8 @@
         { on = [ "g" "D" ]; run = "cd ~/Documents"; desc = "Go to documents"; }
         { on = [ "g" "p" ]; run = "cd ~/projects"; desc = "Go to projects"; }
         { on = [ "g" "n" ]; run = "cd ~/nixos"; desc = "Go to NixOS config"; }
-        { on = [ "o" ]; run = "open"; desc = "Open selected"; }
-        { on = [ "<Enter>" ]; run = "open"; desc = "Open selected"; }
+        { on = [ "o" ]; run = "open"; desc = "Open file"; }
+        { on = [ "<Enter>" ]; run = "quit"; desc = "Select current directory"; }
         { on = [ "." ]; run = "hidden toggle"; desc = "Toggle hidden files"; }
         { on = [ "f" ]; run = "filter"; desc = "Filter files"; }
         { on = [ "/" ]; run = "find"; desc = "Find files"; }

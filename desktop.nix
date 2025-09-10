@@ -104,6 +104,7 @@
       trap cleanup EXIT
 
       # Launch Yazi and capture the selected directory
+      echo "Navigate to your project folder, then press 'Enter' or 'q' to select it and open in Zed"
       ${yazi}/bin/yazi "$START_DIR" --cwd-file="$TEMP_FILE"
 
       # Check if a directory was selected
