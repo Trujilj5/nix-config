@@ -81,19 +81,16 @@
     keymap = {
       manager.prepend_keymap = [
         { on = [ "g" "h" ]; run = "cd ~"; desc = "Go home"; }
-        { on = [ "g" "c" ]; run = "cd ~/.config"; desc = "Go to config"; }
+        { on = [ "g" "c" ]; run = "cd ~/code"; desc = "Go to code"; }
         { on = [ "g" "d" ]; run = "cd ~/Downloads"; desc = "Go to downloads"; }
         { on = [ "g" "D" ]; run = "cd ~/Documents"; desc = "Go to documents"; }
-        { on = [ "g" "p" ]; run = "cd ~/code"; desc = "Go to code"; }
         { on = [ "g" "i" ]; run = "cd ~/code/ionite"; desc = "Go to ionite"; }
         { on = [ "g" "n" ]; run = "cd ~/nixos"; desc = "Go to NixOS config"; }
-        { on = [ "o" ]; run = "open"; desc = "Open selected"; }
         { on = [ "<Enter>" ]; run = "open"; desc = "Open selected"; }
         { on = [ "." ]; run = "hidden toggle"; desc = "Toggle hidden files"; }
         { on = [ "f" ]; run = "filter"; desc = "Filter files"; }
-        { on = [ "/" ]; run = "find"; desc = "Find files"; }
-        { on = [ "s" ]; run = "search fd"; desc = "Search with fd"; }
-        { on = [ "S" ]; run = "search rg"; desc = "Search with ripgrep"; }
+        { on = [ "/" ]; run = "search fd"; desc = "Search with fd"; }
+        { on = [ "s" ]; run = "search rg"; desc = "Search with ripgrep"; }
       ];
     };
 
