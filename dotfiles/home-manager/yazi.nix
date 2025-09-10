@@ -84,7 +84,8 @@
         { on = [ "g" "c" ]; run = "cd ~/.config"; desc = "Go to config"; }
         { on = [ "g" "d" ]; run = "cd ~/Downloads"; desc = "Go to downloads"; }
         { on = [ "g" "D" ]; run = "cd ~/Documents"; desc = "Go to documents"; }
-        { on = [ "g" "p" ]; run = "cd ~/projects"; desc = "Go to projects"; }
+        { on = [ "g" "p" ]; run = "cd ~/code"; desc = "Go to code"; }
+        { on = [ "g" "i" ]; run = "cd ~/code/ionite"; desc = "Go to ionite"; }
         { on = [ "g" "n" ]; run = "cd ~/nixos"; desc = "Go to NixOS config"; }
         { on = [ "o" ]; run = "open"; desc = "Open selected"; }
         { on = [ "<Enter>" ]; run = "open"; desc = "Open selected"; }
