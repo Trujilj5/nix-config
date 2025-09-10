@@ -6,8 +6,8 @@
     enableZshIntegration = true;
     settings = {
       manager = {
-        # Show hidden files by default (useful for .git directories, config files, etc.)
-        show_hidden = true;
+        # Hide hidden files by default (like 'ls')
+        show_hidden = false;
         # Sort directories first
         sort_dir_first = true;
         # Show size in human readable format
@@ -26,7 +26,10 @@
       };
 
       opener = {
-        # Default openers (removed direct Zed integration to use script selection)
+        # Open directories with Zed when Enter is pressed
+        folder = [
+          { run = "zed-fhs \"$1\""; desc = "Open with Zed"; for = "unix"; }
+        ];
         text = [
           { run = "zed-fhs \"$1\""; desc = "Edit with Zed"; for = "unix"; }
         ];
@@ -35,6 +38,7 @@
       open = {
         # Rules for opening different file types
         rules = [
+          { name = "*/"; use = "folder"; }
           { mime = "text/*"; use = "text"; }
           { mime = "image/*"; use = "image"; }
           { mime = "video/*"; use = "video"; }
@@ -82,8 +86,8 @@
         { on = [ "g" "D" ]; run = "cd ~/Documents"; desc = "Go to documents"; }
         { on = [ "g" "p" ]; run = "cd ~/projects"; desc = "Go to projects"; }
         { on = [ "g" "n" ]; run = "cd ~/nixos"; desc = "Go to NixOS config"; }
-        { on = [ "o" ]; run = "open"; desc = "Open file"; }
-        { on = [ "<Enter>" ]; run = "quit"; desc = "Select current directory"; }
+        { on = [ "o" ]; run = "open"; desc = "Open selected"; }
+        { on = [ "<Enter>" ]; run = "open"; desc = "Open selected"; }
         { on = [ "." ]; run = "hidden toggle"; desc = "Toggle hidden files"; }
         { on = [ "f" ]; run = "filter"; desc = "Filter files"; }
         { on = [ "/" ]; run = "find"; desc = "Find files"; }

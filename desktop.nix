@@ -104,7 +104,6 @@
       trap cleanup EXIT
 
       # Launch Yazi and capture the selected directory
-      echo "Navigate to your project folder, then press 'Enter' or 'q' to select it and open in Zed"
       ${yazi}/bin/yazi "$START_DIR" --cwd-file="$TEMP_FILE"
 
       # Check if a directory was selected
@@ -114,22 +113,7 @@
           # Only proceed if a directory was actually selected (different from start)
           if [[ -n "$SELECTED_DIR" && -d "$SELECTED_DIR" ]]; then
               echo "Opening $SELECTED_DIR in Zed..."
-              # Start Zed in background and wait briefly for it to initialize
-              zed-fhs "$SELECTED_DIR" &
-              ZED_PID=$!
-
-              # Wait a moment for Zed to start, then close terminal
-              sleep 1
-
-              # Verify Zed started successfully before closing terminal
-              if kill -0 $ZED_PID 2>/dev/null; then
-                  echo "Zed opened successfully. Closing terminal..."
-                  # Close the terminal gracefully
-                  exit 0
-              else
-                  echo "Failed to start Zed. Terminal will remain open."
-                  wait $ZED_PID
-              fi
+              zed-fhs "$SELECTED_DIR"
           else
               echo "No directory selected or invalid directory."
               exit 1

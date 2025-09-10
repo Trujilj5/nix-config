@@ -104,5 +104,17 @@
       categories = [ "Network" "InstantMessaging" ];
       mimeType = [ "x-scheme-handler/sgnl" "x-scheme-handler/signalcaptcha" ];
     };
+
+    code = {
+      name = "Code";
+      genericName = "Project Picker";
+      comment = "Open project in Zed using Yazi";
+      exec = "ghostty -e zed-project-picker";
+      icon = "folder-open";
+      type = "Application";
+      categories = [ "Development" "FileManager" ];
+      startupNotify = false;
+      noDisplay = false;
+    };
   };
 }
