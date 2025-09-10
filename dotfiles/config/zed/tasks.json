@@ -12,10 +12,10 @@
   },
   {
     "label": "Open Project (Yazi)",
-    "command": "zed-project-picker",
-    "args": [],
+    "command": "sh",
+    "args": ["-c", "hyprctl dispatch togglespecialworkspace magic"],
     "env": {},
-    "use_new_terminal": true,
+    "use_new_terminal": false,
     "allow_concurrent_runs": false,
     "working_directory": "${ZED_WORKTREE_ROOT}",
     "hide": "never",

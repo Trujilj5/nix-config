@@ -109,7 +109,7 @@
       name = "Code";
       genericName = "Project Picker";
       comment = "Open project in Zed using Yazi";
-      exec = "ghostty -e zed-project-picker";
+      exec = "hyprctl dispatch togglespecialworkspace magic";
       icon = "folder-open";
       type = "Application";
       categories = [ "Development" "FileManager" ];
