@@ -85,44 +85,14 @@
     (writeShellScriptBin "zed-project-picker" ''
       #!/usr/bin/env bash
 
-      # Zed Project Picker using Yazi
-      # This script opens Yazi file manager to select a project directory,
-      # then opens that directory in Zed Editor and closes the terminal.
-
-      set -e
+      # Simple Yazi launcher for project selection
+      # Yazi handles opening projects in workspace 2 directly
 
       # Default starting directory (you can customize this)
       START_DIR="''${1:-$HOME}"
 
-      # Temporary file to store the selected directory
-      TEMP_FILE=$(mktemp)
-
-      # Function to cleanup temp file on exit
-      cleanup() {
-          rm -f "$TEMP_FILE"
-      }
-      trap cleanup EXIT
-
-      # Launch Yazi and capture the selected directory
-      ${yazi}/bin/yazi "$START_DIR" --cwd-file="$TEMP_FILE"
-
-      # Check if a directory was selected
-      if [[ -f "$TEMP_FILE" ]]; then
-          SELECTED_DIR=$(cat "$TEMP_FILE")
-
-          # Only proceed if a directory was actually selected (different from start)
-          if [[ -n "$SELECTED_DIR" && -d "$SELECTED_DIR" ]]; then
-              echo "Opening $SELECTED_DIR in Zed..."
-              # Open Zed in workspace 2 and toggle special workspace
-              hyprctl dispatch workspace 2 && hyprctl dispatch exec "zed-fhs \"$SELECTED_DIR\"" && hyprctl dispatch togglespecialworkspace magic
-          else
-              echo "No directory selected or invalid directory."
-              exit 1
-          fi
-      else
-          echo "No directory selected."
-          exit 1
-      fi
+      # Launch Yazi
+      ${yazi}/bin/yazi "$START_DIR"
     '')
 
     gsettings-desktop-schemas

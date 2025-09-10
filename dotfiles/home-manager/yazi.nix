@@ -26,9 +26,9 @@
       };
 
       opener = {
-        # Open directories with Zed when Enter is pressed
+        # Open directories with Zed in workspace 2 when Enter is pressed
         folder = [
-          { run = "zed-fhs \"$1\""; desc = "Open with Zed"; for = "unix"; }
+          { run = "hyprctl dispatch workspace 2 && hyprctl dispatch exec \"zed-fhs '$1'\" && hyprctl dispatch togglespecialworkspace magic"; desc = "Open with Zed"; for = "unix"; }
         ];
         text = [
           { run = "zed-fhs \"$1\""; desc = "Edit with Zed"; for = "unix"; }
