@@ -15,7 +15,7 @@ mkdir -p /home/$SUDO_USER/.config/home-manager
 cat > /home/$SUDO_USER/.config/home-manager/flake.nix << 'FLAKE_EOF'
 {
   description = "Home Manager configuration";
-  
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
@@ -23,7 +23,7 @@ cat > /home/$SUDO_USER/.config/home-manager/flake.nix << 'FLAKE_EOF'
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  
+
   outputs = { nixpkgs, home-manager, ... }: {
     homeConfigurations."$SUDO_USER" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -32,11 +32,17 @@ cat > /home/$SUDO_USER/.config/home-manager/flake.nix << 'FLAKE_EOF'
           home.username = "$SUDO_USER";
           home.homeDirectory = "/home/$SUDO_USER";
           home.stateVersion = "23.11";
-          
+
           home.packages = with nixpkgs.legacyPackages.x86_64-linux; [
-            zed-editor
+            # Add packages here through https://search.nixos.org/packages?channel=unstable
+            # vim
+            # neovim
           ];
-          
+
+          programs.zed-editor = {
+            enable = true;
+          };
+
           programs.home-manager.enable = true;
         }
       ];
