@@ -16,27 +16,46 @@
           ${pkgs.qemu}/bin/qemu-img create -f qcow2 mint.qcow2 20G
         fi
 
-        if [ -n "$1" ] && [ -f "$1" ]; then
-          echo "Installing from ISO: $1"
-          ${pkgs.qemu}/bin/qemu-system-x86_64 \
-            -enable-kvm -m 4G -smp 2 \
-            -drive file=mint.qcow2,format=qcow2 \
-            -cdrom "$1" -boot d -display gtk
-        else
-          echo "Running Linux Mint VM..."
-          ${pkgs.qemu}/bin/qemu-system-x86_64 \
-            -enable-kvm -m 4G -smp 2 \
-            -drive file=mint.qcow2,format=qcow2 \
-            -display gtk
+        echo "Running Linux Mint VM..."
+        ${pkgs.qemu}/bin/qemu-system-x86_64 \
+          -enable-kvm -m 4G -smp 2 \
+          -drive file=mint.qcow2,format=qcow2 \
+          -display gtk
+      '';
+
+      installVM = pkgs.writeShellScriptBin "install-mint-vm" ''
+        if [ ! -f mint.qcow2 ]; then
+          echo "Creating VM disk..."
+          ${pkgs.qemu}/bin/qemu-img create -f qcow2 mint.qcow2 20G
         fi
+
+        if [ -z "$1" ]; then
+          echo "Usage: nix run .#install -- /path/to/mint.iso"
+          exit 1
+        fi
+
+        echo "Installing from ISO: $1"
+        ${pkgs.qemu}/bin/qemu-system-x86_64 \
+          -enable-kvm -m 4G -smp 2 \
+          -drive file=mint.qcow2,format=qcow2 \
+          -cdrom "$1" -boot d -display gtk
       '';
     in
     {
-      packages.${system}.default = runVM;
+      packages.${system} = {
+        default = runVM;
+        install = installVM;
+      };
 
-      apps.${system}.default = {
-        type = "app";
-        program = "${runVM}/bin/run-mint-vm";
+      apps.${system} = {
+        default = {
+          type = "app";
+          program = "${runVM}/bin/run-mint-vm";
+        };
+        install = {
+          type = "app";
+          program = "${installVM}/bin/install-mint-vm";
+        };
       };
       devShells.${system}.default = pkgs.mkShell {
         buildInputs = with pkgs; [
@@ -50,8 +69,8 @@
           echo "========================"
           echo ""
           echo "Usage:"
-          echo "  nix run                         - Run VM (creates disk if needed)"
-          echo "  nix run linuxmint-22.2-cinnamon-64bit.iso - Install from ISO"
+          echo "  nix run                                - Run VM (creates disk if needed)"
+          echo "  nix run .#install -- linuxmint-22.2-cinnamon-64bit.iso - Install from ISO"
           echo ""
           echo "Manual commands (if needed):"
           echo "  qemu-img create -f qcow2 mint.qcow2 20G"
