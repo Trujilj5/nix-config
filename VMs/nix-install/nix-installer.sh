@@ -1,47 +1,62 @@
 #!/bin/bash
 
+echo "Installing Nix for user: $SUDO_USER"
+
 # Install Nix with flakes enabled
 curl -fsSL https://install.determinate.systems/nix | sh -s -- install --determinate
 
+# Switch to real user for home-manager setup
+sudo -u "$SUDO_USER" bash << EOF
 # Source nix for current session
 . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 
-# Install home-manager (non-flake approach)
-nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-nix-channel --update
-
-# Install home-manager
-nix-shell '<home-manager>' -A install
-
-# Create home-manager configuration
-mkdir -p ~/.config/home-manager
-cat > ~/.config/home-manager/home.nix << 'EOF'
-{ config, pkgs, ... }:
-
+# Create home-manager flake configuration
+mkdir -p /home/$SUDO_USER/.config/home-manager
+cat > /home/$SUDO_USER/.config/home-manager/flake.nix << 'FLAKE_EOF'
 {
-  home.username = builtins.getEnv "USER";
-  home.homeDirectory = builtins.getEnv "HOME";
-  home.stateVersion = "23.11";
-
-  home.packages = with pkgs; [
-    zed-editor
-  ];
-
-  programs.home-manager.enable = true;
+  description = "Home Manager configuration";
+  
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+  
+  outputs = { nixpkgs, home-manager, ... }: {
+    homeConfigurations."$SUDO_USER" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      modules = [
+        {
+          home.username = "$SUDO_USER";
+          home.homeDirectory = "/home/$SUDO_USER";
+          home.stateVersion = "23.11";
+          
+          home.packages = with nixpkgs.legacyPackages.x86_64-linux; [
+            zed-editor
+          ];
+          
+          programs.home-manager.enable = true;
+        }
+      ];
+    };
+  };
 }
+FLAKE_EOF
+
+# Install and activate home-manager
+cd /home/$SUDO_USER/.config/home-manager
+nix run home-manager/master -- switch --flake .#$SUDO_USER
 EOF
 
-# Apply the configuration
-home-manager switch
-
 echo ""
-echo "Home Manager installed! Packages are now available system-wide."
+echo "Home Manager installed! Zed editor is now available system-wide."
 echo ""
-echo "Zed editor installed! Launch with 'zed' command."
+echo "Launch with: zed"
 echo ""
 echo "To add more packages:"
-echo "1. Edit ~/.config/home-manager/home.nix"
-echo "2. Add packages to the home.packages list"
-echo "3. Run: home-manager switch"
+echo "1. Edit ~/.config/home-manager/flake.nix"
+echo "2. Run: home-manager switch --flake ~/.config/home-manager"
 echo ""
 echo "To uninstall: /nix/nix-installer uninstall"
