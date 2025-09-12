@@ -2,60 +2,46 @@
 
 # Install Nix with flakes enabled
 curl -fsSL https://install.determinate.systems/nix | sh -s -- install --determinate
-# Uninstall:
-# /nix/nix-installer uninstall
 
 # Source nix for current session
 . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 
+# Install home-manager (non-flake approach)
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+
+# Install home-manager
+nix-shell '<home-manager>' -A install
+
 # Create home-manager configuration
 mkdir -p ~/.config/home-manager
-cat > ~/.config/home-manager/flake.nix << 'EOF'
+cat > ~/.config/home-manager/home.nix << 'EOF'
+{ config, pkgs, ... }:
+
 {
-  description = "Home Manager configuration";
+  home.username = builtins.getEnv "USER";
+  home.homeDirectory = builtins.getEnv "HOME";
+  home.stateVersion = "23.11";
 
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-  };
+  home.packages = with pkgs; [
+    zed-editor
+  ];
 
-  outputs = { nixpkgs, home-manager, ... }:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-      username = builtins.getEnv "USER";
-    in
-    {
-      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          {
-            home = {
-              username = username;
-              homeDirectory = "/home/${username}";
-              stateVersion = "23.11";
-              packages = with pkgs; [
-                zed-editor
-              ];
-            };
-            programs.home-manager.enable = true;
-          }
-        ];
-      };
-    };
+  programs.home-manager.enable = true;
 }
 EOF
 
-# Install home-manager
-cd ~/.config/home-manager
-nix run home-manager/master -- init --switch
+# Apply the configuration
+home-manager switch
 
 echo ""
 echo "Home Manager installed! Packages are now available system-wide."
 echo ""
-echo "To add packages:"
-echo "1. Edit ~/.config/home-manager/flake.nix"
-echo "2. Run: home-manager switch"
+echo "Zed editor installed! Launch with 'zed' command."
+echo ""
+echo "To add more packages:"
+echo "1. Edit ~/.config/home-manager/home.nix"
+echo "2. Add packages to the home.packages list"
+echo "3. Run: home-manager switch"
 echo ""
 echo "To uninstall: /nix/nix-installer uninstall"
