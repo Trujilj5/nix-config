@@ -6,49 +6,51 @@ curl -fsSL https://install.determinate.systems/nix | sh -s -- install --determin
 # Source nix for current session
 . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 
-# Create home-manager configuration
-mkdir -p ~/.config/home-manager
-cat > ~/.config/home-manager/flake.nix << 'EOF'
+# Switch to real user for home-manager setup
+sudo -u "$SUDO_USER" bash << EOF
+# Source nix for current session
+. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+
+# Create home-manager flake configuration
+mkdir -p /home/$SUDO_USER/.config/home-manager
+cat > /home/$SUDO_USER/.config/home-manager/flake.nix << 'FLAKE_EOF'
 {
   description = "Home Manager configuration";
-
+  
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-  };
-
-  outputs = { nixpkgs, home-manager, ... }:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-      username = builtins.getEnv "SUDO_USER";
-    in
-    {
-      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          {
-            home = {
-              username = "$SUDO_USER";
-              homeDirectory = "/home/$SUDO_USER";
-              stateVersion = "23.11";
-              packages = with pkgs; [
-                zed-editor
-              ];
-            };
-            nixGL.vulkan.enable = true;
-            programs.home-manager.enable = true;
-          }
-        ];
-      };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
+  };
+  
+  outputs = { nixpkgs, home-manager, ... }: {
+    homeConfigurations."$SUDO_USER" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      modules = [
+        {
+          home.username = "$SUDO_USER";
+          home.homeDirectory = "/home/$SUDO_USER";
+          home.stateVersion = "23.11";
+          
+          home.packages = with nixpkgs.legacyPackages.x86_64-linux; [
+            zed-editor
+          ];
+          
+          nixGL.vulkan.enable = true;
+          programs.home-manager.enable = true;
+        }
+      ];
+    };
+  };
 }
-EOF
+FLAKE_EOF
 
-# Install home-manager
-cd ~/.config/home-manager
-nix run home-manager/master -- init --switch
+# Install and activate home-manager
+cd /home/$SUDO_USER/.config/home-manager
+nix run home-manager/master -- switch --flake .#$SUDO_USER
+EOF
 
 echo "To add packages:"
 echo "1. Edit ~/.config/home-manager/flake.nix"
