@@ -16,12 +16,12 @@
           ${pkgs.qemu}/bin/qemu-img create -f qcow2 mint.qcow2 20G
         fi
 
-        if [ "$1" = "--install" ] && [ -n "$2" ]; then
-          echo "Installing from ISO: $2"
+        if [ -n "$1" ] && [ -f "$1" ]; then
+          echo "Installing from ISO: $1"
           ${pkgs.qemu}/bin/qemu-system-x86_64 \
             -enable-kvm -m 4G -smp 2 \
             -drive file=mint.qcow2,format=qcow2 \
-            -cdrom "$2" -boot d -display gtk
+            -cdrom "$1" -boot d -display gtk
         else
           echo "Running Linux Mint VM..."
           ${pkgs.qemu}/bin/qemu-system-x86_64 \
@@ -50,8 +50,8 @@
           echo "========================"
           echo ""
           echo "Usage:"
-          echo "  nix run                    - Run VM (creates disk if needed)"
-          echo "  nix run -- --install <iso> - Install from ISO"
+          echo "  nix run                         - Run VM (creates disk if needed)"
+          echo "  nix run linuxmint-22.2-cinnamon-64bit.iso - Install from ISO"
           echo ""
           echo "Manual commands (if needed):"
           echo "  qemu-img create -f qcow2 mint.qcow2 20G"
