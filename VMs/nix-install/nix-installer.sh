@@ -22,7 +22,7 @@ cat > ~/.config/home-manager/flake.nix << 'EOF'
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      username = builtins.getEnv "USER";
+      username = builtins.getEnv "SUDO_USER";
     in
     {
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
@@ -30,8 +30,8 @@ cat > ~/.config/home-manager/flake.nix << 'EOF'
         modules = [
           {
             home = {
-              username = username;
-              homeDirectory = "/home/${username}";
+              username = "$SUDO_USER";
+              homeDirectory = "/home/$SUDO_USER";
               stateVersion = "23.11";
               packages = with pkgs; [
                 zed-editor
