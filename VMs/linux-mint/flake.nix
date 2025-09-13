@@ -20,7 +20,10 @@
         ${pkgs.qemu}/bin/qemu-system-x86_64 \
           -enable-kvm -m 4G -smp 2 \
           -drive file=mint.qcow2,format=qcow2 \
-          -display gtk
+          -device virtio-vga-gl \
+          -display gtk,gl=on \
+          -device intel-hda -device hda-duplex \
+          -usb -device usb-tablet
       '';
 
       installVM = pkgs.writeShellScriptBin "install-mint-vm" ''
@@ -38,7 +41,11 @@
         ${pkgs.qemu}/bin/qemu-system-x86_64 \
           -enable-kvm -m 4G -smp 2 \
           -drive file=mint.qcow2,format=qcow2 \
-          -cdrom "$1" -boot d -display gtk
+          -cdrom "$1" -boot d \
+          -device virtio-vga-gl \
+          -display gtk,gl=on \
+          -device intel-hda -device hda-duplex \
+          -usb -device usb-tablet
       '';
     in
     {
@@ -74,7 +81,7 @@
           echo ""
           echo "Manual commands (if needed):"
           echo "  qemu-img create -f qcow2 mint.qcow2 20G"
-          echo "  qemu-system-x86_64 -enable-kvm -m 4G -smp 2 -drive file=mint.qcow2,format=qcow2 -display gtk"
+          echo "  qemu-system-x86_64 -enable-kvm -m 4G -smp 2 -drive file=mint.qcow2,format=qcow2 -device virtio-vga-gl -display gtk,gl=on"
           echo ""
         '';
       };
