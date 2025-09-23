@@ -29,7 +29,7 @@
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
 
     # Zed Editor (pinned to avoid frequent rebuilds)
-    zed.url = "github:zed-industries/zed/v0.203.4";
+    zed.url = "github:zed-industries/zed/v0.204.5";
     zed.inputs.nixpkgs.follows = "nixpkgs";
   };
 
