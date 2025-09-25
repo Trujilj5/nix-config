@@ -51,6 +51,7 @@
     zoxide
     fzf
     package-version-server
+    unstablePkgs.figma-linux
   ];
 
   systemd.user.services.podman-api = {
