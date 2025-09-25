@@ -51,7 +51,9 @@
     zoxide
     fzf
     package-version-server
-    unstablePkgs.figma-linux
+    (writeShellScriptBin "figma-linux" ''
+      exec ${unstablePkgs.figma-linux}/bin/figma-linux --force-device-scale-factor=0.25 --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
+    '')
   ];
 
   systemd.user.services.podman-api = {
