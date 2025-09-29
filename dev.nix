@@ -60,7 +60,7 @@
       exec = "figma-linux";
       icon = "${unstablePkgs.figma-linux}/share/icons/hicolor/128x128/apps/figma-linux.png";
       comment = "The collaborative interface design tool";
-      categories = [ "Graphics" "Design" ];
+      categories = [ "Graphics" ];
       startupWMClass = "Figma";
     })
   ];
