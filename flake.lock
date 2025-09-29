@@ -454,11 +454,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1758446476,
-        "narHash": "sha256-5rdAi7CTvM/kSs6fHe1bREIva5W3TbImsto+dxG4mBo=",
+        "lastModified": 1759070547,
+        "narHash": "sha256-JVZl8NaVRYb0+381nl7LvPE+A774/dRpif01FKLrYFQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a1f79a1770d05af18111fbbe2a3ab2c42c0f6cd0",
+        "rev": "647e5c14cbd5067f44ac86b74f014962df460840",
         "type": "github"
       },
       "original": {
@@ -484,12 +484,12 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1758346548,
-        "narHash": "sha256-afXE7AJ7MY6wY1pg/Y6UPHNYPy5GtUKeBkrZZ/gC71E=",
-        "rev": "b2a3852bd078e68dd2b3dfa8c00c67af1f0a7d20",
-        "revCount": 810175,
+        "lastModified": 1758791193,
+        "narHash": "sha256-F8WmEwFoHsnix7rt290R0rFXNJiMbClMZyIC/e+HYf0=",
+        "rev": "25e53aa156d47bad5082ff7618f5feb1f5e02d01",
+        "revCount": 810395,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.2505.810175%2Brev-b2a3852bd078e68dd2b3dfa8c00c67af1f0a7d20/01996a9c-be96-7a98-a978-e5a9ecbd877f/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.2505.810395%2Brev-25e53aa156d47bad5082ff7618f5feb1f5e02d01/01998694-ad17-7fa8-8c3a-c8bc31d19657/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -600,11 +600,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1757957798,
-        "narHash": "sha256-FT4O5imFJ+FUIGhYj/aFwEEgyvLhuyJ2my8f6mCLtTY=",
+        "lastModified": 1759050585,
+        "narHash": "sha256-Mj99rGy+K9jaQ85U2YWydZ9OKCIAdkxClrJlfG04GxU=",
         "owner": "nix-community",
         "repo": "stylix",
-        "rev": "e6fc25cd12e8f461e402cf34649cc73ad93c7bdd",
+        "rev": "3f71498ed14405aea347b9f5b7f56d97e64e904c",
         "type": "github"
       },
       "original": {
@@ -779,11 +779,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1758601360,
-        "narHash": "sha256-pvkHU7dAKt4kFXWsIz9PyJiZCJkiO3wR2xPRccPwsfc=",
+        "lastModified": 1759152585,
+        "narHash": "sha256-/R2EGDDpa6gG0jsjUKWbCNlY3LpwLzh7FCtaJYgYVVw=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "a3a511b4d7a2f1d729a10e97fd7cb038a41adbd4",
+        "rev": "14a035e84a08be00f03da17459fcca2b10655b6c",
         "type": "github"
       },
       "original": {

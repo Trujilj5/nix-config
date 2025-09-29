@@ -52,8 +52,17 @@
     fzf
     package-version-server
     (writeShellScriptBin "figma-linux" ''
-      exec ${unstablePkgs.figma-linux}/bin/figma-linux --force-device-scale-factor=0.25 --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
+      exec ${unstablePkgs.figma-linux}/bin/figma-linux --force-device-scale-factor=0.5 --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
     '')
+    (pkgs.makeDesktopItem {
+      name = "figma-linux";
+      desktopName = "Figma";
+      exec = "figma-linux";
+      icon = "${unstablePkgs.figma-linux}/share/icons/hicolor/128x128/apps/figma-linux.png";
+      comment = "The collaborative interface design tool";
+      categories = [ "Graphics" "Design" ];
+      startupWMClass = "Figma";
+    })
   ];
 
   systemd.user.services.podman-api = {
