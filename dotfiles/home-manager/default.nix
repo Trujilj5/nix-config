@@ -7,7 +7,7 @@
     ./waybar.nix
     ./wofi.nix
     ./zed.nix
-    ./nvim.nix
+    # ./nvim.nix  # Temporarily disabled to test conflict
     ./ghostty.nix
     ./tmux.nix
     ./zen-browser.nix
