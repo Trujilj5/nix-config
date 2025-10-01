@@ -116,38 +116,19 @@
             { "williamboman/mason.nvim", enabled = false },
             -- import/override with your plugins
             { import = "plugins" },
-            -- treesitter handled by xdg.configFile."nvim/parser", put this line at the end of spec to clear ensure_installed
+            -- treesitter handled by nix, clear ensure_installed to prevent conflicts
             { "nvim-treesitter/nvim-treesitter",
-              opts = function(_, opts)
-                opts.ensure_installed = {}
-              end,
+              opts = {
+                ensure_installed = {},
+                highlight = { enable = true },
+                indent = { enable = true },
+                incremental_selection = { enable = true },
+              },
             },
           },
         })
       '';
   };
-
-  # https://github.com/nvim-treesitter/nvim-treesitter#i-get-query-error-invalid-node-type-at-position
-  xdg.configFile."nvim/parser".source =
-    let
-      parsers = pkgs.symlinkJoin {
-        name = "treesitter-parsers";
-        paths = (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: with plugins; [
-          bash
-          c
-          lua
-          nix
-          python
-          rust
-          markdown
-          json
-          yaml
-          vim
-          vimdoc
-        ])).dependencies;
-      };
-    in
-    "${parsers}/parser";
 
   # Normal LazyVim config here, see https://github.com/LazyVim/starter/tree/main/lua
   xdg.configFile."nvim".source = ../../dotfiles/config/nvim;
