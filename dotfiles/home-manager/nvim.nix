@@ -32,6 +32,8 @@
       nodejs
       unzip
       git
+      # AI tools
+      copilot-language-server
     ];
 
     plugins = with pkgs.vimPlugins; [
