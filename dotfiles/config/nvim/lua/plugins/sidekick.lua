@@ -1,6 +1,5 @@
--- Sidekick AI assistant for LazyVim
+-- Sidekick AI assistant
 return {
-  -- Copilot language server (required for Sidekick)
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -10,11 +9,9 @@ return {
     },
   },
 
-  -- Sidekick AI assistant
   {
     "folke/sidekick.nvim",
     opts = function()
-      -- Accept inline suggestions or next edits (handled by ai-core.lua)
       LazyVim.cmp.actions.ai_nes = function()
         local Nes = require("sidekick.nes")
         if Nes.have() and (Nes.jump() or Nes.apply()) then
@@ -22,43 +19,17 @@ return {
         end
       end
     end,
-    -- stylua: ignore
     keys = {
-      -- Tab key is handled by ai-core.lua for unified AI behavior
+      { "<tab>", LazyVim.cmp.map({ "ai_nes" }, "<tab>"), mode = { "n" }, expr = true },
       { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
-      {
-        "<leader>aa",
-        function() require("sidekick.cli").toggle() end,
-        desc = "Sidekick Toggle CLI",
-      },
-      {
-        "<leader>as",
-        function() require("sidekick.cli").select() end,
-        mode = { "n" },
-        desc = "Sidekick Select CLI",
-      },
-      {
-        "<leader>as",
-        function() require("sidekick.cli").send() end,
-        mode = { "v" },
-        desc = "Sidekick Send Visual Selection",
-      },
-      {
-        "<leader>ap",
-        function() require("sidekick.cli").prompt() end,
-        desc = "Sidekick Select Prompt",
-        mode = { "n", "v" },
-      },
-      {
-        "<c-.>",
-        function() require("sidekick.cli").focus() end,
-        mode = { "n", "x", "i", "t" },
-        desc = "Sidekick Switch Focus",
-      },
+      { "<leader>aa", function() require("sidekick.cli").toggle() end, desc = "Sidekick Toggle CLI" },
+      { "<leader>as", function() require("sidekick.cli").select() end, mode = { "n" }, desc = "Sidekick Select CLI" },
+      { "<leader>as", function() require("sidekick.cli").send() end, mode = { "v" }, desc = "Sidekick Send Visual Selection" },
+      { "<leader>ap", function() require("sidekick.cli").prompt() end, desc = "Sidekick Select Prompt", mode = { "n", "v" } },
+      { "<c-.>", function() require("sidekick.cli").focus() end, mode = { "n", "x", "i", "t" }, desc = "Sidekick Switch Focus" },
     },
   },
 
-  -- Lualine integration for Sidekick status
   {
     "nvim-lualine/lualine.nvim",
     optional = true,
