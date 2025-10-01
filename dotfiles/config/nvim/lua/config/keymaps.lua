@@ -123,11 +123,7 @@ map("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
 -- LazyVim Changelog
 map("n", "<leader>L", function() LazyVim.news.changelog() end, { desc = "LazyVim Changelog" })
 
--- floating terminal
-map("n", "<leader>fT", function() LazyVim.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
-map("n", "<leader>ft", function() LazyVim.terminal() end, { desc = "Terminal (cwd)" })
-map("n", "<c-/>", function() LazyVim.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
-map("n", "<c-_>", function() LazyVim.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "which_key_ignore" })
+-- Terminal bindings are handled by our custom terminal plugin
 
 -- Terminal Mappings
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
@@ -135,8 +131,6 @@ map("t", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Go to left window" })
 map("t", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Go to lower window" })
 map("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Go to upper window" })
 map("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go to right window" })
-map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
-map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
 
 -- windows
 map("n", "<leader>-", "<C-W>s", { desc = "Split window below", remap = true })
