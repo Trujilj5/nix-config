@@ -58,18 +58,17 @@
           pumheight = 10;
         };
 
-        # Theme (LazyVim uses TokyoNight by default)
+        # Theme (using existing base16 theme)
         theme = {
           enable = true;
-          name = "tokyonight";
-          style = "night";
+          name = lib.mkForce "base16";
         };
 
         # UI Components
         statusline = {
           lualine = {
             enable = true;
-            theme = "auto";
+            theme = lib.mkForce "auto";
           };
         };
 
@@ -88,27 +87,6 @@
         filetree = {
           nvimTree = {
             enable = true;
-            openOnSetup = false;
-            hijackCursor = true;
-            syncRootWithCwd = true;
-            respectBufferCwd = true;
-            updateFocusedFile = {
-              enable = true;
-              updateRoot = true;
-            };
-            git = {
-              enable = true;
-              ignore = false;
-            };
-            renderer = {
-              highlightGit = true;
-              indentMarkers = {
-                enable = true;
-              };
-              icons = {
-                gitPlacement = "before";
-              };
-            };
           };
         };
 
@@ -151,24 +129,16 @@
           };
         };
 
-        # Languages (LazyVim supports many languages)
+        # Languages (simplified to core supported languages)
         languages = {
           enableFormat = true;
           enableTreesitter = true;
-          enableLSP = true;
 
           # Core languages
           nix.enable = true;
           lua.enable = true;
           python.enable = true;
           rust.enable = true;
-          go.enable = true;
-          typescript.enable = true;
-          html.enable = true;
-          css.enable = true;
-          json.enable = true;
-          yaml.enable = true;
-          markdown.enable = true;
           bash.enable = true;
         };
 
@@ -191,7 +161,6 @@
           enable = true;
           gitsigns = {
             enable = true;
-            codeActions = true;
           };
         };
 
