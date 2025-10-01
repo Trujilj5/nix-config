@@ -46,6 +46,9 @@
         inputs.home-manager.nixosModules.default
         stylix.nixosModules.stylix
         {
+          nixpkgs.config.allowUnfree = true;
+        }
+        {
           home-manager = {
             extraSpecialArgs = { inherit inputs; };
             backupFileExtension = "backup";
