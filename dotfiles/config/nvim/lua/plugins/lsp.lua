@@ -10,9 +10,8 @@ return {
           settings = {
             ['nil'] = {
               testSetting = 42,
-              formatting = {
-                command = { "nixpkgs-fmt" },
-              },
+              -- formatting disabled
+              formatting = { enable = false },
             },
           },
         },
@@ -90,8 +89,8 @@ return {
           mason = false,
           settings = {
             json = {
-              schemas = require('schemastore').json.schemas(),
               validate = { enable = true },
+              format = { enable = false },
             },
           },
         },
@@ -107,9 +106,8 @@ return {
               nixpkgs = {
                 expr = "import <nixpkgs> { }",
               },
-              formatting = {
-                command = { "nixpkgs-fmt" },
-              },
+              -- formatting disabled
+              formatting = { enable = false },
               options = {
                 nixos = {
                   expr = '(builtins.getFlake "/path/to/flake").nixosConfigurations.CONFIGNAME.options',

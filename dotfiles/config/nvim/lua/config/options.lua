@@ -9,7 +9,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- LazyVim auto format
-vim.g.autoformat = true
+vim.g.autoformat = false
 
 -- LazyVim root dir detection
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }

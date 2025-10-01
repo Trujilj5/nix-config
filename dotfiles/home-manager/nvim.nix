@@ -27,7 +27,6 @@
       typescript-language-server
       vscode-langservers-extracted # HTML, CSS, JSON, ESLint
       tailwindcss-language-server
-      biome # Linting and formatting
       # General tools
       gcc
       nodejs
@@ -84,8 +83,6 @@
           vim-illuminate
           vim-startuptime
           which-key-nvim
-          # JSON schema support
-          SchemaStore-nvim
           { name = "LuaSnip"; path = luasnip; }
           { name = "catppuccin"; path = catppuccin-nvim; }
           { name = "mini.ai"; path = mini-nvim; }

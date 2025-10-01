@@ -86,8 +86,7 @@ map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
 -- stylua: ignore start
 
 -- toggle options
-map("n", "<leader>uf", function() LazyVim.toggle.format() end, { desc = "Toggle auto format (global)" })
-map("n", "<leader>uF", function() LazyVim.toggle.format(true) end, { desc = "Toggle auto format (buffer)" })
+-- Auto-formatting disabled - removed format toggle keymaps
 map("n", "<leader>us", function() LazyVim.toggle("spell") end, { desc = "Toggle Spelling" })
 map("n", "<leader>uw", function() LazyVim.toggle("wrap") end, { desc = "Toggle Word Wrap" })
 map("n", "<leader>uL", function() LazyVim.toggle("relativenumber") end, { desc = "Toggle Relative Line Numbers" })
