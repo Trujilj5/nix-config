@@ -16,6 +16,89 @@ return {
             },
           },
         },
+        -- TypeScript LSP for ionite project
+        tsserver = {
+          mason = false,
+          settings = {
+            typescript = {
+              inlayHints = {
+                includeInlayParameterNameHints = "all",
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+              },
+            },
+            javascript = {
+              inlayHints = {
+                includeInlayParameterNameHints = "all",
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+              },
+            },
+          },
+        },
+        -- CSS LSP
+        cssls = {
+          mason = false,
+          settings = {
+            css = {
+              validate = true,
+              lint = {
+                unknownAtRules = "ignore",
+              },
+            },
+            scss = {
+              validate = true,
+              lint = {
+                unknownAtRules = "ignore",
+              },
+            },
+            less = {
+              validate = true,
+              lint = {
+                unknownAtRules = "ignore",
+              },
+            },
+          },
+        },
+        -- Tailwind CSS LSP
+        tailwindcss = {
+          mason = false,
+          settings = {
+            tailwindCSS = {
+              experimental = {
+                classRegex = {
+                  "tw`([^`]*)",
+                  "tw=\"([^\"]*)",
+                  "tw={\"([^\"}]*)",
+                  "tw\\.\\w+`([^`]*)",
+                  "tw\\(.*?\\)`([^`]*)",
+                },
+              },
+            },
+          },
+        },
+        -- JSON LSP
+        jsonls = {
+          mason = false,
+          settings = {
+            json = {
+              schemas = require('schemastore').json.schemas(),
+              validate = { enable = true },
+            },
+          },
+        },
+        -- HTML LSP
+        html = {
+          mason = false,
+        },
         -- Alternative Nix LSP
         nixd = {
           mason = false,

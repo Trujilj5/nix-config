@@ -23,6 +23,11 @@
       bash-language-server
       pyright
       rust-analyzer
+      # Ionite project LSPs
+      typescript-language-server
+      vscode-langservers-extracted # HTML, CSS, JSON, ESLint
+      tailwindcss-language-server
+      biome # Linting and formatting
       # General tools
       gcc
       nodejs
@@ -79,6 +84,8 @@
           vim-illuminate
           vim-startuptime
           which-key-nvim
+          # JSON schema support
+          SchemaStore-nvim
           { name = "LuaSnip"; path = luasnip; }
           { name = "catppuccin"; path = catppuccin-nvim; }
           { name = "mini.ai"; path = mini-nvim; }
@@ -148,6 +155,14 @@
           rust
           vim
           vimdoc
+          # Ionite project parsers
+          typescript
+          tsx
+          javascript
+          json
+          css
+          html
+          sql
         ])).dependencies;
       };
     in
