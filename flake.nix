@@ -47,8 +47,6 @@
         stylix.nixosModules.stylix
         {
           nixpkgs.config.allowUnfree = true;
-        }
-        {
           home-manager = {
             extraSpecialArgs = { inherit inputs; };
             backupFileExtension = "backup";
@@ -56,6 +54,8 @@
               john = import ./home.nix;
             };
             sharedModules = [ nvf.homeManagerModules.default ];
+            useGlobalPkgs = true;
+            useUserPackages = true;
           };
           stylix.enableReleaseChecks = false;
         }
