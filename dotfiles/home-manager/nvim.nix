@@ -118,12 +118,14 @@
             { import = "plugins" },
             -- treesitter handled by nix, clear ensure_installed to prevent conflicts
             { "nvim-treesitter/nvim-treesitter",
-              opts = {
-                ensure_installed = {},
-                highlight = { enable = true },
-                indent = { enable = true },
-                incremental_selection = { enable = true },
-              },
+              opts = function(_, opts)
+                opts.ensure_installed = {}
+                opts.auto_install = false
+                opts.highlight = { enable = true }
+                opts.indent = { enable = true }
+                opts.incremental_selection = { enable = true }
+                return opts
+              end,
             },
           },
         })
