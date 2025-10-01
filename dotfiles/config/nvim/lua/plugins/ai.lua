@@ -68,6 +68,9 @@ return {
       "SupermavenUsePro",
     },
     opts = function()
+      -- Enable AI completion in cmp
+      vim.g.ai_cmp = true
+      
       require("supermaven-nvim.completion_preview").suggestion_group = "SupermavenSuggestion"
       
       LazyVim.cmp.actions.ai_accept = function()
@@ -85,8 +88,12 @@ return {
         keymaps = {
           accept_suggestion = nil, -- handled by nvim-cmp / blink.cmp
         },
-        disable_inline_completion = vim.g.ai_cmp,
+        disable_inline_completion = true, -- Use cmp integration instead
+        disable_keymaps = true, -- Let cmp handle keymaps
         ignore_filetypes = { "bigfile", "snacks_input", "snacks_notif" },
+        condition = function()
+          return vim.g.ai_cmp ~= false
+        end,
       }
     end,
   },
@@ -98,11 +105,26 @@ return {
     dependencies = { "supermaven-nvim" },
     opts = function(_, opts)
       if vim.g.ai_cmp then
+        -- Ensure sources table exists
+        opts.sources = opts.sources or {}
+        
         table.insert(opts.sources, 1, {
           name = "supermaven",
           group_index = 1,
           priority = 100,
         })
+        
+        -- Add supermaven to formatting
+        if opts.formatting and opts.formatting.format then
+          local original_format = opts.formatting.format
+          opts.formatting.format = function(entry, vim_item)
+            vim_item = original_format(entry, vim_item)
+            if entry.source.name == "supermaven" then
+              vim_item.kind = "🤖 " .. (vim_item.kind or "")
+            end
+            return vim_item
+          end
+        end
       end
     end,
   },
@@ -131,6 +153,36 @@ return {
           local status = require("sidekick.status").get()
           local hl = status and (status.busy and "DiagnosticWarn" or vim.tbl_get(icons, status.kind, 2))
           return { fg = Snacks.util.color(hl) }
+        end,
+      })
+    end,
+  },
+
+  -- Debug and status check for Supermaven
+  {
+    "supermaven-inc/supermaven-nvim",
+    config = function()
+      -- Add autocmd to check Supermaven status
+      vim.api.nvim_create_autocmd("VimEnter", {
+        callback = function()
+          vim.defer_fn(function()
+            local ok, supermaven = pcall(require, "supermaven-nvim")
+            if ok then
+              print("✅ Supermaven loaded successfully")
+              -- Check if API is running
+              vim.defer_fn(function()
+                if supermaven.api and supermaven.api.is_running then
+                  if supermaven.api.is_running() then
+                    print("✅ Supermaven API is running")
+                  else
+                    print("⚠️  Supermaven API not running - try :SupermavenStart")
+                  end
+                end
+              end, 2000)
+            else
+              print("❌ Failed to load Supermaven: " .. tostring(supermaven))
+            end
+          end, 1000)
         end,
       })
     end,
