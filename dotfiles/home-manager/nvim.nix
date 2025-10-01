@@ -151,5 +151,5 @@
     "${parsers}/parser";
 
   # Normal LazyVim config here, see https://github.com/LazyVim/starter/tree/main/lua
-  xdg.configFile."nvim".source = ../../dotfiles/config/nvim;
+  xdg.configFile."nvim/lua".source = ../../dotfiles/config/nvim/lua;
 }
