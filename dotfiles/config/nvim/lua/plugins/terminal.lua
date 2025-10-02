@@ -34,12 +34,7 @@ return {
       {
         "<C-t>",
         function()
-          local win = vim.api.nvim_get_current_win()
-          if vim.w[win].snacks_win then
-            vim.w[win].snacks_win:hide()
-          else
-            vim.cmd("close")
-          end
+          vim.cmd("close")
         end,
         desc = "Hide Terminal", 
         mode = "t",
@@ -49,21 +44,21 @@ return {
       {
         "<leader>t1",
         function()
-          Snacks.terminal.toggle("terminal-1")
+          Snacks.terminal.toggle(nil, { env = { TERMINAL_ID = "1" } })
         end,
         desc = "Terminal 1",
       },
       {
         "<leader>t2", 
         function()
-          Snacks.terminal.toggle("terminal-2")
+          Snacks.terminal.toggle(nil, { env = { TERMINAL_ID = "2" } })
         end,
         desc = "Terminal 2",
       },
       {
         "<leader>t3",
         function()
-          Snacks.terminal.toggle("terminal-3")
+          Snacks.terminal.toggle(nil, { env = { TERMINAL_ID = "3" } })
         end,
         desc = "Terminal 3",
       },
