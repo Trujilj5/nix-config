@@ -10,12 +10,53 @@ return {
           width = 0.8,
           style = "float",
           backdrop = 60,
-          wo = {
-            winblend = 10,
-          },
         },
       })
       return opts
+    end,
+    config = function()
+      -- Toggle terminal style between float and bottom
+      _G.terminal_style = "float" -- Track current style
+      
+      local function toggle_terminal_style()
+        local current_terminals = Snacks.terminal.list()
+        
+        -- Close all open terminals first
+        for _, term in ipairs(current_terminals) do
+          if term:valid() then
+            term:close()
+          end
+        end
+        
+        -- Toggle style
+        if _G.terminal_style == "float" then
+          _G.terminal_style = "bottom"
+          -- Open main terminal in bottom style
+          Snacks.terminal.toggle(nil, {
+            win = {
+              position = "bottom",
+              height = 15,
+              backdrop = false,
+            }
+          })
+          vim.notify("Terminal: Bottom mode", vim.log.levels.INFO)
+        else
+          _G.terminal_style = "float"
+          -- Open main terminal in float style
+          Snacks.terminal.toggle(nil, {
+            win = {
+              height = 0.8,
+              width = 0.8,
+              style = "float",
+              backdrop = 60,
+            }
+          })
+          vim.notify("Terminal: Float mode", vim.log.levels.INFO)
+        end
+      end
+      
+      -- Make function globally accessible
+      _G.toggle_terminal_style = toggle_terminal_style
     end,
     keys = {
       -- Disable default keymaps
@@ -77,6 +118,15 @@ return {
           Snacks.terminal.toggle()
         end,
         desc = "Terminal (cwd)",
+      },
+      
+      -- Toggle terminal style between float and bottom
+      {
+        "<leader>tt",
+        function()
+          _G.toggle_terminal_style()
+        end,
+        desc = "Toggle Terminal Style (Float/Bottom)",
       },
     },
   },
