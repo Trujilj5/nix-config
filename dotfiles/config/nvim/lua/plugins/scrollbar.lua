@@ -1,5 +1,17 @@
 return {
   {
+    "kevinhwang91/nvim-hlslens",
+    event = "VeryLazy",
+    config = function()
+      require("hlslens").setup()
+
+      -- Integrate with scrollbar
+      require("scrollbar.handlers.search").setup({
+        override_lens = function() end,
+      })
+    end,
+  },
+  {
     "petertriho/nvim-scrollbar",
     event = "VeryLazy",
     config = function()

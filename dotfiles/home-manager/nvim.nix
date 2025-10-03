@@ -87,6 +87,7 @@
           vim-startuptime
           which-key-nvim
           nvim-scrollbar
+          nvim-hlslens
           nvim-ufo
           promise-async
           { name = "LuaSnip"; path = luasnip; }
