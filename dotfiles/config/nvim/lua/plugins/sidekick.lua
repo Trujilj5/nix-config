@@ -1,15 +1,6 @@
 -- Sidekick AI assistant
 return {
   {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        copilot = {},
-      },
-    },
-  },
-
-  {
     "folke/sidekick.nvim",
     opts = function()
       LazyVim.cmp.actions.ai_nes = function()
