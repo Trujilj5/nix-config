@@ -87,6 +87,8 @@
           vim-startuptime
           which-key-nvim
           nvim-scrollbar
+          nvim-ufo
+          promise-async
           { name = "LuaSnip"; path = luasnip; }
           { name = "catppuccin"; path = catppuccin-nvim; }
           { name = "mini.ai"; path = mini-nvim; }
