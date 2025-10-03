@@ -7,7 +7,9 @@ return {
           visible = true,
           hide_dotfiles = false,
           hide_gitignored = false,
-        }
+          hide_by_name = {},
+          never_show = {},
+        },
       },
     },
   },
