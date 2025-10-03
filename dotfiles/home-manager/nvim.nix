@@ -82,6 +82,7 @@
           todo-comments-nvim
           tokyonight-nvim
           trouble-nvim
+          undotree
           vim-illuminate
           vim-startuptime
           which-key-nvim
