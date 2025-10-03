@@ -12,10 +12,12 @@ return {
     config = function()
       local handler = function(virtText, lnum, endLnum, width, truncate)
         local newVirtText = {}
-        local suffix = ("  %d "):format(endLnum - lnum)
+        local suffix = (" ... %d lines "):format(endLnum - lnum)
         local sufWidth = vim.fn.strdisplaywidth(suffix)
         local targetWidth = width - sufWidth
         local curWidth = 0
+
+        -- Add the first line content
         for _, chunk in ipairs(virtText) do
           local chunkText = chunk[1]
           local chunkWidth = vim.fn.strdisplaywidth(chunkText)
@@ -33,7 +35,17 @@ return {
           end
           curWidth = curWidth + chunkWidth
         end
+
+        -- Add the suffix with line count
         table.insert(newVirtText, { suffix, "MoreMsg" })
+
+        -- Add the last line (closing bracket)
+        local endText = vim.api.nvim_buf_get_lines(0, endLnum - 1, endLnum, false)[1]
+        if endText then
+          endText = endText:gsub("^%s*", "") -- trim leading whitespace
+          table.insert(newVirtText, { endText, "Comment" })
+        end
+
         return newVirtText
       end
 
