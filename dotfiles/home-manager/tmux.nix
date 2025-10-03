@@ -31,7 +31,7 @@
       owner = "tmux-plugins";
       repo = "tmux-continuum";
       rev = "v3.1.0";
-      sha256 = "sha256-nqa7hGG2V8FU/cWFU9mmCdifTTvgePwLwlCLVsQfHGw=";
+      sha256 = "sha256-e02cshLR9a2+uhrU/oew+FPTKhd4mi0/Q02ToHbbVrE=";
     };
     recursive = true;
   };
