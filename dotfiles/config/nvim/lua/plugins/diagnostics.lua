@@ -19,13 +19,23 @@ return {
         severity_sort = true,
       })
 
-      -- Ensure undercurl is visible
+      -- Use colored underlines (cterm and gui)
       vim.cmd([[
-        highlight DiagnosticUnderlineError gui=undercurl guisp=#ed8796
-        highlight DiagnosticUnderlineWarn gui=undercurl guisp=#f5a97f
-        highlight DiagnosticUnderlineInfo gui=undercurl guisp=#8aadf4
-        highlight DiagnosticUnderlineHint gui=undercurl guisp=#8bd5ca
+        highlight DiagnosticUnderlineError cterm=underline gui=underline guisp=#ed8796 guifg=#ed8796
+        highlight DiagnosticUnderlineWarn cterm=underline gui=underline guisp=#f5a97f guifg=#f5a97f
+        highlight DiagnosticUnderlineInfo cterm=underline gui=underline guisp=#8aadf4 guifg=#8aadf4
+        highlight DiagnosticUnderlineHint cterm=underline gui=underline guisp=#8bd5ca guifg=#8bd5ca
       ]])
+
+      -- Remap K to show diagnostics if available, otherwise LSP hover
+      vim.keymap.set("n", "K", function()
+        local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 })
+        if #diagnostics > 0 then
+          vim.diagnostic.open_float(nil, { scope = "cursor" })
+        else
+          vim.lsp.buf.hover()
+        end
+      end, { desc = "Show diagnostics or hover" })
 
       return opts
     end,
