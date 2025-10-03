@@ -86,6 +86,7 @@
           vim-illuminate
           vim-startuptime
           which-key-nvim
+          nvim-scrollbar
           { name = "LuaSnip"; path = luasnip; }
           { name = "catppuccin"; path = catppuccin-nvim; }
           { name = "mini.ai"; path = mini-nvim; }
