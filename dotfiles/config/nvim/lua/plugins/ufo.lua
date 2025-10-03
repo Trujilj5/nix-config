@@ -12,12 +12,18 @@ return {
     config = function()
       local handler = function(virtText, lnum, endLnum, width, truncate)
         local newVirtText = {}
-        local suffix = (" ... %d lines "):format(endLnum - lnum)
-        local sufWidth = vim.fn.strdisplaywidth(suffix)
-        local targetWidth = width - sufWidth
+
+        -- Get the closing line text
+        local endText = vim.api.nvim_buf_get_lines(0, endLnum - 1, endLnum, false)[1] or ""
+        endText = endText:gsub("^%s*", "") -- trim leading whitespace
+
+        local suffix = " ... "
+        local endSuffix = " " .. endText
+        local totalSufWidth = vim.fn.strdisplaywidth(suffix .. endSuffix)
+        local targetWidth = width - totalSufWidth
         local curWidth = 0
 
-        -- Add the first line content
+        -- Add the first line content, but remove the opening bracket if present
         for _, chunk in ipairs(virtText) do
           local chunkText = chunk[1]
           local chunkWidth = vim.fn.strdisplaywidth(chunkText)
@@ -27,24 +33,16 @@ return {
             chunkText = truncate(chunkText, targetWidth - curWidth)
             local hlGroup = chunk[2]
             table.insert(newVirtText, { chunkText, hlGroup })
-            chunkWidth = vim.fn.strdisplaywidth(chunkText)
-            if curWidth + chunkWidth < targetWidth then
-              suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
-            end
             break
           end
           curWidth = curWidth + chunkWidth
         end
 
-        -- Add the suffix with line count
-        table.insert(newVirtText, { suffix, "MoreMsg" })
+        -- Add ellipsis
+        table.insert(newVirtText, { suffix, "Comment" })
 
-        -- Add the last line (closing bracket)
-        local endText = vim.api.nvim_buf_get_lines(0, endLnum - 1, endLnum, false)[1]
-        if endText then
-          endText = endText:gsub("^%s*", "") -- trim leading whitespace
-          table.insert(newVirtText, { endText, "Comment" })
-        end
+        -- Add closing bracket/brace
+        table.insert(newVirtText, { endText, "Normal" })
 
         return newVirtText
       end
