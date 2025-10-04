@@ -60,7 +60,6 @@
   services.printing.enable = true;
 
   environment.systemPackages = with pkgs; [
-    filezilla
     (writeShellScriptBin "brave" ''
       exec ${brave}/bin/brave --force-device-scale-factor=1.0 --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
     '')
@@ -76,24 +75,8 @@
     wireplumber
     pulseaudio
     btop
-    python3Packages.requests
     wlogout
     networkmanagerapplet
-    (writeShellScriptBin "signal-desktop" ''
-      exec ${signal-desktop-bin}/bin/signal-desktop --force-device-scale-factor=0.25 --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
-    '')
-    (writeShellScriptBin "zed-project-picker" ''
-      #!/usr/bin/env bash
-
-      # Simple Yazi launcher for project selection
-      # Yazi handles opening projects in workspace 2 directly
-
-      # Default starting directory (you can customize this)
-      START_DIR="''${1:-$HOME}"
-
-      # Launch Yazi
-      ${yazi}/bin/yazi "$START_DIR"
-    '')
 
     gsettings-desktop-schemas
     glib
