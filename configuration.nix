@@ -5,7 +5,7 @@
     ./desktop.nix
     ./dotfiles
     ./dev.nix
-    ./hardware-configuration.nix
+    /etc/nixos/hardware-configuration.nix
     ./stylix.nix
   ];
 
