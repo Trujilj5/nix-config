@@ -27,10 +27,6 @@
   hardware.enableAllFirmware = true;
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowInsecurePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "broadcom-sta" # aka "wl"
-    ];
   system.stateVersion = "25.05";
 
 }

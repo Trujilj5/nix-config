@@ -36,5 +36,15 @@
     recursive = true;
   };
 
+  home.file.".config/tmux/plugins/tmux" = {
+    source = pkgs.fetchFromGitHub {
+      owner = "catppuccin";
+      repo = "tmux";
+      rev = "v2.1.2";
+      sha256 = "sha256-F3T9M1c5p1H/v5Va9roL84jl5PL18VNLja7D5jdOEio=";
+    };
+    recursive = true;
+  };
+
   home.file.".config/tmux/tmux.conf".source = ../config/tmux/tmux.conf;
 }
