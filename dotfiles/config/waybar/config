@@ -5,7 +5,7 @@
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
-    "height": 20,
+    "height": 34,
     "margin-right": 5,
     "margin-left": 5,
     "spacing": 4,
@@ -26,6 +26,7 @@
     "modules-right": [
         "pulseaudio",
         "pulseaudio#microphone",
+        "bluetooth",
         "cpu",
         "memory",
         "disk",
@@ -98,11 +99,11 @@
 
     "temperature": {
         "thermal-zone": 0,
-        "format": "󰔏 {temperatureF}°F",
-        "critical-threshold": 158,
-        "format-critical": "󰔏 {temperatureF}°F",
+        "format": "󰔏 {temperatureC}°C",
+        "critical-threshold": 70,
+        "format-critical": "󰔏 {temperatureC}°C",
         "tooltip": true,
-        "tooltip-format": "CPU Temperature: {temperatureF}°F"
+        "tooltip-format": "CPU Temperature: {temperatureC}°C"
     },
 
     "pulseaudio": {
@@ -135,6 +136,16 @@
         "scroll-step": 5,
         "tooltip": true,
         "tooltip-format": "Microphone: {volume}%"
+    },
+
+    "bluetooth": {
+        "format": "󰂯 {status}",
+        "format-connected": "󰂱 {num_connections}",
+        "format-disabled": "󰂲",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "on-click": "blueman-manager"
     },
 
     "custom/weather": {
