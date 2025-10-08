@@ -41,7 +41,7 @@
       owner = "catppuccin";
       repo = "tmux";
       rev = "v2.1.2";
-      sha256 = "sha256-F3T9M1c5p1H/v5Va9roL84jl5PL18VNLja7D5jdOEio=";
+      sha256 = "sha256-vBYBvZrMGLpMU059a+Z4SEekWdQD0GrDqBQyqfkEHPg=";
     };
     recursive = true;
   };
