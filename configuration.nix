@@ -25,6 +25,7 @@
 
   hardware.enableRedistributableFirmware = true;
   hardware.enableAllFirmware = true;
+  hardware.bluetooth.enable = true;
 
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "25.05";
