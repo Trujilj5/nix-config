@@ -28,6 +28,9 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
 
+    winboat.url = "github:TibixDev/winboat";
+    winboat.inputs.nixpkgs.follows = "nixpkgs";
+
     # # Zed Editor (pinned to avoid frequent rebuilds)
     # zed.url = "github:zed-industries/zed/v0.204.5";
     # zed.inputs.nixpkgs.follows = "nixpkgs";

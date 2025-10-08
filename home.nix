@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, inputs, ... }:
 
 {
   home.username = "john";
@@ -31,6 +31,9 @@
     ripgrep           # For content searching
     fzf               # For fuzzy finding
     zoxide            # For directory jumping
+
+    # Windows app integration
+    inputs.winboat.packages.${pkgs.system}.default
   ];
   home.sessionVariables = {
     SUDO_EDITOR = "nvim";
