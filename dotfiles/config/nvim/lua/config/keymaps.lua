@@ -79,8 +79,8 @@ map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 -- new file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
--- telescope
-map("n", "<leader>fw", "<cmd>Telescope live_grep<cr>", { desc = "Find Word (cwd)" })
+-- search
+map("n", "<leader>fw", function() Snacks.picker.grep() end, { desc = "Find Word (cwd)" })
 
 -- location list
 map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
