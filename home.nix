@@ -33,7 +33,7 @@
     zoxide            # For directory jumping
 
     # Windows app integration
-    inputs.winboat.packages.${pkgs.system}.default
+    inputs.winboat.packages.${pkgs.system}.winboat
   ];
   home.sessionVariables = {
     SUDO_EDITOR = "nvim";
