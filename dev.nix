@@ -18,6 +18,7 @@
     wget
     unstablePkgs.opencode
     unstablePkgs.claude-code
+    unstablePkgs.freerdp
     neovim
     git
     lazygit
