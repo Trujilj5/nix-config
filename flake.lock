@@ -524,6 +524,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nvf": "nvf",
         "stylix": "stylix",
+        "winboat": "winboat",
         "zen-browser": "zen-browser"
       }
     },
@@ -692,6 +693,26 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "winboat": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1759926621,
+        "narHash": "sha256-9M0N+q+zw83Nzw81vqPE6Y9LNjNkn/DFBfv+f0msjug=",
+        "owner": "TibixDev",
+        "repo": "winboat",
+        "rev": "ccf840987beaaadf07ac0a4d6a4fffef4e1cf216",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TibixDev",
+        "repo": "winboat",
         "type": "github"
       }
     },
