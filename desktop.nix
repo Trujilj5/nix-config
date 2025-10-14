@@ -72,7 +72,7 @@
       exec ${discord}/bin/discord --force-device-scale-factor=1.0 --high-dpi-support=1 --force-device-scale-factor=1.0 "$@"
     '')
     unstablePkgs.nwg-look
-
+    blueman
     wireplumber
     pulseaudio
     btop
