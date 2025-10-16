@@ -10,7 +10,6 @@
     ./nvim.nix
     ./ghostty.nix
     ./tmux.nix
-    ./zen-browser.nix
     ./lazygit.nix
     ./lazysql.nix
     ./yazi.nix

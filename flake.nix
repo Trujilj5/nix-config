@@ -25,9 +25,6 @@
     };
 
     # 3rd Party Flakes
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
-    zen-browser.inputs.nixpkgs.follows = "nixpkgs";
-
     winboat.url = "github:TibixDev/winboat";
     winboat.inputs.nixpkgs.follows = "nixpkgs";
 
