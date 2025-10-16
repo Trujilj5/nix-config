@@ -6,7 +6,7 @@
     isNormalUser = true;
     description = "john";
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" "docker"]; 
+    extraGroups = [ "networkmanager" "wheel" "docker" "dialout"]; 
   };
 
 

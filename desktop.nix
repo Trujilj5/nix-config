@@ -25,7 +25,7 @@
   };
   
   services.udev.extraRules = ''
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="35ef", ATTRS{idProduct}=="0012", GROUP="users", MODE="0666"
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="35ef", ATTRS{idProduct}=="0012", GROUP="dialout", MODE="0666"
   '';
     
   services.gnome.at-spi2-core.enable = true;
