@@ -167,7 +167,6 @@
           css
           html
           sql
-          dotenv
         ])).dependencies;
       };
     in
