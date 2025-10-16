@@ -190,11 +190,6 @@ return {
             },
           },
         },
-        -- Dotenv LSP
-        dotenv_lsp = {
-          mason = false,
-          filetypes = { "dotenv" },
-        },
       },
     },
   },
