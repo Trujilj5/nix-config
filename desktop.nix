@@ -75,6 +75,7 @@
     blueman
     wireplumber
     pulseaudio
+    bazecor
     btop
     python3Packages.requests
     wlogout
