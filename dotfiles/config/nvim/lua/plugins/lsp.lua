@@ -150,6 +150,7 @@ return {
         -- Bash LSP
         bashls = {
           mason = false,
+          filetypes = { "sh", "bash" }, -- Exclude .env files
         },
         -- Python LSP
         pyright = {
