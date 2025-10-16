@@ -24,11 +24,13 @@
     SSL_CERT_FILE="/etc/ssl/certs/ca-certificates.crt";
   };
   
+  services.udev.packages = [ pkgs.bazecor ];
+
   services.udev.extraRules = ''
     # Dygma Defy - USB devices (covers all product IDs: 0010, 0011, 0012, 0013)
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="35ef", MODE="0660", TAG+="uaccess"
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="35ef", MODE="0666", GROUP="users"
     # Dygma Defy - HID raw devices
-    KERNEL=="hidraw*", ATTRS{idVendor}=="35ef", MODE="0660", TAG+="uaccess"
+    KERNEL=="hidraw*", ATTRS{idVendor}=="35ef", MODE="0666", GROUP="users"
   '';
     
   services.gnome.at-spi2-core.enable = true;
