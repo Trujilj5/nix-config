@@ -25,7 +25,10 @@
   };
   
   services.udev.extraRules = ''
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="35ef", ATTRS{idProduct}=="0012", GROUP="dialout", MODE="0666"
+    # Dygma Defy - USB devices (covers all product IDs: 0010, 0011, 0012, 0013)
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="35ef", MODE="0660", TAG+="uaccess"
+    # Dygma Defy - HID raw devices
+    KERNEL=="hidraw*", ATTRS{idVendor}=="35ef", MODE="0660", TAG+="uaccess"
   '';
     
   services.gnome.at-spi2-core.enable = true;
