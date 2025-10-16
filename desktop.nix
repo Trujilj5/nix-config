@@ -23,7 +23,11 @@
     XDG_SESSION_DESKTOP = "Hyprland";
     SSL_CERT_FILE="/etc/ssl/certs/ca-certificates.crt";
   };
-
+  
+  services.udev.extraRules = ''
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="35ef", ATTRS{idProduct}=="0012", GROUP="users", MODE="0666"
+  '';
+    
   services.gnome.at-spi2-core.enable = true;
 
   xdg.portal = {
