@@ -84,7 +84,9 @@
     blueman
     wireplumber
     pulseaudio
-    bazecor
+    (writeShellScriptBin "bazecor" ''
+      exec ${bazecor}/bin/bazecor --force-device-scale-factor=0.25 --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
+    '')
     btop
     python3Packages.requests
     wlogout
