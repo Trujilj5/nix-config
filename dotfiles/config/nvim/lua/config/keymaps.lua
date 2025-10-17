@@ -72,6 +72,10 @@ map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
 -- better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
+map("n", "<Tab>", ">>", { desc = "Indent line" })
+map("v", "<Tab>", ">gv", { desc = "Indent selection" })
+map("n", "<S-Tab>", "<<", { desc = "Unindent line" })
+map("v", "<S-Tab>", "<gv", { desc = "Unindent selection" })
 
 -- lazy
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
