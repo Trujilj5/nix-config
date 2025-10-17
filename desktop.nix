@@ -84,11 +84,10 @@
     blueman
     wireplumber
     pulseaudio
-    bazecor
     (pkgs.makeDesktopItem {
       name = "bazecor";
       desktopName = "Bazecor";
-      exec = "${bazecor}/bin/bazecor --force-device-scale-factor=0.25 --enable-features=UseOzonePlatform --ozone-platform=wayland";
+      exec = "${bazecor}/bin/bazecor --force-device-scale-factor=0.5 --enable-features=UseOzonePlatform --ozone-platform=wayland";
       icon = "bazecor";
       comment = "Graphical configurator for Dygma products";
       categories = [ "Utility" ];
