@@ -105,8 +105,8 @@ map("n", "<leader>uT", function() LazyVim.toggle.treesitter() end, { desc = "Tog
 -- lazygit
 map("n", "<leader>gg", function() Snacks.lazygit( { cwd = LazyVim.root.git() }) end, { desc = "Lazygit (Root Dir)" })
 map("n", "<leader>gG", function() Snacks.lazygit() end, { desc = "Lazygit (cwd)" })
-map("n", "<leader>gb", function() Snacks.lazygit.blame_line() end, { desc = "Git Blame Line" })
-map("n", "<leader>gB", function() Snacks.lazygit.browse() end, { desc = "Git Browse" })
+map("n", "<leader>gb", function() Snacks.git.blame_line() end, { desc = "Git Blame Line" })
+map("n", "<leader>gB", function() Snacks.gitbrowse() end, { desc = "Git Browse" })
 
 map("n", "<leader>gf", function()
   local git_path = vim.api.nvim_buf_get_name(0)
