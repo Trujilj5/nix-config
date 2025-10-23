@@ -34,6 +34,8 @@
       git
       # AI tools
       copilot-language-server
+      # PHP
+      intelephense
     ];
 
     plugins = with pkgs.vimPlugins; [
@@ -167,6 +169,7 @@
           css
           html
           sql
+          php
         ])).dependencies;
       };
     in

@@ -191,6 +191,17 @@ return {
             },
           },
         },
+        -- PHP LSP
+        intelephense = {
+          mason = false,
+          settings = {
+            intelephense = {
+              files = {
+                maxSize = 1000000,
+              },
+            },
+          },
+        },
       },
     },
   },
