@@ -53,6 +53,7 @@
     zoxide
     fzf
     package-version-server
+    filezilla
   ];
 
   systemd.user.services.podman-api = {
