@@ -115,6 +115,7 @@
     gsettings-desktop-schemas
     glib
     glib-networking
+    xlsx2csv
   ];
 
 
