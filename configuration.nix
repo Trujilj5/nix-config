@@ -30,4 +30,7 @@
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "25.05";
 
+  # Allow unprivileged users to bind to ports < 1024
+  boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 0;
+
 }
