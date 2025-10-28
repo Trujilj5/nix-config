@@ -15,23 +15,9 @@
       "--node-ip=192.168.1.115"
       "--flannel-iface=wlp4s0"
       "--write-kubeconfig-mode=644"
+      "--docker"
     ];
   };
-
-  # Configure k3s to use Docker registry
-  environment.etc."rancher/k3s/registries.yaml".text = ''
-    mirrors:
-      docker.io:
-        endpoint:
-          - "https://registry-1.docker.io"
-      localhost:5000:
-        endpoint:
-          - "http://localhost:5000"
-    configs:
-      "localhost:5000":
-        tls:
-          insecure_skip_verify: true
-  '';
 
   environment.systemPackages = with pkgs; [
     vim
