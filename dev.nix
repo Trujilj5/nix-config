@@ -54,6 +54,7 @@
     fzf
     package-version-server
     filezilla
+    yarn
   ];
 
   systemd.user.services.podman-api = {
