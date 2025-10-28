@@ -8,9 +8,13 @@
   virtualisation.docker.enable = true;
 
   services.k3s = {
-    enable = false;
+    enable = true;
     role = "server";
-    extraFlags = "--disable=traefik";
+    extraFlags = toString [
+      "--disable=traefik"
+      "--node-ip=192.168.1.115"
+      "--flannel-iface=wlp4s0"
+    ];
   };
 
   environment.systemPackages = with pkgs; [

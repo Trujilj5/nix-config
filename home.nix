@@ -37,6 +37,7 @@
   ];
   home.sessionVariables = {
     SUDO_EDITOR = "nvim";
+    KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
   };
 
   home.file = {
