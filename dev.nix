@@ -14,6 +14,7 @@
       "--disable=traefik"
       "--node-ip=192.168.1.115"
       "--flannel-iface=wlp4s0"
+      "--write-kubeconfig-mode=644"
     ];
   };
 
@@ -71,5 +72,22 @@
       Restart = "always";
       Type = "simple";
     };
+  };
+
+  # Copy k3s kubeconfig to user's home directory
+  systemd.services.k3s-copy-config = {
+    description = "Copy k3s kubeconfig to user directory";
+    after = [ "k3s.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      mkdir -p /home/john/.kube
+      cp /etc/rancher/k3s/k3s.yaml /home/john/.kube/config
+      chown john:users /home/john/.kube/config
+      chmod 600 /home/john/.kube/config
+    '';
   };
 }
