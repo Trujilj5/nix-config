@@ -5,6 +5,8 @@
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "john" ];
 
+  services.tailscale.enable = true;
+
   virtualisation.docker = {
     enable = true;
     daemon.settings = {
