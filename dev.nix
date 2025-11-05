@@ -19,7 +19,8 @@
   };
 
   services.k3s = {
-    enable = true;
+    # enable = true;
+    enable = false;
     role = "server";
     extraFlags = toString [
       "--disable=traefik"
