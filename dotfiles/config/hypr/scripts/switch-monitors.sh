@@ -7,13 +7,11 @@
 MONITORS_DIR="$HOME/nixos/dotfiles/config/hypr/monitors"
 STATE_FILE="/tmp/hyprland_monitor_profile"
 
-# Check which external monitors are connected
-has_dp3=$(hyprctl monitors | grep -q "DP-3" && echo "yes" || echo "no")
-has_dp1=$(hyprctl monitors | grep -q "DP-1" && echo "yes" || echo "no")
-has_hdmi=$(hyprctl monitors | grep -q "HDMI-A-1" && echo "yes" || echo "no")
+# Check if there are any external monitors (more than just the laptop screen)
+monitor_count=$(hyprctl monitors | grep -c "^Monitor")
 
-# If no external monitors detected, force mobile mode
-if [ "$has_dp3" = "no" ] && [ "$has_dp1" = "no" ] && [ "$has_hdmi" = "no" ]; then
+# If only 1 monitor (laptop screen only), force mobile mode
+if [ "$monitor_count" -le 1 ]; then
     NEXT="mobile"
     echo "$NEXT" > "$STATE_FILE"
     hyprctl keyword source "$MONITORS_DIR/$NEXT.conf"
