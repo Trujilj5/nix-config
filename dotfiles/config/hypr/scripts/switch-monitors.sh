@@ -49,5 +49,35 @@ echo "$NEXT" > "$STATE_FILE"
 # Apply the new monitor configuration
 hyprctl keyword source "$MONITORS_DIR/$NEXT.conf"
 
+# Move workspaces to correct monitors based on profile
+case "$NEXT" in
+    office)
+        # Move workspaces 1-5 to Samsung (DP-3)
+        for i in {1..5}; do
+            hyprctl dispatch moveworkspacetomonitor $i DP-3 2>/dev/null
+        done
+        # Move workspaces 6-10 to laptop (eDP-2)
+        for i in {6..10}; do
+            hyprctl dispatch moveworkspacetomonitor $i eDP-2 2>/dev/null
+        done
+        ;;
+    home)
+        # Move workspaces 1-4 to BenQ (DP-3)
+        for i in {1..4}; do
+            hyprctl dispatch moveworkspacetomonitor $i DP-3 2>/dev/null
+        done
+        # Move workspaces 5-10 to ASUS (DP-5)
+        for i in {5..10}; do
+            hyprctl dispatch moveworkspacetomonitor $i DP-5 2>/dev/null
+        done
+        ;;
+    mobile)
+        # Move all workspaces to laptop screen
+        for i in {1..10}; do
+            hyprctl dispatch moveworkspacetomonitor $i eDP-2 2>/dev/null
+        done
+        ;;
+esac
+
 # Send notification
 notify-send "Monitor Profile" "Switched to: $NEXT" -t 2000
