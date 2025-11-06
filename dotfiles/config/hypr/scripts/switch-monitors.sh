@@ -7,8 +7,9 @@
 MONITORS_DIR="$HOME/nixos/dotfiles/config/hypr/monitors"
 STATE_FILE="/tmp/hyprland_monitor_profile"
 
-# Check if there are any external monitors (more than just the laptop screen)
-monitor_count=$(hyprctl monitors | grep -c "^Monitor")
+# Check if there are any external monitors (including disabled ones)
+# Use "monitors all" to see disabled monitors that might be connected
+monitor_count=$(hyprctl monitors all | grep -c "^Monitor")
 
 # If only 1 monitor (laptop screen only), force mobile mode
 if [ "$monitor_count" -le 1 ]; then
