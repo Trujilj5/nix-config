@@ -31,9 +31,6 @@
     ripgrep           # For content searching
     fzf               # For fuzzy finding
     zoxide            # For directory jumping
-
-    # Windows app integration
-    inputs.winboat.packages.${pkgs.system}.winboat
   ];
   home.sessionVariables = {
     SUDO_EDITOR = "nvim";
