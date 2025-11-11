@@ -24,10 +24,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # 3rd Party Flakes
-    winboat.url = "github:TibixDev/winboat";
-    winboat.inputs.nixpkgs.follows = "nixpkgs";
-
     # # Zed Editor (pinned to avoid frequent rebuilds)
     # zed.url = "github:zed-industries/zed/v0.204.5";
     # zed.inputs.nixpkgs.follows = "nixpkgs";

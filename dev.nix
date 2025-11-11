@@ -37,6 +37,7 @@
     unstablePkgs.opencode
     unstablePkgs.claude-code
     unstablePkgs.freerdp
+    unstablePkgs.winboat
     neovim
     git
     lazygit
