@@ -52,14 +52,15 @@ hyprctl keyword source "$MONITORS_DIR/$NEXT.conf"
 # Move workspaces to correct monitors based on profile
 case "$NEXT" in
     office)
-        # Move workspaces 1-5 to Samsung (DP-3)
-        for i in {1..5}; do
-            hyprctl dispatch moveworkspacetomonitor $i DP-3 2>/dev/null
-        done
+        # Move workspaces 1-2 and 5 to Samsung (DP-3)
+        hyprctl dispatch moveworkspacetomonitor 1 DP-3 2>/dev/null
+        hyprctl dispatch moveworkspacetomonitor 2 DP-3 2>/dev/null
+        hyprctl dispatch moveworkspacetomonitor 5 DP-3 2>/dev/null
         # Move workspaces 6-10 to laptop (eDP-2)
         for i in {6..10}; do
             hyprctl dispatch moveworkspacetomonitor $i eDP-2 2>/dev/null
         done
+        # Workspaces 3 and 4 are not assigned to any specific monitor
         ;;
     home)
         # Move workspaces 1-4 to BenQ (DP-3)
