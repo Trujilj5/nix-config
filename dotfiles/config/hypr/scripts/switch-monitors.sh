@@ -46,22 +46,24 @@ esac
 # Save new state
 echo "$NEXT" > "$STATE_FILE"
 
-# Clear existing workspace rules
-for i in {1..10}; do
-    hyprctl keyword workspace "$i,monitor:unset" 2>/dev/null
-done
-
 # Apply the new monitor configuration
 hyprctl keyword source "$MONITORS_DIR/$NEXT.conf"
 
-# Move workspaces to correct monitors based on profile
+# Set workspace rules and move workspaces based on profile
 case "$NEXT" in
     office)
+        # Set workspace rules for office
+        hyprctl keyword workspace "1,monitor:DP-3,default:true" 2>/dev/null
+        hyprctl keyword workspace "2,monitor:DP-3" 2>/dev/null
+        hyprctl keyword workspace "5,monitor:DP-3" 2>/dev/null
+        # Clear rules for workspaces 3,4,6-10 so they can float
+        for i in 3 4 6 7 8 9 10; do
+            hyprctl keyword workspace "$i," 2>/dev/null
+        done
         # Move workspaces 1-2 and 5 to Samsung (DP-3)
         hyprctl dispatch moveworkspacetomonitor 1 DP-3 2>/dev/null
         hyprctl dispatch moveworkspacetomonitor 2 DP-3 2>/dev/null
         hyprctl dispatch moveworkspacetomonitor 5 DP-3 2>/dev/null
-        # All other workspaces (3, 4, 6-10) are not assigned to any specific monitor
         ;;
     home)
         # Move workspaces 1-4 to BenQ (DP-3)
