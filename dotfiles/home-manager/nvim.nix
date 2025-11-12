@@ -1,5 +1,5 @@
 # Based on https://github.com/LazyVim/LazyVim/discussions/1972
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs.neovim = {
@@ -23,7 +23,6 @@
       bash-language-server
       pyright
       rust-analyzer
-      # Ionite project LSPs
       typescript-language-server
       vscode-langservers-extracted # HTML, CSS, JSON, ESLint
       tailwindcss-language-server
