@@ -46,6 +46,11 @@ esac
 # Save new state
 echo "$NEXT" > "$STATE_FILE"
 
+# Clear existing workspace rules
+for i in {1..10}; do
+    hyprctl keyword workspace "$i,monitor:unset" 2>/dev/null
+done
+
 # Apply the new monitor configuration
 hyprctl keyword source "$MONITORS_DIR/$NEXT.conf"
 
