@@ -9,7 +9,7 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.displayManager.gdm.wayland = true;
   services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "john";
+  services.displayManager.autoLogin.user = "martyt";
   services.udisks2.enable = true;
   services.gvfs.enable = true;
 

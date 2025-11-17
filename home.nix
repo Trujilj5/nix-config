@@ -1,8 +1,8 @@
 { pkgs, lib, inputs, ... }:
 
 {
-  home.username = "john";
-  home.homeDirectory = "/home/john";
+  home.username = "martyt";
+  home.homeDirectory = "/home/martyt";
 
   home.stateVersion = "25.05";
   home.enableNixpkgsReleaseCheck = false;

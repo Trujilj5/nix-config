@@ -47,7 +47,7 @@
             extraSpecialArgs = { inherit inputs; };
             backupFileExtension = "backup";
             users = {
-              john = import ./home.nix;
+              martyt = import ./home.nix;
             };
             sharedModules = [ nvf.homeManagerModules.default ];
             useGlobalPkgs = true;

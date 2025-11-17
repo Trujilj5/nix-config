@@ -3,7 +3,7 @@
 {
 
   virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "john" ];
+  users.extraGroups.vboxusers.members = [ "martyt" ];
 
   services.tailscale.enable = true;
 
@@ -98,10 +98,10 @@
       RemainAfterExit = true;
     };
     script = ''
-      mkdir -p /home/john/.kube
-      cp /etc/rancher/k3s/k3s.yaml /home/john/.kube/config
-      chown john:users /home/john/.kube/config
-      chmod 600 /home/john/.kube/config
+      mkdir -p /home/martyt/.kube
+      cp /etc/rancher/k3s/k3s.yaml /home/martyt/.kube/config
+      chown martyt:users /home/martyt/.kube/config
+      chmod 600 /home/martyt/.kube/config
     '';
   };
 }

@@ -2,11 +2,11 @@
 {
   programs.zsh.enable = true;
 
-  users.users.john = {
+  users.users.martyt = {
     isNormalUser = true;
-    description = "john";
+    description = "martyt";
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" "docker" "dialout"]; 
+    extraGroups = [ "networkmanager" "wheel" "docker" "dialout"];
   };
 
 

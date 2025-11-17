@@ -91,10 +91,10 @@
           },
           "options": {
             "nixos": {
-              "expr": "(builtins.getFlake \"/home/john/nixos\").nixosConfigurations.default.options"
+              "expr": "(builtins.getFlake \"/home/martyt/nixos\").nixosConfigurations.default.options"
             },
             "home-manager": {
-              "expr": "(builtins.getFlake \"/home/john/nixos\").nixosConfigurations.default.config.home-manager.users.john.options"
+              "expr": "(builtins.getFlake \"/home/martyt/nixos\").nixosConfigurations.default.config.home-manager.users.martyt.options"
             }
           },
           "diagnostic": {
