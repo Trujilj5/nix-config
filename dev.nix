@@ -24,11 +24,20 @@
     role = "server";
     extraFlags = toString [
       "--disable=traefik"
-      "--node-ip=192.168.1.115"
-      "--flannel-iface=wlp4s0"
       "--write-kubeconfig-mode=644"
       "--docker"
+      "--flannel-backend=host-gw"  # Use host-gw instead of vxlan (simpler, works better with dynamic IPs)
     ];
+  };
+
+  # Ensure k3s waits for network to be fully ready and clean stale state
+  systemd.services.k3s = {
+    after = [ "network-online.target" "docker.service" ];
+    wants = [ "network-online.target" ];
+    preStart = ''
+      # Clean up stale Docker containers from previous k3s runs
+      ${pkgs.docker}/bin/docker rm -f $(${pkgs.docker}/bin/docker ps -aq --filter "label=io.cri-containerd.kind=sandbox") 2>/dev/null || true
+    '';
   };
 
   environment.systemPackages = with pkgs; [
@@ -92,16 +101,35 @@
   systemd.services.k3s-copy-config = {
     description = "Copy k3s kubeconfig to user directory";
     after = [ "k3s.service" ];
+    wants = [ "k3s.service" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "oneshot";
-      RemainAfterExit = true;
+      RemainAfterExit = false;
+      Restart = "on-failure";
+      RestartSec = "5s";
     };
     script = ''
+      # Wait for k3s to be fully ready and kubeconfig to exist
+      timeout=60
+      while [ $timeout -gt 0 ] && [ ! -f /etc/rancher/k3s/k3s.yaml ]; do
+        sleep 1
+        timeout=$((timeout - 1))
+      done
+
+      if [ ! -f /etc/rancher/k3s/k3s.yaml ]; then
+        echo "Timeout waiting for k3s.yaml"
+        exit 1
+      fi
+
+      # Wait an additional second to ensure file is fully written
+      sleep 1
+
       mkdir -p /home/john/.kube
       cp /etc/rancher/k3s/k3s.yaml /home/john/.kube/config
       chown john:users /home/john/.kube/config
       chmod 600 /home/john/.kube/config
+      echo "Successfully copied k3s kubeconfig"
     '';
   };
 }

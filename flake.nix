@@ -6,6 +6,8 @@
     # nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    # Winboat flake from upstream repo
+    winboat.url = "github:TibixDev/winboat/9e4f0b7eb3807e337d4015da126ae52f64c570d3";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
@@ -61,6 +63,12 @@
             unstablePkgs = import inputs.nixpkgs-unstable {
               inherit system;
               config = config.nixpkgs.config;
+              overlays = [
+                (final: prev: {
+                  # Override winboat with version from upstream flake
+                  winboat = inputs.winboat.packages.${system}.winboat;
+                })
+              ];
             };
           };
         })
