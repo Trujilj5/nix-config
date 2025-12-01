@@ -63,7 +63,7 @@
     glib
     glibc
     python3
-    openjdk23
+    openjdk
     docker
     unstablePkgs.docker-compose
     lens
