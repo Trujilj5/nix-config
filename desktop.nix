@@ -40,11 +40,6 @@
       pkgs.xdg-desktop-portal-hyprland
     ];
     config = {
-      common = {
-        default = "gtk";
-        "org.freedesktop.impl.portal.FileChooser" = "gtk";
-        "org.freedesktop.impl.portal.OpenURI" = "gtk";
-      };
       hyprland = {
         default = ["hyprland" "gtk"];
         "org.freedesktop.impl.portal.FileChooser" = "gtk";
@@ -69,7 +64,7 @@
   environment.systemPackages = with pkgs; [
     filezilla
     (writeShellScriptBin "brave" ''
-      exec ${brave}/bin/brave --force-device-scale-factor=1.0 --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
+      exec ${brave}/bin/brave --force-device-scale-factor=1.0 --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer --ozone-platform=wayland "$@"
     '')
     firefox
     spotify
