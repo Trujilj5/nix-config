@@ -8,8 +8,6 @@
 
   services.displayManager.gdm.enable = true;
   services.displayManager.gdm.wayland = true;
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "john";
   services.udisks2.enable = true;
   services.gvfs.enable = true;
 
