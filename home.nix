@@ -40,6 +40,7 @@
   home.file = {
     "Pictures/.keep".text = "";
     ".p10k.zsh".source = ./dotfiles/config/p10k.zsh;
+    ".config/xdg-desktop-portal-wlr/config".source = ./dotfiles/config/xdg-desktop-portal-wlr/config;
   };
 
   programs.home-manager.enable = true;
