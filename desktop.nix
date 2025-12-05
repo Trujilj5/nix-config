@@ -2,7 +2,10 @@
 
 {
   services.xserver.enable = false;
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    portalPackage = pkgs.xdg-desktop-portal-wlr;
+  };
   programs.xfconf.enable = true;
   programs.thunar.enable = true;
 
