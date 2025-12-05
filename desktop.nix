@@ -37,23 +37,15 @@
     enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-hyprland
-      pkgs.xdg-desktop-portal-gnome
+      pkgs.xdg-desktop-portal-wlr
     ];
     config = {
-      common = {
-        default = "gtk";
-        "org.freedesktop.impl.portal.FileChooser" = "gtk";
-        "org.freedesktop.impl.portal.OpenURI" = "gtk";
-        "org.freedesktop.impl.portal.Settings" = "gnome";
-      };
       hyprland = {
-        default = ["hyprland" "gtk"];
+        default = ["wlr" "gtk"];
         "org.freedesktop.impl.portal.FileChooser" = "gtk";
         "org.freedesktop.impl.portal.OpenURI" = "gtk";
-        "org.freedesktop.impl.portal.ScreenCast" = "hyprland";
-        "org.freedesktop.impl.portal.Screenshot" = "hyprland";
-        "org.freedesktop.impl.portal.Settings" = "gnome";
+        "org.freedesktop.impl.portal.ScreenCast" = "wlr";
+        "org.freedesktop.impl.portal.Screenshot" = "wlr";
       };
     };
   };
