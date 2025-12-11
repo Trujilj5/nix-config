@@ -112,6 +112,7 @@
     glib
     glib-networking
     xlsx2csv
+    teams-for-linux
   ];
 
 
