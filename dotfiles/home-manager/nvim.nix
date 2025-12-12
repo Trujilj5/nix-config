@@ -119,6 +119,24 @@
             -- fallback to download
             fallback = true,
           },
+          performance = {
+            rtp = {
+              disabled_plugins = {
+                "gzip",
+                "matchit",
+                "matchparen",
+                "netrwPlugin",
+                "tarPlugin",
+                "tohtml",
+                "tutor",
+                "zipPlugin",
+              },
+            },
+          },
+          change_detection = {
+            -- Disable change detection to avoid read-only Nix store errors
+            enabled = false,
+          },
           spec = {
             { "LazyVim/LazyVim", import = "lazyvim.plugins" },
             -- The following configs are needed for fixing lazyvim on nix
