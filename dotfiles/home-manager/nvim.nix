@@ -108,9 +108,15 @@
         lazyPath = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
       in
       ''
+        -- Disable helptags generation to prevent write errors in read-only Nix store
+        vim.api.nvim_create_user_command("helptags", function() end, { nargs = "*", bang = true })
+
         require("lazy").setup({
           defaults = {
             lazy = true,
+          },
+          install = {
+            missing = true,
           },
           dev = {
             -- reuse files from pkgs.vimPlugins.*
@@ -135,6 +141,15 @@
           },
           change_detection = {
             -- Disable change detection to avoid read-only Nix store errors
+            enabled = false,
+          },
+          pkg = {
+            enabled = false,
+          },
+          rocks = {
+            enabled = false,
+          },
+          readme = {
             enabled = false,
           },
           spec = {
