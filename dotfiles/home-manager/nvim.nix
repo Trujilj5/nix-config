@@ -109,7 +109,7 @@
       in
       ''
         -- Disable helptags generation to prevent write errors in read-only Nix store
-        vim.api.nvim_create_user_command("helptags", function() end, { nargs = "*", bang = true })
+        vim.api.nvim_create_user_command("Helptags", function() end, { nargs = "*", bang = true })
 
         require("lazy").setup({
           defaults = {
