@@ -109,7 +109,19 @@
       in
       ''
         -- Disable helptags generation to prevent write errors in read-only Nix store
-        vim.api.nvim_create_user_command("Helptags", function() end, { nargs = "*", bang = true })
+        -- Override the helptags command before lazy.nvim tries to use it
+        local original_helptags = vim.fn.execute
+        vim.fn.execute = function(cmd, ...)
+          if type(cmd) == "string" and cmd:match("^helptags%s") then
+            return ""
+          end
+          return original_helptags(cmd, ...)
+        end
+
+        -- Also stub out the Ex command version
+        vim.cmd([[
+          command! -nargs=* -complete=dir Helptags :
+        ]])
 
         require("lazy").setup({
           defaults = {
