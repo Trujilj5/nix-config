@@ -100,6 +100,7 @@
           { name = "mini.pairs"; path = mini-nvim; }
           { name = "mini.surround"; path = mini-nvim; }
           parrot-nvim
+          fzf-lua
         ];
         mkEntryFromDrv = drv:
           if pkgs.lib.isDerivation drv then
