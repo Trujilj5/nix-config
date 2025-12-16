@@ -1,32 +1,42 @@
 -- Parrot AI inline assistant
+print("DEBUG: parrot.lua file is being loaded!")
+
 return {
   {
     "frankroeder/parrot.nvim",
+    lazy = false,
     dependencies = { "nvim-lua/plenary.nvim", "ibhagwan/fzf-lua" },
-    opts = {
-      -- Pull API key from environment variable (set in your shell profile)
-      -- Add to ~/.bashrc or ~/.zshrc: export ANTHROPIC_API_KEY="your-key-here"
-      providers = {
-        anthropic = {
-          name = "anthropic",
-          endpoint = "https://api.anthropic.com/v1/messages",
-          api_key = os.getenv("ANTHROPIC_API_KEY"),
-          params = {
-            chat = { temperature = 1.0, max_tokens = 2048 },
-            command = { temperature = 1.0, max_tokens = 1024 },
-          },
-          topic = {
-            model = "claude-3-5-sonnet-20241022",
-            params = { max_tokens = 64 },
-          },
-          models = {
-            "claude-3-5-sonnet-20241022",
-            "claude-3-5-haiku-20241022",
-            "claude-3-opus-20250219",
+    config = function()
+      -- Pull API key from environment variable at runtime
+      local api_key = vim.fn.getenv("ANTHROPIC_API_KEY")
+
+      print("DEBUG: API Key loaded: " .. (api_key ~= vim.NIL and "YES (length " .. #api_key .. ")" or "NO"))
+
+      require("parrot").setup({
+        providers = {
+          anthropic = {
+            name = "anthropic",
+            endpoint = "https://api.anthropic.com/v1/messages",
+            api_key = api_key,
+            headers = function(self)
+              local hdrs = {
+                ["Content-Type"] = "application/json",
+                ["x-api-key"] = self.api_key,
+                ["anthropic-version"] = "2023-06-01",
+              }
+              print("DEBUG: Headers function called!")
+              print("DEBUG: Headers = " .. vim.inspect(hdrs))
+              return hdrs
+            end,
+            models = {
+              "claude-3-5-sonnet-20241022",
+              "claude-3-5-haiku-20241022",
+              "claude-3-opus-20250219",
+            },
           },
         },
-      },
-    },
+      })
+    end,
     keys = {
       { "<leader>ai", "", desc = "+inline ai", mode = { "n", "v" } },
       {
