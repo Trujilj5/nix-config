@@ -99,6 +99,7 @@
           { name = "mini.indentscope"; path = mini-nvim; }
           { name = "mini.pairs"; path = mini-nvim; }
           { name = "mini.surround"; path = mini-nvim; }
+          parrot-nvim
         ];
         mkEntryFromDrv = drv:
           if pkgs.lib.isDerivation drv then
@@ -166,7 +167,7 @@
             { "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
             -- disable mason.nvim, use programs.neovim.extraPackages
             { "williamboman/mason-lspconfig.nvim", enabled = false },
-            { "williamboman/mason.nvim", enabled = false },
+            { "mason-org/mason.nvim", enabled = false },
             -- import/override with your plugins
             { import = "plugins" },
             -- treesitter handled by nix, clear ensure_installed to prevent conflicts
