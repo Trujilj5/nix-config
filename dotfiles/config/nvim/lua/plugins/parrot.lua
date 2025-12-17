@@ -50,6 +50,10 @@ return {
 
               return payload
             end,
+            params = {
+              chat = { max_tokens = 4096 },
+              command = { max_tokens = 4096 },
+            },
             models = {
               "claude-3-5-sonnet-20241022",
               "claude-3-5-haiku-20241022",
