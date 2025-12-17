@@ -14,6 +14,13 @@ return {
         -- r or <BS> = reject changes
         -- q, <Esc>, <C-c> = quit preview
         enable_preview_mode = true,
+        -- System prompts for command mode (inline editing)
+        system_prompt = {
+          command = [[You are an AI specializing in software development
+tasks, including code editing, completion, and debugging. Your
+responses should strictly pertain to the code provided. Please ensure
+that your reply is solely focused on the code snippet in question.]],
+        },
         providers = {
           anthropic = {
             name = "anthropic",
@@ -27,6 +34,10 @@ return {
               }
             end,
             preprocess_payload = function(payload)
+              -- DEBUG: Log what we're receiving
+              print("DEBUG: Payload before processing:")
+              print(vim.inspect(payload))
+
               -- Anthropic doesn't accept "system" as a message role
               -- Extract system messages and move to top-level system parameter
               local system_messages = {}
@@ -47,6 +58,9 @@ return {
 
               -- Update messages to only include non-system messages
               payload.messages = user_messages
+
+              print("DEBUG: Payload after processing:")
+              print(vim.inspect(payload))
 
               return payload
             end,

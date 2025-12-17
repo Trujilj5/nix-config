@@ -15,30 +15,28 @@ return {
             },
           },
         },
-        -- TypeScript LSP for ionite project
-        tsserver = {
+        -- TypeScript LSP for ionite project (VSCode's language server)
+        vtsls = {
           mason = false,
           settings = {
             typescript = {
               inlayHints = {
-                includeInlayParameterNameHints = "none",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = false,
-                includeInlayVariableTypeHints = false,
-                includeInlayPropertyDeclarationTypeHints = false,
-                includeInlayFunctionLikeReturnTypeHints = false,
-                includeInlayEnumMemberValueHints = false,
+                parameterNames = { enabled = "none" },
+                parameterTypes = { enabled = false },
+                variableTypes = { enabled = false },
+                propertyDeclarationTypes = { enabled = false },
+                functionLikeReturnTypes = { enabled = false },
+                enumMemberValues = { enabled = false },
               },
             },
             javascript = {
               inlayHints = {
-                includeInlayParameterNameHints = "none",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = false,
-                includeInlayVariableTypeHints = false,
-                includeInlayPropertyDeclarationTypeHints = false,
-                includeInlayFunctionLikeReturnTypeHints = false,
-                includeInlayEnumMemberValueHints = false,
+                parameterNames = { enabled = "none" },
+                parameterTypes = { enabled = false },
+                variableTypes = { enabled = false },
+                propertyDeclarationTypes = { enabled = false },
+                functionLikeReturnTypes = { enabled = false },
+                enumMemberValues = { enabled = false },
               },
             },
           },

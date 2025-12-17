@@ -23,7 +23,7 @@
       bash-language-server
       pyright
       rust-analyzer
-      typescript-language-server
+      vtsls
       vscode-langservers-extracted # HTML, CSS, JSON, ESLint
       tailwindcss-language-server
       # General tools
