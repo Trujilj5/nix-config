@@ -34,10 +34,6 @@ that your reply is solely focused on the code snippet in question.]],
               }
             end,
             preprocess_payload = function(payload)
-              -- DEBUG: Log what we're receiving
-              print("DEBUG: Payload before processing:")
-              print(vim.inspect(payload))
-
               -- Anthropic doesn't accept "system" as a message role
               -- Extract system messages and move to top-level system parameter
               local system_messages = {}
@@ -58,9 +54,6 @@ that your reply is solely focused on the code snippet in question.]],
 
               -- Update messages to only include non-system messages
               payload.messages = user_messages
-
-              print("DEBUG: Payload after processing:")
-              print(vim.inspect(payload))
 
               return payload
             end,
