@@ -14,12 +14,55 @@ return {
         -- r or <BS> = reject changes
         -- q, <Esc>, <C-c> = quit preview
         enable_preview_mode = true,
-        -- System prompts for command mode (inline editing)
-        system_prompt = {
-          command = [[You are an AI specializing in software development
-tasks, including code editing, completion, and debugging. Your
-responses should strictly pertain to the code provided. Please ensure
-that your reply is solely focused on the code snippet in question.]],
+        -- Custom hooks
+        hooks = {
+          -- Fix errors/warnings from LSP
+          FixDiagnostic = function(parrot, params)
+            -- Get diagnostics for current buffer
+            local bufnr = vim.api.nvim_get_current_buf()
+            local diagnostics = vim.diagnostic.get(bufnr)
+
+            -- Get the actual visual selection range
+            local line_start = vim.fn.line("'<") - 1
+            local line_end = vim.fn.line("'>") - 1
+            local relevant_diags = {}
+
+            for _, diag in ipairs(diagnostics) do
+              if diag.lnum >= line_start and diag.lnum <= line_end then
+                table.insert(relevant_diags, {
+                  line = diag.lnum + 1,
+                  message = diag.message,
+                  severity = vim.diagnostic.severity[diag.severity],
+                })
+              end
+            end
+
+            -- Build diagnostics context string
+            local diag_context = ""
+            if #relevant_diags > 0 then
+              diag_context = "\n\nLSP Diagnostics in this code:\n"
+              for _, diag in ipairs(relevant_diags) do
+                diag_context = diag_context .. string.format("- Line %d [%s]: %s\n", diag.line, diag.severity, diag.message)
+              end
+            end
+
+            local template = [[
+I have the following code from {{filename}}:
+
+```{{filetype}}
+{{selection}}
+```
+]] .. diag_context .. [[
+
+{{command}}
+
+Please fix the issues and respond exclusively with the corrected code snippet.
+DO NOT include explanations or comments, just the fixed code.
+]]
+            local model_obj = parrot.get_model("command")
+            parrot.logger.info("Fixing diagnostics with model: " .. model_obj.name)
+            parrot.Prompt(params, parrot.ui.Target.rewrite, model_obj, nil, template)
+          end,
         },
         providers = {
           anthropic = {
@@ -34,32 +77,24 @@ that your reply is solely focused on the code snippet in question.]],
               }
             end,
             preprocess_payload = function(payload)
-              -- Anthropic doesn't accept "system" as a message role
-              -- Extract system messages and move to top-level system parameter
-              local system_messages = {}
-              local user_messages = {}
-
-              for _, message in ipairs(payload.messages or {}) do
-                if message.role == "system" then
-                  table.insert(system_messages, message.content)
-                else
-                  table.insert(user_messages, message)
-                end
+              -- Trim whitespace from message content
+              for _, message in ipairs(payload.messages) do
+                message.content = message.content:gsub("^%s*(.-)%s*$", "%1")
               end
-
-              -- Set top-level system parameter if we found system messages
-              if #system_messages > 0 then
-                payload.system = table.concat(system_messages, "\n\n")
+              -- Move system message to top-level parameter (Anthropic requirement)
+              if payload.messages[1] and payload.messages[1].role == "system" then
+                payload.system = payload.messages[1].content
+                table.remove(payload.messages, 1)
               end
-
-              -- Update messages to only include non-system messages
-              payload.messages = user_messages
-
               return payload
             end,
             params = {
               chat = { max_tokens = 4096 },
               command = { max_tokens = 4096 },
+            },
+            topic = {
+              model = "claude-sonnet-4-5",
+              params = { max_tokens = 64 },
             },
             models = {
               "claude-sonnet-4-5",
@@ -72,19 +107,25 @@ that your reply is solely focused on the code snippet in question.]],
       { "<leader>ai", "", desc = "+inline ai", mode = { "n", "v" } },
       {
         "<leader>air",
-        "<cmd>PrtRewrite<cr>",
+        ":'<,'>PrtRewrite<cr>",
         desc = "Inline Rewrite",
         mode = { "v" },
       },
       {
+        "<leader>aif",
+        ":'<,'>PrtFixDiagnostic<cr>",
+        desc = "Fix LSP Errors",
+        mode = { "v" },
+      },
+      {
         "<leader>aia",
-        "<cmd>PrtAppend<cr>",
+        ":'<,'>PrtAppend<cr>",
         desc = "Inline Append",
         mode = { "v" },
       },
       {
         "<leader>aip",
-        "<cmd>PrtPrepend<cr>",
+        ":'<,'>PrtPrepend<cr>",
         desc = "Inline Prepend",
         mode = { "v" },
       },

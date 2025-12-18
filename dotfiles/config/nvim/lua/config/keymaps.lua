@@ -107,7 +107,16 @@ map("n", "<leader>gg", function() Snacks.lazygit( { cwd = LazyVim.root.git() }) 
 map("n", "<leader>gG", function() Snacks.lazygit() end, { desc = "Lazygit (cwd)" })
 map("n", "<leader>gb", function() Snacks.git.blame_line() end, { desc = "Git Blame Line" })
 map("n", "<leader>gB", function() Snacks.gitbrowse() end, { desc = "Git Browse" })
-map("n", "<leader>gd", function() Snacks.picker.git_diff() end, { desc = "Git Diff (Hunks)" })
+map("n", "<leader>gd", "<cmd>Gitsigns diffthis<cr>", { desc = "Git Diff Split" })
+map("n", "<leader>gD", function()
+  -- Get the upstream branch (e.g., origin/main)
+  local upstream = vim.fn.system("git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null"):gsub("%s+", "")
+  if upstream == "" then
+    -- Fallback to origin/HEAD if no upstream is set
+    upstream = "origin/HEAD"
+  end
+  require("gitsigns").diffthis(upstream)
+end, { desc = "Git Diff vs Origin" })
 
 map("n", "<leader>gf", function()
   local git_path = vim.api.nvim_buf_get_name(0)
