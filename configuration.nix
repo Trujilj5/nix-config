@@ -36,9 +36,25 @@
       # Show graphics for boot entries
       use_graphics_for osx,linux,elilo,grub,windows
 
+      # Tell rEFInd where to find icons
+      icons_dir EFI/refind/icons
+
       # Hide boot entries for rescue/fallback kernels
       dont_scan_files shim.efi,shim-fedora.efi,shimx64.efi,PreLoader.efi,TextMode.efi,ebounce.efi,GraphicsConsole.efi,MokManager.efi,HashTool.efi,HashTool-signed.efi,bootmgfw.efi
     '';
+    # Copy icon files to EFI partition
+    additionalFiles = let
+      refindIcons = "${pkgs.refind}/share/refind/icons";
+    in {
+      "EFI/refind/icons/os_linux.png" = "${refindIcons}/os_linux.png";
+      "EFI/refind/icons/os_unknown.png" = "${refindIcons}/os_unknown.png";
+      "EFI/refind/icons/os_arch.png" = "${refindIcons}/os_arch.png";
+      "EFI/refind/icons/os_gentoo.png" = "${refindIcons}/os_gentoo.png";
+      "EFI/refind/icons/os_ubuntu.png" = "${refindIcons}/os_ubuntu.png";
+      "EFI/refind/icons/os_fedora.png" = "${refindIcons}/os_fedora.png";
+      "EFI/refind/icons/func_shutdown.png" = "${refindIcons}/func_shutdown.png";
+      "EFI/refind/icons/func_reset.png" = "${refindIcons}/func_reset.png";
+    };
   };
   boot.loader.efi.canTouchEfiVariables = true;
 
