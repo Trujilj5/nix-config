@@ -1,4 +1,4 @@
-{ pkgs, unstablePkgs, ... }:
+{ pkgs, unstablePkgs, inputs, ... }:
 
 {
 
@@ -41,6 +41,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    inputs.home-manager.packages.${pkgs.system}.default
     vim
     wget
     unstablePkgs.opencode

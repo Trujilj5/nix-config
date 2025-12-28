@@ -35,26 +35,27 @@
   let
     system = "x86_64-linux";
   in {
+    homeConfigurations.john = inputs.home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      extraSpecialArgs = { inherit inputs; };
+      modules = [
+        ./home.nix
+        nvf.homeManagerModules.default
+      ];
+    };
+
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = { inherit inputs; };
       modules = [
         ./configuration.nix
         determinate.nixosModules.default
-        inputs.home-manager.nixosModules.default
         stylix.nixosModules.stylix
         {
           nixpkgs.config.allowUnfree = true;
-          home-manager = {
-            extraSpecialArgs = { inherit inputs; };
-            backupFileExtension = "backup";
-            users = {
-              john = import ./home.nix;
-            };
-            sharedModules = [ nvf.homeManagerModules.default ];
-            useGlobalPkgs = true;
-            useUserPackages = true;
-          };
           stylix.enableReleaseChecks = false;
         }
         # ./zed-fhs.nix
