@@ -47,7 +47,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    inputs.home-manager.packages.${pkgs.system}.default
+    inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
     vim
     wget
     unstablePkgs.opencode
