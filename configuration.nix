@@ -16,6 +16,10 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.configurationLimit = 10;  # Keep last 10 generations
+
+  # Enable dual-boot menu - will auto-detect other OSes on other partitions
+  boot.loader.timeout = 5;  # Wait 5 seconds at boot menu
 
   # Plymouth for prettier boot splash (including LUKS password prompt)
   boot.plymouth.enable = true;
