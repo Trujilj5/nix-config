@@ -19,8 +19,9 @@
 
   # Plymouth for prettier boot splash (including LUKS password prompt)
   boot.plymouth.enable = true;
+  boot.plymouth.theme = "details";  # Show boot messages in a prettier format
   boot.initrd.systemd.enable = true;  # Enable systemd in initrd for graphical LUKS prompt
-  boot.kernelParams = [ "quiet" "splash" ];
+  boot.kernelParams = [ "splash" ];  # Removed "quiet" to show boot messages
 
   networking.networkmanager.enable = true;
   networking.wireless.enable = false;
