@@ -30,25 +30,11 @@
       # Timeout before auto-booting default entry
       timeout 5
 
-      # Use graphical mode with icons (auto-detect best resolution)
-      resolution max
-
-      # Show nice icons for boot entries
-      use_graphics_for osx,linux,elilo,grub,windows
-
-      # Use big icons for easier selection
-      big_icon_size 256
-      small_icon_size 96
-
-      # Enable touch/mouse support
-      enable_touch
-      enable_mouse
+      # Use text mode (reliable and fast)
+      textonly
 
       # Hide boot entries for rescue/fallback kernels
       dont_scan_files shim.efi,shim-fedora.efi,shimx64.efi,PreLoader.efi,TextMode.efi,ebounce.efi,GraphicsConsole.efi,MokManager.efi,HashTool.efi,HashTool-signed.efi,bootmgfw.efi
-
-      # Clean up the display - hide hints but keep labels
-      hideui hints,arrows
     '';
   };
   boot.loader.efi.canTouchEfiVariables = true;
