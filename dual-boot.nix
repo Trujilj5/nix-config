@@ -28,6 +28,9 @@ in
         RemainAfterExit = true;
       };
       script = ''
+        # Set UEFI firmware boot menu timeout to 5 seconds
+        ${pkgs.efibootmgr}/bin/efibootmgr --timeout 5
+
         # Check if gaming boot entry already exists
         if ! ${pkgs.efibootmgr}/bin/efibootmgr | grep -q "Gaming NixOS"; then
           ${pkgs.efibootmgr}/bin/efibootmgr --create \
