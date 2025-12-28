@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 {
   # Define your username here (used across system configuration)
