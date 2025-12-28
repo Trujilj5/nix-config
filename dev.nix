@@ -1,8 +1,14 @@
-{ pkgs, unstablePkgs, inputs, systemUser, ... }:
+{ pkgs, unstablePkgs, inputs, systemUser, lib, ... }:
 
 {
 
   virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableHardening = false;
+  # Fix vboxnet0 boot timeout - don't wait for device at boot
+  systemd.services.vboxnet0 = {
+    unitConfig.DefaultDependencies = false;
+    wantedBy = lib.mkForce [ "multi-user.target" ];
+  };
   users.extraGroups.vboxusers.members = [ systemUser ];
 
   services.tailscale.enable = true;
