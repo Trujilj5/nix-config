@@ -30,8 +30,11 @@
       # Timeout before auto-booting default entry
       timeout 5
 
-      # Use text mode (reliable and fast)
-      textonly
+      # Use firmware default graphics mode (mode 0 - no mode switching)
+      resolution 0
+
+      # Show graphics for boot entries
+      use_graphics_for osx,linux,elilo,grub,windows
 
       # Hide boot entries for rescue/fallback kernels
       dont_scan_files shim.efi,shim-fedora.efi,shimx64.efi,PreLoader.efi,TextMode.efi,ebounce.efi,GraphicsConsole.efi,MokManager.efi,HashTool.efi,HashTool-signed.efi,bootmgfw.efi
