@@ -30,8 +30,8 @@
       # Timeout before auto-booting default entry
       timeout 5
 
-      # Use firmware default graphics mode (mode 0 - no mode switching)
-      resolution 0
+      # Use 1024x768 graphics mode (most compatible resolution)
+      resolution 1024 768
 
       # Show graphics for boot entries
       use_graphics_for osx,linux,elilo,grub,windows
