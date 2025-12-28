@@ -27,9 +27,9 @@
 
   # Plymouth for prettier boot splash (including LUKS password prompt)
   boot.plymouth.enable = true;
-  boot.plymouth.theme = lib.mkForce "details";  # Override Stylix theme to show boot messages
+  boot.plymouth.theme = lib.mkForce "bgrt";  # Use motherboard boot logo (press Escape to see logs)
   boot.initrd.systemd.enable = true;  # Enable systemd in initrd for graphical LUKS prompt
-  boot.kernelParams = [ "splash" ];  # Removed "quiet" to show boot messages
+  boot.kernelParams = [ "splash" "quiet" ];  # Graphical splash (press Escape during boot for text logs)
 
   networking.networkmanager.enable = true;
   networking.wireless.enable = false;

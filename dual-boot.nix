@@ -10,26 +10,33 @@ in
     gamingDriveUUID = lib.mkOption {
       type = lib.types.str;
       default = "dde141ee-6c2a-4325-89cf-cfb139e84d12";
-      description = "UUID of the gaming drive's EFI partition";
-    };
-
-    menuTitle = lib.mkOption {
-      type = lib.types.str;
-      default = "Gaming NixOS";
-      description = "Title shown in boot menu";
+      description = "UUID of the gaming drive's EFI partition (PARTUUID)";
     };
   };
 
   config = lib.mkIf cfg.enable {
-    boot.loader.systemd-boot.extraEntries = {
-      "gaming-nixos.conf" = ''
-        title ${cfg.menuTitle}
-        efi /EFI/systemd/systemd-bootx64.efi
-        options root=PARTUUID=${cfg.gamingDriveUUID}
-      '';
-    };
-
     # Add efibootmgr for managing boot entries
     environment.systemPackages = [ pkgs.efibootmgr ];
+
+    # Create systemd service to ensure gaming OS boot entry exists
+    systemd.services.setup-gaming-boot-entry = {
+      description = "Setup UEFI boot entry for gaming OS";
+      after = [ "local-fs.target" ];
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+      };
+      script = ''
+        # Check if gaming boot entry already exists
+        if ! ${pkgs.efibootmgr}/bin/efibootmgr | grep -q "Gaming NixOS"; then
+          ${pkgs.efibootmgr}/bin/efibootmgr --create \
+            --disk /dev/disk/by-partuuid/${cfg.gamingDriveUUID} \
+            --part 1 \
+            --label "Gaming NixOS" \
+            --loader '\EFI\systemd\systemd-bootx64.efi'
+        fi
+      '';
+    };
   };
 }
