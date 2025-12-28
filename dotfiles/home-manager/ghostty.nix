@@ -6,6 +6,6 @@
   ];
 
   home.file = {
-    ".config/ghostty/config".source = config.lib.file.mkOutOfStoreSymlink "/home/john/nixos/dotfiles/config/ghostty/config";
+    ".config/ghostty/config".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/dotfiles/config/ghostty/config";
   };
 }

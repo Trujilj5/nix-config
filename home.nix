@@ -1,8 +1,11 @@
 { pkgs, lib, inputs, config, ... }:
 
+let
+  username = builtins.getEnv "USER";
+in
 {
-  home.username = "john";
-  home.homeDirectory = "/home/john";
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
 
   home.stateVersion = "25.05";
   home.enableNixpkgsReleaseCheck = false;
@@ -88,8 +91,8 @@
 
   home.file = {
     "Pictures/.keep".text = "";
-    ".p10k.zsh".source = config.lib.file.mkOutOfStoreSymlink "/home/john/nixos/dotfiles/config/p10k.zsh";
-    ".config/xdg-desktop-portal-wlr/config".source = config.lib.file.mkOutOfStoreSymlink "/home/john/nixos/dotfiles/config/xdg-desktop-portal-wlr/config";
+    ".p10k.zsh".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/dotfiles/config/p10k.zsh";
+    ".config/xdg-desktop-portal-wlr/config".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/dotfiles/config/xdg-desktop-portal-wlr/config";
   };
 
   programs.home-manager.enable = true;

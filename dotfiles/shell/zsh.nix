@@ -1,12 +1,16 @@
 { pkgs, ... }:
+
+let
+  username = builtins.getEnv "USER";
+in
 {
   programs.zsh.enable = true;
 
-  users.users.john = {
+  users.users.${username} = {
     isNormalUser = true;
-    description = "john";
+    description = username;
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" "docker" "dialout"]; 
+    extraGroups = [ "networkmanager" "wheel" "docker" "dialout"];
   };
 
 

@@ -217,5 +217,5 @@
     "${parsers}/parser";
 
   # Normal LazyVim config here, see https://github.com/LazyVim/starter/tree/main/lua
-  xdg.configFile."nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "/home/john/nixos/dotfiles/config/nvim/lua";
+  xdg.configFile."nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/dotfiles/config/nvim/lua";
 }

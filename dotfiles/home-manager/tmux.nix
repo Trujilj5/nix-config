@@ -46,5 +46,5 @@
     recursive = true;
   };
 
-  home.file.".config/tmux/tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "/home/john/nixos/dotfiles/config/tmux/tmux.conf";
+  home.file.".config/tmux/tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/dotfiles/config/tmux/tmux.conf";
 }

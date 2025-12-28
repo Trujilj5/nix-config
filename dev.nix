@@ -1,9 +1,12 @@
 { pkgs, unstablePkgs, inputs, ... }:
 
+let
+  username = builtins.getEnv "USER";
+in
 {
 
   virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "john" ];
+  users.extraGroups.vboxusers.members = [ username ];
 
   services.tailscale.enable = true;
 
@@ -126,10 +129,10 @@
       # Wait an additional second to ensure file is fully written
       sleep 1
 
-      mkdir -p /home/john/.kube
-      cp /etc/rancher/k3s/k3s.yaml /home/john/.kube/config
-      chown john:users /home/john/.kube/config
-      chmod 600 /home/john/.kube/config
+      mkdir -p /home/${username}/.kube
+      cp /etc/rancher/k3s/k3s.yaml /home/${username}/.kube/config
+      chown ${username}:users /home/${username}/.kube/config
+      chmod 600 /home/${username}/.kube/config
       echo "Successfully copied k3s kubeconfig"
     '';
   };

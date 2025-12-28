@@ -34,8 +34,9 @@
   outputs = { nixpkgs, stylix, determinate, nvf, ... }@inputs:
   let
     system = "x86_64-linux";
+    username = builtins.getEnv "USER";
   in {
-    homeConfigurations.john = inputs.home-manager.lib.homeManagerConfiguration {
+    homeConfigurations.${username} = inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
