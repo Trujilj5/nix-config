@@ -23,6 +23,7 @@
   boot.loader.grub.enable = false;  # Explicitly disable GRUB
   boot.loader.refind = {
     enable = true;
+    maxGenerations = 3;  # Only show last 3 generations (easier to access other OS)
     extraConfig = ''
       # Scan all drives for bootable OSes
       scanfor manual,external,optical,internal
@@ -30,8 +31,8 @@
       # Timeout before auto-booting default entry
       timeout 5
 
-      # Use 1024x768 graphics mode (most compatible resolution)
-      resolution 1024 768
+      # Use firmware default graphics mode (mode 0)
+      resolution 0
 
       # Show graphics for boot entries
       use_graphics_for osx,linux,elilo,grub,windows
@@ -42,19 +43,17 @@
       # Hide boot entries for rescue/fallback kernels
       dont_scan_files shim.efi,shim-fedora.efi,shimx64.efi,PreLoader.efi,TextMode.efi,ebounce.efi,GraphicsConsole.efi,MokManager.efi,HashTool.efi,HashTool-signed.efi,bootmgfw.efi
     '';
-    # Copy icon files to EFI partition
+    # Copy all icon files to EFI partition
     additionalFiles = let
-      refindIcons = "${pkgs.refind}/share/refind/icons";
-    in {
-      "EFI/refind/icons/os_linux.png" = "${refindIcons}/os_linux.png";
-      "EFI/refind/icons/os_unknown.png" = "${refindIcons}/os_unknown.png";
-      "EFI/refind/icons/os_arch.png" = "${refindIcons}/os_arch.png";
-      "EFI/refind/icons/os_gentoo.png" = "${refindIcons}/os_gentoo.png";
-      "EFI/refind/icons/os_ubuntu.png" = "${refindIcons}/os_ubuntu.png";
-      "EFI/refind/icons/os_fedora.png" = "${refindIcons}/os_fedora.png";
-      "EFI/refind/icons/func_shutdown.png" = "${refindIcons}/func_shutdown.png";
-      "EFI/refind/icons/func_reset.png" = "${refindIcons}/func_reset.png";
-    };
+      refindPath = "${pkgs.refind}/share/refind";
+      copyIconsFrom = dir: builtins.listToAttrs (
+        map (name: {
+          name = "EFI/refind/${dir}/${name}";
+          value = "${refindPath}/${dir}/${name}";
+        }) (builtins.attrNames (builtins.readDir "${refindPath}/${dir}"))
+      );
+    in
+      (copyIconsFrom "icons") // (copyIconsFrom "icons/svg");
   };
   boot.loader.efi.canTouchEfiVariables = true;
 
