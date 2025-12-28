@@ -11,10 +11,19 @@
 
   services.displayManager.gdm.enable = true;
   services.displayManager.gdm.wayland = true;
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "john";
   services.udisks2.enable = true;
   services.gvfs.enable = true;
 
   services.gnome.gnome-keyring.enable = true;
+
+  # Automatically unlock keyring on login to fix Brave/Chrome password issues
+  security.pam.services.gdm.enableGnomeKeyring = true;
+  security.pam.services.gdm-autologin.text = ''
+    auth     optional    pam_gnome_keyring.so
+    session  optional    pam_gnome_keyring.so auto_start
+  '';
 
   programs.dconf.enable = true;
   services.dbus.enable = true;

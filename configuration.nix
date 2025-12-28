@@ -17,6 +17,10 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Plymouth for prettier boot splash
+  boot.plymouth.enable = true;
+  boot.kernelParams = [ "quiet" "splash" ];
+
   networking.networkmanager.enable = true;
   networking.wireless.enable = false;
 

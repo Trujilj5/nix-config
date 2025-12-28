@@ -92,17 +92,6 @@
     yarn
   ];
 
-  systemd.user.services.podman-api = {
-    description = "Podman API Service for kubectl";
-    after = [ "network.target" "podman.socket" ];
-    wants = [ "network.target" "podman.socket" ];
-    wantedBy = [ "multi-user.target" "default.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.podman}/bin/podman system service --listen-address 0.0.0.0:8081 -t 0";
-      Restart = "always";
-      Type = "simple";
-    };
-  };
 
   # Copy k3s kubeconfig to user's home directory
   systemd.services.k3s-copy-config = {
