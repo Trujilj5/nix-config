@@ -1,4 +1,4 @@
-{ pkgs, unstablePkgs, ... }:
+{ pkgs, unstablePkgs, systemUser, ... }:
 
 {
   services.xserver.enable = false;
@@ -12,7 +12,7 @@
   services.displayManager.gdm.enable = true;
   services.displayManager.gdm.wayland = true;
   services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "john";
+  services.displayManager.autoLogin.user = systemUser;
   services.udisks2.enable = true;
   services.gvfs.enable = true;
 
