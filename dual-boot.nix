@@ -31,8 +31,14 @@ in
         # Set UEFI firmware boot menu timeout to 5 seconds
         ${pkgs.efibootmgr}/bin/efibootmgr --timeout 5
 
-        # Check if gaming boot entry already exists
-        if ! ${pkgs.efibootmgr}/bin/efibootmgr | grep -q "Gaming NixOS"; then
+        # Remove duplicate "Gaming NixOS" entry if it exists (Boot0006)
+        GAMING_BOOT=$(${pkgs.efibootmgr}/bin/efibootmgr | grep "Boot0006.*Gaming NixOS" | cut -c5-8)
+        if [ -n "$GAMING_BOOT" ]; then
+          ${pkgs.efibootmgr}/bin/efibootmgr -b "$GAMING_BOOT" -B
+        fi
+
+        # Check if any boot entry for gaming drive UUID already exists
+        if ! ${pkgs.efibootmgr}/bin/efibootmgr -v | grep -q "${cfg.gamingDriveUUID}"; then
           ${pkgs.efibootmgr}/bin/efibootmgr --create \
             --disk /dev/disk/by-partuuid/${cfg.gamingDriveUUID} \
             --part 1 \

@@ -13,17 +13,31 @@
     ./dual-boot.nix
   ];
 
-  # Enable dual-boot for gaming drive (disable if not present)
-  system.dualBoot.enable = true;
+  # Disable dual-boot module (rEFInd auto-detects both OSes)
+  system.dualBoot.enable = false;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.configurationLimit = 10;  # Keep last 10 generations
+  # Use rEFInd instead of systemd-boot for prettier dual-boot menu
+  boot.loader.systemd-boot.enable = false;
+  boot.loader.grub.enable = false;  # Explicitly disable GRUB
+  boot.loader.refind = {
+    enable = true;
+    extraConfig = ''
+      # Scan all drives for bootable OSes
+      scanfor manual,external,optical,internal
 
-  # Enable dual-boot menu
-  boot.loader.timeout = 5;  # Wait 5 seconds at boot menu
+      # Timeout before auto-booting default entry
+      timeout 5
+
+      # Use text mode (graphics mode can be buggy on some systems)
+      textonly
+
+      # Hide boot entries for rescue/fallback kernels
+      dont_scan_files shim.efi,shim-fedora.efi,shimx64.efi,PreLoader.efi,TextMode.efi,ebounce.efi,GraphicsConsole.efi,MokManager.efi,HashTool.efi,HashTool-signed.efi,bootmgfw.efi
+    '';
+  };
+  boot.loader.efi.canTouchEfiVariables = true;
 
   # Plymouth for prettier boot splash (including LUKS password prompt)
   boot.plymouth.enable = true;
