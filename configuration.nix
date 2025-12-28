@@ -17,8 +17,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Plymouth for prettier boot splash
+  # Plymouth for prettier boot splash (including LUKS password prompt)
   boot.plymouth.enable = true;
+  boot.initrd.systemd.enable = true;  # Enable systemd in initrd for graphical LUKS prompt
   boot.kernelParams = [ "quiet" "splash" ];
 
   networking.networkmanager.enable = true;
