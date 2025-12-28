@@ -83,7 +83,7 @@
     (pkgs.makeDesktopItem {
       name = "bazecor";
       desktopName = "Bazecor";
-      exec = "${bazecor}/bin/bazecor --force-device-scale-factor=1.5 --enable-features=UseOzonePlatform --ozone-platform=wayland";
+      exec = "${bazecor}/bin/bazecor --force-device-scale-factor=1.6 --disable-gpu-compositing --enable-features=UseOzonePlatform --ozone-platform=wayland";
       icon = "bazecor";
       comment = "Graphical configurator for Dygma products";
       categories = [ "Utility" ];
