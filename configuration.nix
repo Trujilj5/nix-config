@@ -23,7 +23,7 @@
   boot.loader.grub.enable = false;  # Explicitly disable GRUB
   boot.loader.refind = {
     enable = true;
-    maxGenerations = 3;  # Only show last 3 generations (easier to access other OS)
+    maxGenerations = 2;
     extraConfig = ''
       # Scan all drives for bootable OSes
       scanfor manual,external,optical,internal
