@@ -1,11 +1,8 @@
-{ pkgs, lib, inputs, config, ... }:
+{ pkgs, lib, inputs, config, homeUser, ... }:
 
-let
-  username = builtins.getEnv "USER";
-in
 {
-  home.username = username;
-  home.homeDirectory = "/home/${username}";
+  home.username = homeUser;
+  home.homeDirectory = "/home/${homeUser}";
 
   home.stateVersion = "25.05";
   home.enableNixpkgsReleaseCheck = false;

@@ -42,7 +42,10 @@
         inherit system;
         config.allowUnfree = true;
       };
-      extraSpecialArgs = { inherit inputs; };
+      extraSpecialArgs = {
+        inherit inputs;
+        homeUser = username;
+      };
       modules = [
         ./home.nix
         nvf.homeManagerModules.default
