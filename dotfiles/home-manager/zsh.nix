@@ -13,6 +13,7 @@
     shellAliases = {
       update = "sudo nixos-rebuild switch --flake ~/nixos#default";
       upgrade = "sudo nix flake update --flake ~/nixos";
+      hm = "home-manager switch --flake ~/nixos#$USER";
       vim = "nvim";
       sudoedit = "sudo -E nvim";
       zed = "zed-fhs .";
