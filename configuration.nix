@@ -10,7 +10,11 @@
     ./dev.nix
     ./hardware-configuration.nix
     ./stylix.nix
+    ./dual-boot.nix
   ];
+
+  # Enable dual-boot for gaming drive (disable if not present)
+  system.dualBoot.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

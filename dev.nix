@@ -48,7 +48,6 @@
 
   environment.systemPackages = with pkgs; [
     inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
-    efibootmgr  # For managing UEFI boot entries
     vim
     wget
     unstablePkgs.opencode
