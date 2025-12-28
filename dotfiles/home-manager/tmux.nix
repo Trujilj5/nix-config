@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   home.packages = with pkgs; [
@@ -46,5 +46,5 @@
     recursive = true;
   };
 
-  home.file.".config/tmux/tmux.conf".source = ../config/tmux/tmux.conf;
+  home.file.".config/tmux/tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "/home/john/nixos/dotfiles/config/tmux/tmux.conf";
 }

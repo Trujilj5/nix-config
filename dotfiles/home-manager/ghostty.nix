@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   home.packages = with pkgs; [
@@ -6,6 +6,6 @@
   ];
 
   home.file = {
-    ".config/ghostty/config".source = ../config/ghostty/config;
+    ".config/ghostty/config".source = config.lib.file.mkOutOfStoreSymlink "/home/john/nixos/dotfiles/config/ghostty/config";
   };
 }

@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, ... }:
+{ pkgs, lib, inputs, config, ... }:
 
 {
   home.username = "john";
@@ -39,8 +39,8 @@
 
   home.file = {
     "Pictures/.keep".text = "";
-    ".p10k.zsh".source = ./dotfiles/config/p10k.zsh;
-    ".config/xdg-desktop-portal-wlr/config".source = ./dotfiles/config/xdg-desktop-portal-wlr/config;
+    ".p10k.zsh".source = config.lib.file.mkOutOfStoreSymlink "/home/john/nixos/dotfiles/config/p10k.zsh";
+    ".config/xdg-desktop-portal-wlr/config".source = config.lib.file.mkOutOfStoreSymlink "/home/john/nixos/dotfiles/config/xdg-desktop-portal-wlr/config";
   };
 
   programs.home-manager.enable = true;
