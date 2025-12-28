@@ -44,6 +44,7 @@
       modules = [
         ./home.nix
         nvf.homeManagerModules.default
+        stylix.homeManagerModules.stylix
       ];
     };
 
