@@ -34,7 +34,8 @@
   outputs = { nixpkgs, stylix, determinate, nvf, ... }@inputs:
   let
     system = "x86_64-linux";
-    username = builtins.getEnv "USER";
+    # Note: This must match your system username. The hm alias uses $USER which expands at runtime.
+    username = "john";
   in {
     homeConfigurations.${username} = inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = import nixpkgs {

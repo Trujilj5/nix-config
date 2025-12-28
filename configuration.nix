@@ -1,6 +1,9 @@
 { lib, ... }:
 
 {
+  # Define your username here (used across system configuration)
+  _module.args.systemUser = "john";
+
   imports = [
     ./desktop.nix
     ./dotfiles
