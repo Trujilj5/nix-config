@@ -63,7 +63,7 @@
         }) (builtins.attrNames (builtins.readDir "${refindPath}/${dir}"))
       );
     in
-      (copyIconsFrom "icons") // (copyIconsFrom "icons/svg") // {
+      (copyIconsFrom "icons") // {
         # Custom NixOS icon for work OS
         "EFI/refind/icons/os_nixos.png" = ./refind-icons/nixos.png;
         # Custom Steam icon for gaming OS
