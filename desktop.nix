@@ -75,7 +75,7 @@
 
   environment.systemPackages = with pkgs; [
     filezilla
-    ventoy-full
+    etcher
     (writeShellScriptBin "brave" ''
       exec ${brave}/bin/brave --force-device-scale-factor=1.0 --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer --ozone-platform=wayland "$@"
     '')
