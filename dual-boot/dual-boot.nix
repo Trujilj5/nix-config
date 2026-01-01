@@ -42,8 +42,8 @@ in
           use_graphics_for osx,linux,elilo,grub,windows
 
           # === rEFInd-minimal Theme ===
-          # Hide UI elements for cleaner look
-          hideui singleuser,hints,arrows,label,badges
+          # Hide UI elements for cleaner look (keep labels to show OS names)
+          hideui singleuser,hints,arrows,badges
 
           # Use theme icons directory
           icons_dir themes/rEFInd-minimal/icons
@@ -65,6 +65,7 @@ in
         # Copy theme files to EFI partition
         additionalFiles = let
           themePath = ./themes/rEFInd-minimal;
+          refindPath = "${pkgs.refind}/share/refind";
           # Copy all theme icons
           copyThemeIcons = builtins.listToAttrs (
             map (name: {
@@ -78,6 +79,8 @@ in
             "themes/rEFInd-minimal/background.png" = "${themePath}/background.png";
             "themes/rEFInd-minimal/selection_big.png" = "${themePath}/selection_big.png";
             "themes/rEFInd-minimal/selection_small.png" = "${themePath}/selection_small.png";
+            # Add missing firmware icon from default rEFInd icons
+            "themes/rEFInd-minimal/icons/func_firmware.png" = "${refindPath}/icons/func_firmware.png";
           };
       };
     })
