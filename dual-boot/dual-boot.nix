@@ -29,8 +29,8 @@ in
         enable = true;
         maxGenerations = cfg.maxGenerations;
         extraConfig = ''
-          # Scan all drives for bootable OSes
-          scanfor manual,external,optical,internal
+          # Only scan manual entries (prevents duplicate auto-detected entries)
+          scanfor manual
 
           # Timeout before auto-booting default entry
           timeout 5
@@ -56,16 +56,22 @@ in
           selection_big   themes/rEFInd-minimal/selection_big.png
           selection_small themes/rEFInd-minimal/selection_small.png
 
-          # Show shutdown and firmware (BIOS/UEFI) tools
-          showtools shutdown,firmware
+          # Show only shutdown tool
+          showtools shutdown
 
           # Hide boot entries for rescue/fallback kernels
           dont_scan_files shim.efi,shim-fedora.efi,shimx64.efi,PreLoader.efi,TextMode.efi,ebounce.efi,GraphicsConsole.efi,MokManager.efi,HashTool.efi,HashTool-signed.efi,bootmgfw.efi
+
+          # Manual entry for gaming OS
+          menuentry "Gaming NixOS" {
+            icon /themes/rEFInd-minimal/icons/os_linux.png
+            volume ${cfg.gamingDriveUUID}
+            loader /EFI/systemd/systemd-bootx64.efi
+          }
         '';
         # Copy theme files to EFI partition
         additionalFiles = let
           themePath = ./themes/rEFInd-minimal;
-          refindPath = "${pkgs.refind}/share/refind";
           # Copy all theme icons
           copyThemeIcons = builtins.listToAttrs (
             map (name: {
@@ -79,8 +85,6 @@ in
             "themes/rEFInd-minimal/background.png" = "${themePath}/background.png";
             "themes/rEFInd-minimal/selection_big.png" = "${themePath}/selection_big.png";
             "themes/rEFInd-minimal/selection_small.png" = "${themePath}/selection_small.png";
-            # Add missing firmware icon from default rEFInd icons
-            "themes/rEFInd-minimal/icons/func_firmware.png" = "${refindPath}/icons/func_firmware.png";
           };
       };
     })
