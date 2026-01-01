@@ -64,7 +64,7 @@ in
 
           # Manual entry for gaming OS
           menuentry "Gaming NixOS" {
-            icon /themes/rEFInd-minimal/icons/os_linux.png
+            icon themes/rEFInd-minimal/icons/os_steam.png
             volume ${cfg.gamingDriveUUID}
             loader /EFI/systemd/systemd-bootx64.efi
           }
@@ -72,6 +72,7 @@ in
         # Copy theme files to EFI partition
         additionalFiles = let
           themePath = ./themes/rEFInd-minimal;
+          iconsPath = ./icons;
           # Copy all theme icons
           copyThemeIcons = builtins.listToAttrs (
             map (name: {
@@ -85,6 +86,10 @@ in
             "themes/rEFInd-minimal/background.png" = "${themePath}/background.png";
             "themes/rEFInd-minimal/selection_big.png" = "${themePath}/selection_big.png";
             "themes/rEFInd-minimal/selection_small.png" = "${themePath}/selection_small.png";
+            # Custom icons (black theme-matching versions)
+            "themes/rEFInd-minimal/icons/os_steam.png" = "${iconsPath}/os_steam.png";
+            "themes/rEFInd-minimal/icons/func_firmware.png" = "${iconsPath}/func_firmware.png";
+            "themes/rEFInd-minimal/icons/func_about.png" = "${iconsPath}/func_about.png";
           };
       };
     })
