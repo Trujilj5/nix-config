@@ -41,28 +41,43 @@ in
           # Show graphics for boot entries
           use_graphics_for osx,linux,elilo,grub,windows
 
-          # Tell rEFInd where to find icons
-          icons_dir EFI/refind/icons
+          # === rEFInd-minimal Theme ===
+          # Hide UI elements for cleaner look
+          hideui singleuser,hints,arrows,label,badges
+
+          # Use theme icons directory
+          icons_dir themes/rEFInd-minimal/icons
+
+          # Theme background (fills screen)
+          banner themes/rEFInd-minimal/background.png
+          banner_scale fillscreen
+
+          # Selection highlight images
+          selection_big   themes/rEFInd-minimal/selection_big.png
+          selection_small themes/rEFInd-minimal/selection_small.png
+
+          # Only show shutdown tool
+          showtools shutdown
 
           # Hide boot entries for rescue/fallback kernels
           dont_scan_files shim.efi,shim-fedora.efi,shimx64.efi,PreLoader.efi,TextMode.efi,ebounce.efi,GraphicsConsole.efi,MokManager.efi,HashTool.efi,HashTool-signed.efi,bootmgfw.efi
-
-          # Hide the auto-scanned gaming drive entries (use default Linux icon)
-          # dont_scan_volumes ${cfg.gamingDriveUUID}
         '';
-        # Copy all icon files to EFI partition
+        # Copy theme files to EFI partition
         additionalFiles = let
-          refindPath = "${pkgs.refind}/share/refind";
-          copyIconsFrom = dir: builtins.listToAttrs (
+          themePath = ./themes/rEFInd-minimal;
+          # Copy all theme icons
+          copyThemeIcons = builtins.listToAttrs (
             map (name: {
-              name = "EFI/refind/${dir}/${name}";
-              value = "${refindPath}/${dir}/${name}";
-            }) (builtins.attrNames (builtins.readDir "${refindPath}/${dir}"))
+              name = "themes/rEFInd-minimal/icons/${name}";
+              value = "${themePath}/icons/${name}";
+            }) (builtins.attrNames (builtins.readDir "${themePath}/icons"))
           );
         in
-          (copyIconsFrom "icons") // {
-            # Custom NixOS icon for work OS
-            "EFI/refind/icons/os_nixos.png" = ./icons/nixos.png;
+          copyThemeIcons // {
+            # Theme background and selection images
+            "themes/rEFInd-minimal/background.png" = "${themePath}/background.png";
+            "themes/rEFInd-minimal/selection_big.png" = "${themePath}/selection_big.png";
+            "themes/rEFInd-minimal/selection_small.png" = "${themePath}/selection_small.png";
           };
       };
     })
