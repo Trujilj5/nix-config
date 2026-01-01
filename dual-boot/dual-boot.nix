@@ -56,6 +56,9 @@ in
           selection_big   themes/rEFInd-minimal/selection_big.png
           selection_small themes/rEFInd-minimal/selection_small.png
 
+          # Show only shutdown tool
+          showtools 
+
           # Hide boot entries for rescue/fallback kernels
           dont_scan_files shim.efi,shim-fedora.efi,shimx64.efi,PreLoader.efi,TextMode.efi,ebounce.efi,GraphicsConsole.efi,MokManager.efi,HashTool.efi,HashTool-signed.efi,bootmgfw.efi
 
