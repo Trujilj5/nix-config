@@ -38,6 +38,9 @@
   # Set locale
   i18n.defaultLocale = "en_US.UTF-8";
 
+  # Remap Caps Lock to Escape
+  services.xserver.xkb.options = "caps:escape";
+
   hardware.enableRedistributableFirmware = true;
   hardware.enableAllFirmware = true;
   hardware.bluetooth.enable = true;
