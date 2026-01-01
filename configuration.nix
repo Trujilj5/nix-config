@@ -10,7 +10,7 @@
     ./dev.nix
     ./hardware-configuration.nix
     ./stylix.nix
-    ./dual-boot.nix
+    ./dual-boot/dual-boot.nix
   ];
 
   # Enable dual-boot module (uses rEFInd for graphical boot menu with gaming OS)

@@ -47,15 +47,8 @@ in
           # Hide boot entries for rescue/fallback kernels
           dont_scan_files shim.efi,shim-fedora.efi,shimx64.efi,PreLoader.efi,TextMode.efi,ebounce.efi,GraphicsConsole.efi,MokManager.efi,HashTool.efi,HashTool-signed.efi,bootmgfw.efi
 
-          # Don't auto-scan gaming drive (we use manual entry below)
-          dont_scan_volumes ${cfg.gamingDriveUUID}
-
-          # Manual entry for Gaming OS with Steam icon
-          menuentry "Gaming NixOS" {
-            icon EFI/refind/icons/os_steam.png
-            volume ${cfg.gamingDriveUUID}
-            loader \EFI\systemd\systemd-bootx64.efi
-          }
+          # Hide the auto-scanned gaming drive entries (use default Linux icon)
+          # dont_scan_volumes ${cfg.gamingDriveUUID}
         '';
         # Copy all icon files to EFI partition
         additionalFiles = let
@@ -69,9 +62,7 @@ in
         in
           (copyIconsFrom "icons") // {
             # Custom NixOS icon for work OS
-            "EFI/refind/icons/os_nixos.png" = ./refind-icons/nixos.png;
-            # Custom Steam icon for gaming OS
-            "EFI/refind/icons/os_steam.png" = ./refind-icons/steam.png;
+            "EFI/refind/icons/os_nixos.png" = ./icons/nixos.png;
           };
       };
     })
