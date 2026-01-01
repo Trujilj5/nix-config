@@ -56,15 +56,12 @@ in
           selection_big   themes/rEFInd-minimal/selection_big.png
           selection_small themes/rEFInd-minimal/selection_small.png
 
-          # Show only shutdown tool
-          showtools shutdown
-
           # Hide boot entries for rescue/fallback kernels
           dont_scan_files shim.efi,shim-fedora.efi,shimx64.efi,PreLoader.efi,TextMode.efi,ebounce.efi,GraphicsConsole.efi,MokManager.efi,HashTool.efi,HashTool-signed.efi,bootmgfw.efi
 
           # Manual entry for gaming OS
           menuentry "Gaming NixOS" {
-            icon themes/rEFInd-minimal/icons/os_steam.png
+            icon os_steam.png
             volume ${cfg.gamingDriveUUID}
             loader /EFI/systemd/systemd-bootx64.efi
           }
