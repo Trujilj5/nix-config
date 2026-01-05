@@ -102,9 +102,9 @@
     python3Packages.requests
     wlogout
     networkmanagerapplet
-    # (writeShellScriptBin "signal-desktop" ''
-    #   exec ${signal-desktop-bin}/bin/signal-desktop --force-device-scale-factor=0.25 --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
-    # '')
+    (writeShellScriptBin "signal-desktop" ''
+      exec ${signal-desktop-bin}/bin/signal-desktop --force-device-scale-factor=0.25 --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
+    '')
     (writeShellScriptBin "zed-project-picker" ''
       #!/usr/bin/env bash
 
