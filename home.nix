@@ -7,6 +7,9 @@
   home.stateVersion = "25.05";
   home.enableNixpkgsReleaseCheck = false;
 
+  # Status bar configuration: "waybar" or "dms"
+  homeManager.bar.type = "waybar";
+
   # Stylix configuration for home-manager
   stylix = {
     enable = true;
@@ -57,7 +60,6 @@
   };
 
   home.packages = with pkgs; [
-    # Zsh and related packages
     zsh-powerlevel10k
 
     # Hyprland-related packages
@@ -145,16 +147,16 @@
       mimeType = [ "application/pdf" "application/rdf+xml" "application/rss+xml" "application/xhtml+xml" "application/xhtml_xml" "application/xml" "image/gif" "image/jpeg" "image/png" "image/webp" "text/html" "text/xml" "x-scheme-handler/http" "x-scheme-handler/https" "x-scheme-handler/ftp" "x-scheme-handler/chrome" "video/webm" "application/x-xpinstall" ];
     };
 
-    signal-desktop = {
-      name = "Signal";
-      genericName = "Secure messenger";
-      comment = "Private messaging from your desktop";
-      exec = "signal-desktop";
-      icon = "signal-desktop";
-      type = "Application";
-      categories = [ "Network" "InstantMessaging" ];
-      mimeType = [ "x-scheme-handler/sgnl" "x-scheme-handler/signalcaptcha" ];
-    };
+    # signal-desktop = {
+    #   name = "Signal";
+    #   genericName = "Secure messenger";
+    #   comment = "Private messaging from your desktop";
+    #   exec = "signal-desktop";
+    #   icon = "signal-desktop";
+    #   type = "Application";
+    #   categories = [ "Network" "InstantMessaging" ];
+    #   mimeType = [ "x-scheme-handler/sgnl" "x-scheme-handler/signalcaptcha" ];
+    # };
 
     code = {
       name = "Code";
