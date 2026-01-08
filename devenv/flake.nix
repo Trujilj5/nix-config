@@ -28,7 +28,7 @@
           xorg.libXfixes
           xorg.libXrandr
           mesa
-          mesa.drivers
+          libgbm
           libxkbcommon
           systemd
           alsa-lib
@@ -39,7 +39,7 @@
           freetype
           fontconfig
           cups
-          udev
+          eudev
           libnotify
           xorg.libxcb
           xorg.libxshmfence
