@@ -54,14 +54,15 @@
             buildInputs = with pkgs; [
               nodejs
               bun
+              playwright-driver.browsers
             ] ++ playwrightDeps;
 
             shellHook = ''
-              export PLAYWRIGHT_BROWSERS_PATH=$HOME/.cache/ms-playwright
+              export PLAYWRIGHT_BROWSERS_PATH=${pkgs.playwright-driver.browsers}
               export PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS=true
               export LD_LIBRARY_PATH=${playwrightLibPath}:$LD_LIBRARY_PATH
 
-              echo "✓ Ionite development environment with Playwright support"
+              echo "✓ Playwright development environment (NixOS-compatible browsers)"
               echo ""
               echo "Commands:"
               echo "  bun run test                                        - Run all tests"
