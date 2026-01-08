@@ -7,9 +7,6 @@
   home.stateVersion = "25.05";
   home.enableNixpkgsReleaseCheck = false;
 
-  # Status bar configuration: "waybar" or "dms"
-  homeManager.bar.type = "waybar";
-
   # Stylix configuration for home-manager
   stylix = {
     enable = true;
