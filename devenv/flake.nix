@@ -50,26 +50,30 @@
       {
         devShells = {
           # Playwright environment for projects
-          playwright = pkgs.mkShell {
-            buildInputs = with pkgs; [
+          playwright = (pkgs.buildFHSEnv {
+            name = "playwright-env";
+            targetPkgs = pkgs: (with pkgs; [
               nodejs
               bun
-              playwright-driver.browsers
-            ] ++ playwrightDeps;
+            ] ++ playwrightDeps);
 
-            shellHook = ''
-              export PLAYWRIGHT_BROWSERS_PATH=${pkgs.playwright-driver.browsers}
-              export PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS=true
-              export LD_LIBRARY_PATH=${playwrightLibPath}:$LD_LIBRARY_PATH
+            runScript = "zsh";
 
-              echo "✓ Playwright development environment (NixOS-compatible browsers)"
+            profile = ''
+              export PLAYWRIGHT_BROWSERS_PATH=$HOME/.cache/ms-playwright
+              export PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=0
+
+              echo "✓ Playwright development environment (FHS)"
+              echo ""
+              echo "First time setup:"
+              echo "  npx playwright install chromium    - Install Chromium browser"
               echo ""
               echo "Commands:"
               echo "  bun run test                                        - Run all tests"
               echo "  bun run test tests/keycloak-integration.spec.ts    - Run specific test"
               echo "  bun run test:ui                                     - Run tests in UI mode"
             '';
-          };
+          }).env;
         };
       }
     );
