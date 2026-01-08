@@ -136,6 +136,15 @@
       # Zoxide
       eval "$(zoxide init zsh)"
 
+      # Wrapper function for nix develop to use centralized devenv
+      nix() {
+        if [[ $1 == "develop" && $2 != "" && $2 != -* && $2 != /* && $2 != ./* && $2 != *#* ]]; then
+          # If second arg doesn't start with -, /, ./ and doesn't contain #, prepend devenv path
+          command nix develop ~/nixos/devenv#"$2" "''${@:3}"
+        else
+          command nix "$@"
+        fi
+      }
 
     '';
   };
