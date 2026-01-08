@@ -28,6 +28,7 @@
           xorg.libXfixes
           xorg.libXrandr
           mesa
+          mesa.drivers
           libxkbcommon
           systemd
           alsa-lib
