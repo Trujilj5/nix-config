@@ -55,6 +55,7 @@
     unstablePkgs.freerdp
     unstablePkgs.winboat
     neovim
+    distrobox
     git
     lazygit
     lazysql
