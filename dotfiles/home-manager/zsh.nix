@@ -50,7 +50,7 @@
       kcdelss = "kcrmss";
       kcge = "kcg events";
       kcswap = "kubectl config set-context --current --namespace";
-
+      ubuntu = "distrobox enter ubuntu";
     };
 
     # History
