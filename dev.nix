@@ -91,6 +91,7 @@
     package-version-server
     filezilla
     yarn
+    azure-cli
   ];
 
 
