@@ -1,17 +1,11 @@
--- Sidekick AI assistant
+-- Sidekick AI assistant (Nes inline suggestions disabled - using supermaven instead)
 return {
   {
     "folke/sidekick.nvim",
-    opts = function()
-      LazyVim.cmp.actions.ai_nes = function()
-        local Nes = require("sidekick.nes")
-        if Nes.have() and (Nes.jump() or Nes.apply()) then
-          return true
-        end
-      end
-    end,
+    opts = {
+      nes = { enabled = false },
+    },
     keys = {
-      { "<tab>", LazyVim.cmp.map({ "ai_nes" }, "<tab>"), mode = { "n" }, expr = true },
       { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
       { "<leader>aa", function() require("sidekick.cli").toggle() end, desc = "Sidekick Toggle CLI" },
 
