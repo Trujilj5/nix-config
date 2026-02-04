@@ -92,6 +92,12 @@
 
   programs.home-manager.enable = true;
 
+  # Disable manual generation to avoid options.json warning
+  # See: https://github.com/nix-community/home-manager/issues/7935
+  manual.manpages.enable = false;
+  manual.html.enable = false;
+  manual.json.enable = false;
+
   # Override Stylix GTK theme with Orchis (actively maintained)
   gtk = {
     enable = true;
