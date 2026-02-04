@@ -25,7 +25,7 @@
     # zed.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, stylix, determinate, nvf, ... }@inputs:
+  outputs = { nixpkgs, stylix, determinate, ... }@inputs:
   let
     system = "x86_64-linux";
     # Note: This must match your system username. The hm alias uses $USER which expands at runtime.
@@ -42,7 +42,6 @@
       };
       modules = [
         ./home.nix
-        nvf.homeManagerModules.default
         stylix.homeModules.stylix
       ];
     };
