@@ -51,7 +51,6 @@
     targets = {
       gtk.enable = true;
       gnome.enable = false;
-      nvf.enable = true;
       qt.enable = false;
     };
   };

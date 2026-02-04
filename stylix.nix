@@ -47,7 +47,6 @@
       gtk.enable = true;
       gnome.enable = false;
       console.enable = true;
-      nvf.enable = true;
       qt.enable = false;
     };
   };

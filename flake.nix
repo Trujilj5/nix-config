@@ -20,12 +20,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Neovim
-    nvf = {
-      url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # # Zed Editor (pinned to avoid frequent rebuilds)
     # zed.url = "github:zed-industries/zed/v0.204.5";
     # zed.inputs.nixpkgs.follows = "nixpkgs";
