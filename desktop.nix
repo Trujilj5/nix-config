@@ -76,7 +76,7 @@
     filezilla
     popsicle
     (writeShellScriptBin "brave" ''
-      exec ${brave}/bin/brave --force-device-scale-factor=1.0 --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer --ozone-platform=wayland --restore-last-session --hide-crash-restore-bubble "$@"
+      exec ${brave}/bin/brave --force-device-scale-factor=.5 --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer --ozone-platform=wayland --restore-last-session --hide-crash-restore-bubble "$@"
     '')
     firefox
     spotify
