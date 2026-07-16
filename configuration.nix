@@ -30,7 +30,6 @@
   boot.kernelParams = [ "splash" "quiet" ];  # Graphical splash (press Escape during boot for text logs)
 
   networking.networkmanager.enable = true;
-  networking.wireless.enable = false;
 
   # Set timezone
   time.timeZone = "America/Phoenix";
