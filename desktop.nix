@@ -10,7 +10,6 @@
   programs.thunar.enable = true;
 
   services.displayManager.gdm.enable = true;
-  services.displayManager.gdm.wayland = true;
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = systemUser;
   services.udisks2.enable = true;
